@@ -1,0 +1,613 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &671770036871813300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671770036871813303}
+  - component: {fileID: 671770036871813302}
+  - component: {fileID: 671770036871813301}
+  - component: {fileID: 671770036871813257}
+  - component: {fileID: 3358236319393131862}
+  - component: {fileID: 2132386524}
+  - component: {fileID: 2132386525}
+  - component: {fileID: 2132386530}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671770036871813303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770036871813300}
+  m_LocalRotation: {x: 0, y: 0.8542683, z: 0, w: 0.5198324}
+  m_LocalPosition: {x: 48.25, y: 19.65, z: 4.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 671770037706048370}
+  - {fileID: 671770038288396169}
+  - {fileID: 671770037042700824}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 117.35801, z: 0}
+--- !u!20 &671770036871813302
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770036871813300}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 5000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &671770036871813301
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770036871813300}
+  m_Enabled: 1
+--- !u!114 &671770036871813257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770036871813300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b28c29541c3aae4ea0f96b8eb247f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCullDistance: 5000
+  distanceMultiplier: 1
+  layerCullInfos:
+  - layerName: Default
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: TransparentFX
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Ignore Raycast
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Water
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: UI
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Player
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: PlayerDetectionTrigger
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Enemy
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Pedestrian
+    cullDistance: 350
+    showGizmo: 1
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Buildings
+    cullDistance: 150
+    showGizmo: 1
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Props
+    cullDistance: 200
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Roads
+    cullDistance: 350
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Ocean
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  - layerName: Layer Not Defined
+    cullDistance: 5000
+    showGizmo: 0
+    gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &3358236319393131862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770036871813300}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c686c8ce83548b24dbeb9b748fbf0eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 671770036871813303}
+  shakeDuration: 0.87
+  shakeDurationNormal: 0.4
+  shakeAmount: 0.3
+  decreaseFactor: 1
+  cameraScript: {fileID: 2132386530}
+--- !u!114 &2132386524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770036871813300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef6fb9e886b5ba4384ff65e3e801428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCam: {fileID: 2132386530}
+  vehicleCam: {fileID: 2132386525}
+--- !u!114 &2132386525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770036871813300}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c260b9344a9770347934a90c90132918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCar: {fileID: 0}
+  distance: 10.27
+  height: 2
+  heightOffset: 0.75
+  heightDamping: 2
+  rotationDamping: 3
+  minimumFOV: 50
+  maximumFOV: 70
+  maximumTilt: 15
+--- !u!114 &2132386530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770036871813300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f52f8d5429f99c479a69308bf49d23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OrbitValues:
+    mode: 0
+    Distance: 1.8
+    RightOffset: 0
+    Height: 0.8
+    ApplyRotationConstraints: 0
+    XRotationConstraint: {x: -360, y: 360}
+    YRotationConstraint: {x: -30, y: 70}
+    fOV: 60
+  AimValues:
+    mode: 1
+    Distance: 1.8
+    RightOffset: 0.35
+    Height: 1
+    ApplyRotationConstraints: 1
+    XRotationConstraint: {x: -360, y: 360}
+    YRotationConstraint: {x: -30, y: 30}
+    fOV: 20
+  target: {fileID: 0}
+  smoothCameraRotation: 12
+  cullingLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  lockCamera: 0
+  rightOffset: 0.35
+  defaultDistance: 1.8
+  height: 1
+  smoothFollow: 10
+  xMouseSensitivity: 1
+  yMouseSensitivity: 1
+  yMinLimit: -30
+  yMaxLimit: 30
+  XRotationConstraint: -720
+  YRotationConstraint: 360
+  indexList: 0
+  indexLookPoint: 0
+  offSetPlayerPivot: 0
+  currentStateName: 
+  currentTarget: {fileID: 0}
+  movementSpeed: {x: 0, y: -0}
+  finalXVector: {x: 0, y: 0, z: 0}
+  finalYVector: {x: 0, y: 0, z: 0}
+  xMinLimit: -4.0369263
+  xMaxLimit: 715.9631
+  ApplyPosition: 0
+  valueShiftRate: 8.01
+  AnglesCalculated: 1
+  Vector1: {x: 10, y: 10}
+  Vector_2: {x: 0.02, y: 0.02}
+--- !u!1 &671770037042700807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671770037042700824}
+  - component: {fileID: 671770037042700825}
+  m_Layer: 9
+  m_Name: TrafficSpawner
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671770037042700824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770037042700807}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 671770036871813303}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671770037042700825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770037042700807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -260812457, guid: ac3101a53374db749b8f8f604905610e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initializeOnStart: 1
+  cars:
+  - cars: {fileID: 100032, guid: fb395460b23c43843ba1104c553bf743, type: 3}
+    frequency: 10
+  - cars: {fileID: 100032, guid: 014e5c7cd30a8ee439e94c65c0cee51d, type: 3}
+    frequency: 10
+  - cars: {fileID: 100032, guid: d9ff19eaaaeb40e4cb96e6eec6e2a407, type: 3}
+    frequency: 10
+  - cars: {fileID: 100032, guid: f4fc48b3e6470bf448233c2efdb11510, type: 3}
+    frequency: 10
+  - cars: {fileID: 100032, guid: 25cc83db12a6aa5438886b81af06b084, type: 3}
+    frequency: 10
+  totalAmountOfCars: 10
+  amount: 10
+  maxDistance: 21.6
+  offset: 84.22
+  closerRange: 1
+  refreshTime: 0.5
+  manager: {fileID: 0}
+  unusedCarsPosition: {x: 50000, y: 50000, z: 50000}
+  respawnIfUpSideDown: 0
+  respawnUpSideDownTime: 2
+  respawnAltitude: 0.3
+  disableMultiThreading: 0
+  globalPointOffset: {x: 0, y: 0, z: 0}
+  carsCheckedPerFrame: 5
+  initialNotSpawningRadius: 0
+  transformSpawningCheck: []
+--- !u!1 &671770037706048369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671770037706048370}
+  - component: {fileID: 671770037706048372}
+  - component: {fileID: 4191709369250976707}
+  - component: {fileID: 1535819648}
+  - component: {fileID: 1535819649}
+  m_Layer: 0
+  m_Name: PedestriansSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671770037706048370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770037706048369}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 671770036871813303}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671770037706048372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770037706048369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b8ab5907c21247b747be543155546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereColor:
+    serializedVersion: 2
+    rgba: 2868904191
+  sphereRadius: 50
+  renderGizmos: 0
+--- !u!114 &4191709369250976707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770037706048369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffdafa219b893274daf5df72330eeef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 50
+  pedestrianCount: 7
+  pedestriansToSpawn: 7
+  waitBeforePedestrianSpawn: 1
+  unspawnedCalls: 0
+  singleGoIterations: 0
+  hitDistane: 1
+  points: []
+--- !u!54 &1535819648
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770037706048369}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &1535819649
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770037706048369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 50
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &671770038288396168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671770038288396169}
+  - component: {fileID: 671770038288396171}
+  - component: {fileID: 671770038288396170}
+  - component: {fileID: 6351325461993334815}
+  - component: {fileID: 8097622337653043012}
+  m_Layer: 0
+  m_Name: PedestriansRemover
+  m_TagString: PedestrianRemover
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671770038288396169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770038288396168}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 671770036871813303}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671770038288396171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770038288396168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b8ab5907c21247b747be543155546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereColor:
+    serializedVersion: 2
+    rgba: 2868965119
+  sphereRadius: 70
+  renderGizmos: 0
+--- !u!114 &671770038288396170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770038288396168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578849e0177d31643b798769ed04e694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &6351325461993334815
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770038288396168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 70
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8097622337653043012
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671770038288396168}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

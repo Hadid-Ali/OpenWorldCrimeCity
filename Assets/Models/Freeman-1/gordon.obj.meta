@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: ad2f51628937a4ea68be307d5ac5580a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: gordon_gordon_freeman_ref_smd_mesh_11
+    100004: gordon_gordon_freeman_ref_smd_mesh_12
+    100006: gordon_gordon_freeman_ref_smd_mesh_13
+    100008: gordon_gordon_freeman_ref_smd_mesh_14
+    100010: gordon_gordon_freeman_ref_smd_mesh_15
+    100012: gordon_gordon_freeman_ref_smd_mesh_16
+    100014: gordon_gordon_freeman_ref_smd_mesh_17
+    100016: gordon_gordon_freeman_ref_smd_mesh_18
+    100018: gordon_gordon_freeman_ref_smd_mesh_19
+    100020: gordon_gordon_freeman_ref_smd_mesh_20
+    400000: //RootNode
+    400002: gordon_gordon_freeman_ref_smd_mesh_11
+    400004: gordon_gordon_freeman_ref_smd_mesh_12
+    400006: gordon_gordon_freeman_ref_smd_mesh_13
+    400008: gordon_gordon_freeman_ref_smd_mesh_14
+    400010: gordon_gordon_freeman_ref_smd_mesh_15
+    400012: gordon_gordon_freeman_ref_smd_mesh_16
+    400014: gordon_gordon_freeman_ref_smd_mesh_17
+    400016: gordon_gordon_freeman_ref_smd_mesh_18
+    400018: gordon_gordon_freeman_ref_smd_mesh_19
+    400020: gordon_gordon_freeman_ref_smd_mesh_20
+    2100000: gordon_gordon_freeman_ref_smd_m
+    2100002: Material__28
+    2100004: gordon_gordon_freeman_ref_smd_m0
+    2100006: gordon_gordon_freeman_ref_smd_m1
+    2100008: gordon_gordon_freeman_ref_smd_m2
+    2100010: gordon_gordon_freeman_ref_smd_m3
+    2100012: gordon_gordon_freeman_ref_smd_m4
+    2100014: gordon_gordon_freeman_ref_smd_m5
+    2100016: gordon_gordon_freeman_ref_smd_m6
+    2100018: gordon_gordon_freeman_ref_smd_m7
+    2300000: gordon_gordon_freeman_ref_smd_mesh_11
+    2300002: gordon_gordon_freeman_ref_smd_mesh_12
+    2300004: gordon_gordon_freeman_ref_smd_mesh_13
+    2300006: gordon_gordon_freeman_ref_smd_mesh_14
+    2300008: gordon_gordon_freeman_ref_smd_mesh_15
+    2300010: gordon_gordon_freeman_ref_smd_mesh_16
+    2300012: gordon_gordon_freeman_ref_smd_mesh_17
+    2300014: gordon_gordon_freeman_ref_smd_mesh_18
+    2300016: gordon_gordon_freeman_ref_smd_mesh_19
+    2300018: gordon_gordon_freeman_ref_smd_mesh_20
+    3300000: gordon_gordon_freeman_ref_smd_mesh_11
+    3300002: gordon_gordon_freeman_ref_smd_mesh_12
+    3300004: gordon_gordon_freeman_ref_smd_mesh_13
+    3300006: gordon_gordon_freeman_ref_smd_mesh_14
+    3300008: gordon_gordon_freeman_ref_smd_mesh_15
+    3300010: gordon_gordon_freeman_ref_smd_mesh_16
+    3300012: gordon_gordon_freeman_ref_smd_mesh_17
+    3300014: gordon_gordon_freeman_ref_smd_mesh_18
+    3300016: gordon_gordon_freeman_ref_smd_mesh_19
+    3300018: gordon_gordon_freeman_ref_smd_mesh_20
+    4300000: gordon_gordon_freeman_ref_smd_mesh_11
+    4300002: gordon_gordon_freeman_ref_smd_mesh_12
+    4300004: gordon_gordon_freeman_ref_smd_mesh_13
+    4300006: gordon_gordon_freeman_ref_smd_mesh_14
+    4300008: gordon_gordon_freeman_ref_smd_mesh_15
+    4300010: gordon_gordon_freeman_ref_smd_mesh_16
+    4300012: gordon_gordon_freeman_ref_smd_mesh_17
+    4300014: gordon_gordon_freeman_ref_smd_mesh_18
+    4300016: gordon_gordon_freeman_ref_smd_mesh_19
+    4300018: gordon_gordon_freeman_ref_smd_mesh_20
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__28
+    second: {fileID: 2100000, guid: e1da673775c2644a99ade9741109af87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m
+    second: {fileID: 2100000, guid: 8a207966e4ac3404d9af3f18654ec5e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m0
+    second: {fileID: 2100000, guid: cebb5638541f04735b2f5a2220ed8606, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m1
+    second: {fileID: 2100000, guid: 3f50157a00ae844a88aaa30b278dd004, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m2
+    second: {fileID: 2100000, guid: 8260bfc032361424f9bfda98e456190d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m3
+    second: {fileID: 2100000, guid: da04cc39e00484f9cbaefa0610d781a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m4
+    second: {fileID: 2100000, guid: 6db16b492d77143ebad863994b42f1a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m5
+    second: {fileID: 2100000, guid: 31642931c6d8d4c6689b42cb492139dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m6
+    second: {fileID: 2100000, guid: 04698a742ee1840ed936854c39885f19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gordon_gordon_freeman_ref_smd_m7
+    second: {fileID: 2100000, guid: 1ef2713a97797456dbee1c58fc31e545, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

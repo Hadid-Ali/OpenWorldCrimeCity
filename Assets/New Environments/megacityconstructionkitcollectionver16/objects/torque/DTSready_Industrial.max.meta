@@ -1,0 +1,182 @@
+fileFormatVersion: 2
+guid: 65bd4125f86087240a0424880852f46a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: base01
+    100002: Bounds
+    100004: building-industrial_01
+    100006: building-industrial_02
+    100008: building-industrial_03
+    100010: building-industrial_04
+    100012: building-industrial_05
+    100014: building-industrial_06
+    100016: building-industrial_07
+    100018: building-industrial_08
+    100020: building-industrial_09
+    100022: building-industrial_10
+    100024: building-industrial_11
+    100026: building-industrial_12
+    100028: building-industrial_13
+    100030: building-industrial_14
+    100032: building-industrial_15
+    100034: detail2
+    100036: //RootNode
+    100038: start01
+    400000: base01
+    400002: Bounds
+    400004: building-industrial_01
+    400006: building-industrial_02
+    400008: building-industrial_03
+    400010: building-industrial_04
+    400012: building-industrial_05
+    400014: building-industrial_06
+    400016: building-industrial_07
+    400018: building-industrial_08
+    400020: building-industrial_09
+    400022: building-industrial_10
+    400024: building-industrial_11
+    400026: building-industrial_12
+    400028: building-industrial_13
+    400030: building-industrial_14
+    400032: building-industrial_15
+    400034: detail2
+    400036: //RootNode
+    400038: start01
+    2100000: E
+    2300000: Bounds
+    2300002: building-industrial_01
+    2300004: building-industrial_02
+    2300006: building-industrial_03
+    2300008: building-industrial_04
+    2300010: building-industrial_05
+    2300012: building-industrial_06
+    2300014: building-industrial_07
+    2300016: building-industrial_08
+    2300018: building-industrial_09
+    2300020: building-industrial_10
+    2300022: building-industrial_11
+    2300024: building-industrial_12
+    2300026: building-industrial_13
+    2300028: building-industrial_14
+    2300030: building-industrial_15
+    3300000: Bounds
+    3300002: building-industrial_01
+    3300004: building-industrial_02
+    3300006: building-industrial_03
+    3300008: building-industrial_04
+    3300010: building-industrial_05
+    3300012: building-industrial_06
+    3300014: building-industrial_07
+    3300016: building-industrial_08
+    3300018: building-industrial_09
+    3300020: building-industrial_10
+    3300022: building-industrial_11
+    3300024: building-industrial_12
+    3300026: building-industrial_13
+    3300028: building-industrial_14
+    3300030: building-industrial_15
+    4300000: Bounds
+    4300002: building-industrial_01
+    4300004: building-industrial_02
+    4300006: building-industrial_03
+    4300008: building-industrial_04
+    4300010: building-industrial_06
+    4300012: building-industrial_07
+    4300014: building-industrial_08
+    4300016: building-industrial_09
+    4300018: building-industrial_10
+    4300020: building-industrial_11
+    4300022: building-industrial_12
+    4300024: building-industrial_13
+    4300026: building-industrial_14
+    4300028: building-industrial_15
+    4300030: building-industrial_05
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

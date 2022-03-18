@@ -1,0 +1,265 @@
+fileFormatVersion: 2
+guid: 032813e8d10918542adbe15943c97581
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: base01
+    100002: Bounds
+    100004: building-commercial_02
+    100006: building-commercial_03
+    100008: building-commercial_04
+    100010: building-commercial_07
+    100012: building-commercial_08
+    100014: building-commercial_09
+    100016: building-commercial_10
+    100018: building-commercial_11
+    100020: building-commercial_12
+    100022: building-commercial_13
+    100024: building-commercial_14
+    100026: building-commercial_15
+    100028: building-commercial_16
+    100030: building-commercial_17
+    100032: building-commercial_18
+    100034: building-commercial_19
+    100036: building-commercial_20
+    100038: building-commercial_21
+    100040: building-commercial_22
+    100042: building-commercial_23
+    100044: building-commercial_24
+    100046: building-commercial_25
+    100048: building-commercial_26
+    100050: building-commercial_27
+    100052: building-commercial_28
+    100054: building-commercial_29
+    100056: building-commercial_30
+    100058: building-commercial_31
+    100060: D2
+    100062: detail2
+    100064: //RootNode
+    100066: S2
+    100068: S2 1
+    100070: start01
+    400000: base01
+    400002: Bounds
+    400004: building-commercial_02
+    400006: building-commercial_03
+    400008: building-commercial_04
+    400010: building-commercial_07
+    400012: building-commercial_08
+    400014: building-commercial_09
+    400016: building-commercial_10
+    400018: building-commercial_11
+    400020: building-commercial_12
+    400022: building-commercial_13
+    400024: building-commercial_14
+    400026: building-commercial_15
+    400028: building-commercial_16
+    400030: building-commercial_17
+    400032: building-commercial_18
+    400034: building-commercial_19
+    400036: building-commercial_20
+    400038: building-commercial_21
+    400040: building-commercial_22
+    400042: building-commercial_23
+    400044: building-commercial_24
+    400046: building-commercial_25
+    400048: building-commercial_26
+    400050: building-commercial_27
+    400052: building-commercial_28
+    400054: building-commercial_29
+    400056: building-commercial_30
+    400058: building-commercial_31
+    400060: D2
+    400062: detail2
+    400064: //RootNode
+    400066: S2
+    400068: S2 1
+    400070: start01
+    2100000: No Name
+    2100002: D
+    2100004: S
+    2100006: A
+    2300000: Bounds
+    2300002: building-commercial_02
+    2300004: building-commercial_03
+    2300006: building-commercial_04
+    2300008: building-commercial_07
+    2300010: building-commercial_08
+    2300012: building-commercial_09
+    2300014: building-commercial_10
+    2300016: building-commercial_11
+    2300018: building-commercial_12
+    2300020: building-commercial_13
+    2300022: building-commercial_14
+    2300024: building-commercial_15
+    2300026: building-commercial_16
+    2300028: building-commercial_17
+    2300030: building-commercial_18
+    2300032: building-commercial_19
+    2300034: building-commercial_20
+    2300036: building-commercial_21
+    2300038: building-commercial_22
+    2300040: building-commercial_23
+    2300042: building-commercial_24
+    2300044: building-commercial_25
+    2300046: building-commercial_26
+    2300048: building-commercial_27
+    2300050: building-commercial_28
+    2300052: building-commercial_29
+    2300054: building-commercial_30
+    2300056: building-commercial_31
+    2300058: D2
+    2300060: S2
+    2300062: S2 1
+    3300000: Bounds
+    3300002: building-commercial_02
+    3300004: building-commercial_03
+    3300006: building-commercial_04
+    3300008: building-commercial_07
+    3300010: building-commercial_08
+    3300012: building-commercial_09
+    3300014: building-commercial_10
+    3300016: building-commercial_11
+    3300018: building-commercial_12
+    3300020: building-commercial_13
+    3300022: building-commercial_14
+    3300024: building-commercial_15
+    3300026: building-commercial_16
+    3300028: building-commercial_17
+    3300030: building-commercial_18
+    3300032: building-commercial_19
+    3300034: building-commercial_20
+    3300036: building-commercial_21
+    3300038: building-commercial_22
+    3300040: building-commercial_23
+    3300042: building-commercial_24
+    3300044: building-commercial_25
+    3300046: building-commercial_26
+    3300048: building-commercial_27
+    3300050: building-commercial_28
+    3300052: building-commercial_29
+    3300054: building-commercial_30
+    3300056: building-commercial_31
+    3300058: D2
+    3300060: S2
+    3300062: S2 1
+    4300000: Bounds
+    4300002: D2
+    4300004: building-commercial_02
+    4300006: building-commercial_03
+    4300008: building-commercial_04
+    4300010: S2
+    4300012: S2
+    4300014: building-commercial_07
+    4300016: building-commercial_08
+    4300018: building-commercial_09
+    4300020: building-commercial_10
+    4300022: building-commercial_11
+    4300024: building-commercial_12
+    4300026: building-commercial_13
+    4300028: building-commercial_14
+    4300030: building-commercial_15
+    4300032: building-commercial_16
+    4300034: building-commercial_17
+    4300036: building-commercial_18
+    4300038: building-commercial_19
+    4300040: building-commercial_20
+    4300042: building-commercial_21
+    4300044: building-commercial_22
+    4300046: building-commercial_23
+    4300048: building-commercial_24
+    4300050: building-commercial_25
+    4300052: building-commercial_26
+    4300054: building-commercial_27
+    4300056: building-commercial_28
+    4300058: building-commercial_29
+    4300060: building-commercial_30
+    4300062: building-commercial_31
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
