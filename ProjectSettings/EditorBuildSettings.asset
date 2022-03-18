@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/City.unity
-    guid: ed4aef6da2f906a4a9fdb8dfe72965c6
+    path: Assets/Open World Crime Environment/Scenes/day.unity
+    guid: aaf2d236db3aca348892f98ef5759e2c
   m_configObjects: {}
