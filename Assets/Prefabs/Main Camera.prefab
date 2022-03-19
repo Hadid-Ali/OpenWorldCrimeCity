@@ -302,7 +302,7 @@ MonoBehaviour:
   OrbitValues:
     mode: 0
     Distance: 1.8
-    RightOffset: 0
+    RightOffset: 0.15
     Height: 0.8
     ApplyRotationConstraints: 0
     XRotationConstraint: {x: -360, y: 360}
@@ -311,7 +311,7 @@ MonoBehaviour:
   AimValues:
     mode: 1
     Distance: 1.8
-    RightOffset: 0.35
+    RightOffset: 0.15
     Height: 1
     ApplyRotationConstraints: 1
     XRotationConstraint: {x: -360, y: 360}
@@ -323,7 +323,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   lockCamera: 0
-  rightOffset: 0.35
+  rightOffset: 0.15
   defaultDistance: 1.8
   height: 1
   smoothFollow: 10
