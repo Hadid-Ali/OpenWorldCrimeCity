@@ -1,0 +1,535 @@
+fileFormatVersion: 2
+guid: 56b77e650333ed14b831353b24c6c5a5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6093655102018839726
+    second: game-button-png-2_0
+  - first:
+      213: 1597937550385416811
+    second: game-button-png-2_1
+  - first:
+      213: 5953611763520467981
+    second: game-button-png-2_2
+  - first:
+      213: 6785029669055480433
+    second: game-button-png-2_3
+  - first:
+      213: -210411252792264895
+    second: game-button-png-2_4
+  - first:
+      213: -3710790185257120719
+    second: game-button-png-2_5
+  - first:
+      213: 8522416498557321173
+    second: game-button-png-2_6
+  - first:
+      213: -7934506931868916207
+    second: game-button-png-2_7
+  - first:
+      213: 4219581317406321969
+    second: game-button-png-2_8
+  - first:
+      213: -3665856934017099384
+    second: game-button-png-2_9
+  - first:
+      213: 4376080621607863679
+    second: game-button-png-2_10
+  - first:
+      213: 7250296720227817759
+    second: game-button-png-2_11
+  - first:
+      213: 462110423741279742
+    second: game-button-png-2_12
+  - first:
+      213: 825880851693823575
+    second: game-button-png-2_13
+  - first:
+      213: 3076624866548401197
+    second: game-button-png-2_14
+  - first:
+      213: -6451003868445364668
+    second: game-button-png-2_15
+  - first:
+      213: -6598138892820932008
+    second: game-button-png-2_16
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: game-button-png-2_0
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 347
+        width: 318
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38e8c95f8ef47ec4b924c1922fb8087a
+      internalID: -6093655102018839726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_1
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 450
+        width: 5
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e341f1ec1dce6d4b8601054d619cb0d
+      internalID: 1597937550385416811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 352
+        width: 178
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32ac1b10b39b4b4ab5d9b4378e71195
+      internalID: 5953611763520467981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_3
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 255
+        width: 207
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c37ef55970852a842b56d4f251aea7d8
+      internalID: 6785029669055480433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_4
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 258
+        width: 178
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cb143ba7bd38184ab71ce5b53dd50fa
+      internalID: -210411252792264895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_5
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 232
+        width: 112
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10a002be41bb7294ea01ad6fa3bb05d6
+      internalID: -3710790185257120719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_6
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 149
+        width: 177
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39b7a4cc4d5379346a21feae0cf60227
+      internalID: 8522416498557321173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_7
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 219
+        width: 47
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3139a575c69dfcb45847a51dbb8c7924
+      internalID: -7934506931868916207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_8
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 129
+        width: 207
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b15cfdadd00b5a4eb35c30b02227085
+      internalID: 4219581317406321969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_9
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 163
+        width: 6
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b85bab3be564004f81d3bc756444377
+      internalID: -3665856934017099384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_10
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 164
+        width: 4
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83ee1dcba3321934584d6f2fa4ef5c01
+      internalID: 4376080621607863679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_11
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 39
+        width: 113
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce6c977365e7244395eabbd5dcbf8bc
+      internalID: 7250296720227817759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_12
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 144
+        width: 100
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a910ec01fb0549648892e4794be1588c
+      internalID: 462110423741279742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_13
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 38
+        width: 207
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d941765bafd9ba3428b69ebe84ae0e24
+      internalID: 825880851693823575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_14
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 81
+        width: 6
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49947c3fc86e3504b84123269e6256b6
+      internalID: 3076624866548401197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_15
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 54
+        width: 177
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62f7bd98f87597a4f91863f26e587361
+      internalID: -6451003868445364668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game-button-png-2_16
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 83
+        width: 5
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d65cc2a88f5e184eb982f51180c8fa8
+      internalID: -6598138892820932008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
