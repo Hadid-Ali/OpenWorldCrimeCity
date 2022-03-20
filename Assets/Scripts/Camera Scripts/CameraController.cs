@@ -5,17 +5,17 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public vThirdPersonCamera characterCam;
-    public RCCCarCamera vehicleCam;
+    //public RCCCarCamera vehicleCam;
 
     public void SetVehicleCamTarget(Transform T)
     {
-        this.vehicleCam.playerCar = T;
+        //this.vehicleCam.playerCar = T;
     }
 
     public void ToggleCamMode(ControlsMode mode)
     {
         this.characterCam.enabled = false;
-        this.vehicleCam.enabled = false;
+        //this.vehicleCam.enabled = false;
         switch(mode)
         {
             case ControlsMode.PLAYER:
@@ -23,11 +23,11 @@ public class CameraController : MonoBehaviour
                 break;
 
             case ControlsMode.CAR:
-                this.vehicleCam.enabled = true;
+                //this.vehicleCam.enabled = true;
                 break;
 
             case ControlsMode.BIKE:
-                this.vehicleCam.enabled = true;
+                //this.vehicleCam.enabled = true;
                 break;
         }
     }

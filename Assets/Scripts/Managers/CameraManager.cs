@@ -9,11 +9,11 @@ public class CameraManager : MonoBehaviour
     public Camera _mainCamera;
     public vThirdPersonCamera _mainCameraController;
 
-    public RCCCameraOrbit _vehicleCamera;
+    public RCC_Camera _vehicleCamera;
 
     public void EnableVehicleCamera(GameObject vehicle)
     {
-        this._vehicleCamera.target = vehicle.transform;
+        this._vehicleCamera.playerCar = vehicle.GetComponent<RCC_CarControllerV3>();
         this.TogglePlayerCamera(false);
         this.ToggleVehicleCamera(true);
     }
