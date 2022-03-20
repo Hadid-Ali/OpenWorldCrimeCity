@@ -447,4 +447,35 @@ public class GameplayHUD : MonoBehaviour
         GameManager.instance.playerController.weaponInventory.SwitchWeapon(ref isSuccessSwitch);
         this.ActionJoystick(isSuccessSwitch);
     }
+
+    #region CarButtonHandler
+
+    public GameObject carBtn;
+
+    public void ShowCarButton()
+    {
+        if (!carBtn.activeInHierarchy)
+        {
+            carBtn.SetActive(true);
+        }
+    }
+
+    public void HideCarButton()
+    {
+        if (carBtn.activeInHierarchy)
+        {
+            carBtn.SetActive(false);
+        }
+    }
+
+    public void GetIntoTheCar()
+    {
+        if (TrafficToRccCar.Instance.EnterTrafficCar())
+        {
+            HideCarButton();
+            gameplayControls.SetActive(false);
+        }
+    }
+
+    #endregion
 }
