@@ -9,20 +9,15 @@ public class CameraManager : MonoBehaviour
     public Camera _mainCamera;
     public vThirdPersonCamera _mainCameraController;
 
-    public RCCCarCamera _vehicleCamera;
-
-    [SerializeField]
-    private RCCCamManager _vehiclelCameraModeManager;
+    public RCC_Camera _vehicleCamera;
 
     [SerializeField]
     private CameraShake _cameraShake;
 
-    public void EnableVehicleCamera(GameObject vehicle,bool shouldAllowOrbit)
+    public void EnableVehicleCamera(GameObject vehicle)
     {
-        this._vehiclelCameraModeManager.useOrbitCamera = shouldAllowOrbit;
-        this._vehiclelCameraModeManager.useFixedCamera = !shouldAllowOrbit;
 
-        this._vehicleCamera.playerCar = vehicle.transform;
+        this._vehicleCamera.playerCar = vehicle.GetComponent<RCC_CarControllerV3>();
 
         this.TogglePlayerCamera(false);
         this.ToggleVehicleCamera(true);

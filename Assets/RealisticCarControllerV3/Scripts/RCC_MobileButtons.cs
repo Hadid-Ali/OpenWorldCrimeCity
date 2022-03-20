@@ -15,7 +15,7 @@ using System.Collections;
 /// Receiving inputs from UI buttons, and feeds active vehicles on your scene.
 /// </summary>
 [AddComponentMenu("BoneCracker Games/Realistic Car Controller/UI/Mobile/RCC UI Mobile Buttons")]
-public class RCC_MobileButtons : RCC_Core {
+public class RCC_MobileButtons : MonoBehaviour {
 
 	#region Singleton
 	private static RCC_MobileButtons instance;

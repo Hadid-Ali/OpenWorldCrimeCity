@@ -463,6 +463,11 @@ public class RCC_CarControllerV3 : RCC_Core {
 		RCC_SceneManager.OnBehaviorChanged += CheckBehavior;
 
 	}
+	public override void SwitchToCar(bool b)
+	{
+		this.enabled = b;
+		base.SwitchToCar(b);
+	}
 
 	/// <summary>
 	/// Firing an event when each RCC car spawned / enabled. This event has been listening by RCC_MobileButtons.cs, RCC_DashboardInputs.cs.

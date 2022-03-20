@@ -29,7 +29,7 @@ public abstract class EnterableVehicle : Vehicle
         this.ToggleDummyDriver(b);
 
         // GameManager.instance.playerController.fullBodyIK.SetIKTargets(this.vehicle.ikTargets);
-        GameManager.instance.cameraManager.EnableVehicleCamera(this.gameObject,true);
+        GameManager.instance.cameraManager.EnableVehicleCamera(this.gameObject);
         this.SetPhysicsEnable(true);
         GameManager.instance.ChangePlayMode(b ? this.controlsType : ControlsMode.PLAYER);
         GameManager.instance.playerController.transform.SetParent(b ? this.transform : null);
