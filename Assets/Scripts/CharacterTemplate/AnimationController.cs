@@ -109,7 +109,6 @@ public class AnimationController : MonoBehaviour
         this.ToggleIsFighting(false);
         this.FalseAllWeapons();
         string weapon = "Is" + weaponType.ToString();
-        Debug.LogError(weapon);
         switch(weapon)
         {
             case "IsNone":

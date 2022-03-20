@@ -353,7 +353,7 @@ public class RCCEditor : Editor {
 			EditorGUILayout.LabelField("Configurations");
 			GUI.color = Color.white;
 			EditorGUILayout.Space();
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("playType"), new GUIContent("Play Type", "Enables/Disables controlling the vehicle."));
+            //EditorGUILayout.PropertyField(serializedObject.FindProperty("playType"), new GUIContent("Play Type", "Enables/Disables controlling the vehicle."));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("canControl"), new GUIContent("Engine Running", "Enables/Disables controlling the vehicle."));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("autoReverse"), new GUIContent("Auto Reverse", "Enables/Disables auto reversing when player press brake button. Useful for if you are making parking style game."));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("useDifferential"), new GUIContent("Use Differential", "Enables/Disables differential of the vehicle. For more information, google it."), false);

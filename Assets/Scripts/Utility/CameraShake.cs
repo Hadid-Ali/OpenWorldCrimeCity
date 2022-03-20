@@ -31,10 +31,6 @@ public class CameraShake : MonoBehaviour
 
     void OnEnable()
     {
-        if (this.cameraScript)
-            if (this.cameraScript.enabled)
-                this.cameraScript.enabled = false;
-
         this.shakeDuration = this.shakeDurationNormal;
 
         originalPos = camTransform.localPosition;
@@ -42,12 +38,10 @@ public class CameraShake : MonoBehaviour
 
     private void OnDisable()
     {
-        if (this.cameraScript)
-            if (!this.cameraScript.enabled)
-                this.cameraScript.enabled = true;
+
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (shakeDuration > 0)
         {

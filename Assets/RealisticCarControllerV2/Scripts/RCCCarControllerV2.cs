@@ -271,6 +271,28 @@ public class RCCCarControllerV2 : EnterableVehicle {
 		
 	}
 
+    public override void SwitchToCar(bool b)
+	{
+		if (b)
+		{
+			this.RegisterMobileInputs(GameManager.instance.gameplayHUD.rccInputs);
+		}
+		this.enabled = b;
+		base.SwitchToCar(b);
+    }
+
+    public void RegisterMobileInputs(RCCCustomInputClass uiButtons)
+    {
+		gasPedalUI = uiButtons.gasButton;
+		brakePedalUI = uiButtons.brakeButton;
+		leftArrowUI = uiButtons.leftButton;
+		rightArrowUI = uiButtons.rightButton;
+		handbrakeUI = uiButtons.handbrakeButton;
+		if (uiButtons.boostButton)
+			boostUI = uiButtons.boostButton;
+	}
+
+
 	public AudioSource CreateAudioSource(string audioName, float minDistance, float volume, AudioClip audioClip, bool loop, bool playNow, bool destroyAfterFinished){
 
 		GameObject audioSource = new GameObject(audioName);

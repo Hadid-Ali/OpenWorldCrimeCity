@@ -71,6 +71,6 @@ public class Weapon : GameEntity
 
     public virtual void Shoot()
     {
-
+        GameManager.instance.cameraManager.ShakeMainCamera();
     }
 }

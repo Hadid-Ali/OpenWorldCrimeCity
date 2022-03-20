@@ -45,6 +45,7 @@ public class ShootingWeapon : Weapon
         }
         Debug.Log("Shoot");
         this.PlayWeaponAudio();
+        base.Shoot();
         Instantiate(this.shell, this.shellPoint.transform.position, this.shell.transform.rotation, this.transform);
         if (this.useAmmoMechanism)
         {

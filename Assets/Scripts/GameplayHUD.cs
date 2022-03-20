@@ -17,7 +17,17 @@ public enum ControlsType
     Fighting,
     Driving
 }
+[System.Serializable]
+public class RCCCustomInputClass
+{
+    public RCCUIController gasButton;
+    public RCCUIController brakeButton;
+    public RCCUIController leftButton;
+    public RCCUIController rightButton;
+    public RCCUIController handbrakeButton;
+    public RCCUIController boostButton;
 
+}
 public delegate void HudDelegate();
 
 public class GameplayHUD : MonoBehaviour
@@ -60,6 +70,8 @@ public class GameplayHUD : MonoBehaviour
 
     [SerializeField]
     private GameObject crosshairFocus;
+
+    public RCCCustomInputClass rccInputs;
 
     public void SetAlertLevel(int level)
     {

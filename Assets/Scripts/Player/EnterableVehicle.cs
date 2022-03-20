@@ -11,24 +11,26 @@ public abstract class EnterableVehicle : Vehicle
 
     public override void Start()
     {
-        this.rb = this.GetComponent<Rigidbody>();
+        base.Start();
     }
 
     public virtual void SetPhysicsEnable(bool toggle)
     {
+        if (this.rb == null)
+            this.TryGetComponent<Rigidbody>(out this.rb);
         this.rb.isKinematic = !toggle;
     }
 
     public virtual float VehicleVeloctiy => Mathf.Abs(this.rb.velocity.magnitude);
     public bool IsVehicleAtLowSpeed => this.VehicleVeloctiy <= this.lowSpeedLimit;
 
-    void SwitchToCar(bool b)
+    public virtual void SwitchToCar(bool b)
     {
         this.ToggleDummyDriver(b);
 
         // GameManager.instance.playerController.fullBodyIK.SetIKTargets(this.vehicle.ikTargets);
-        //GameManager.instance.camController.SetVehicleCamTarget(this.vehicle.transform);
-
+        GameManager.instance.cameraManager.EnableVehicleCamera(this.gameObject,true);
+        this.SetPhysicsEnable(true);
         GameManager.instance.ChangePlayMode(b ? this.controlsType : ControlsMode.PLAYER);
         GameManager.instance.playerController.transform.SetParent(b ? this.transform : null);
         GameManager.instance.gameplayHUD.ToggleCarEnterBtn(!b);
