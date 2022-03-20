@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class TSPlayerFinder : MonoBehaviour {
 
 	TSMainManager manager;
@@ -12,6 +12,9 @@ public class TSPlayerFinder : MonoBehaviour {
 	public int pointFound;
 
 	TSPoints newPoint;
+
+    public delegate void OnPointChanged(int lane, int connector, int point);
+    public OnPointChanged onPointChanged;
 
 	Transform myTransform;
 	// Use this for initialization
@@ -27,6 +30,9 @@ public class TSPlayerFinder : MonoBehaviour {
 	}
 
 
+
+
+
 	void FindNearestPoint()
 	{
 		float currentPDistance = (currentPoint.point - myTransform.position).sqrMagnitude;
@@ -38,6 +44,8 @@ public class TSPlayerFinder : MonoBehaviour {
 			int point = currentPoint.nearbyPoints[i].pointIndex;
 			currentPDistance =  GetNewDistance(lane,connector,point, currentPDistance);
 		}
+        if (onPointChanged != null && currentPoint != newPoint)
+            onPointChanged(laneFound, connectorFound, pointFound);
 		currentPoint = newPoint;
 	}
 

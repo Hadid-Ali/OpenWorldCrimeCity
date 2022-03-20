@@ -7,26 +7,26 @@ public class TSTrafficLightCheckEditor : Editor {
 
 	void OnEnable()
 	{
-		TSMainManagerEditor[] mainmanagerEditors = Resources.FindObjectsOfTypeAll<TSMainManagerEditor>();
+		/*TSMainManagerEditor[] mainmanagerEditors = Resources.FindObjectsOfTypeAll<TSMainManagerEditor>();
 		foreach(TSMainManagerEditor editor in mainmanagerEditors)
 		{
 			editor.onLaneDeleted += CheckTraficLights;
-		}
+		}*/
 	}
 
 	void OnDisable()
 	{
-		TSMainManagerEditor[] mainmanagerEditors = Resources.FindObjectsOfTypeAll<TSMainManagerEditor>();
+		/*TSMainManagerEditor[] mainmanagerEditors = Resources.FindObjectsOfTypeAll<TSMainManagerEditor>();
 		foreach(TSMainManagerEditor editor in mainmanagerEditors)
 		{
 			editor.onLaneDeleted -= CheckTraficLights;
-		}
+		}*/
 
 	}
 
 	void CheckTraficLights(int deletedLane)
 	{
-		TSTrafficLight[] allTrafficLights = GameObject.FindObjectsOfType<TSTrafficLight>();
+		TSTrafficLight[] allTrafficLights = FindObjectsOfType<TSTrafficLight>();
 		if (allTrafficLights == null || allTrafficLights.Length ==0) return;
 		for (int i= 0 ; i < allTrafficLights.Length; i++)
 		{

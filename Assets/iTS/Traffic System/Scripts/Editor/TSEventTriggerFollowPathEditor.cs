@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using ITS.AI;
 
 [CustomEditor(typeof(TSEventTriggerFollowPath))]
 public class TSEventTriggerFollowPathEditor : Editor {
@@ -189,25 +190,27 @@ public class TSEventTriggerFollowPathEditor : Editor {
 		
 	}
 	
-	TSNavigation.TSNextLaneSelection currentPath = new TSNavigation.TSNextLaneSelection();
+	TSTrafficAI.TSNextLaneSelection currentPath = new TSTrafficAI.TSNextLaneSelection();
 	void CheckPointsPath(TSPoints[] points, bool rayHit, RaycastHit hit, float range, bool isConnector, int lane, int connector)
 	{
 		int controlID = GUIUtility.GetControlID(FocusType.Passive);
 //		bool isInRange = false;
 		for (int w = 0; w < points.Length;w++) 
 		{
-			currentPath.nextLane = lane;
-			currentPath.nextConnector = connector;
-			currentPath.isConnector = isConnector;
+			var currentPathNextPath = isConnector?(TSBaseInfo) manager.lanes[lane].connectors[connector]:manager.lanes[lane];
+			currentPath.NextPath = currentPathNextPath;
+			//currentPath.nextConnector = manager.lanes[lane].connectors[connector];
+			//currentPath.isConnector = isConnector;
 			bool selected = false;
 			{
 				if ( rayHit && (points[w].point - hit.point).magnitude <= manager.resolutionConnectors/2f)
 				{
 					if ((Event.current.type ==  EventType.MouseDown) && Event.current.button ==0  ){
-						TSNavigation.TSNextLaneSelection newPath = new TSNavigation.TSNextLaneSelection();
-						newPath.nextConnector = connector;
-						newPath.nextLane = lane;
-						newPath.isConnector = isConnector;
+						TSTrafficAI.TSNextLaneSelection newPath = new TSTrafficAI.TSNextLaneSelection();
+						newPath.NextPath = isConnector?(TSBaseInfo) manager.lanes[lane].connectors[connector]:manager.lanes[lane];
+						//newPath.nextConnector = manager.lanes[lane].connectors[connector];
+						//newPath.nextLane = manager.lanes[lane];
+						//newPath.isConnector = isConnector;
 						
 						
 						if (!trigger.carPredefinedPath.Contains(newPath)){

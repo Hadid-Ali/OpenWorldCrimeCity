@@ -1,11 +1,13 @@
-﻿        using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
+using ITS.AI;
 
 public class PedestrianController : MonoBehaviour {
 
 	protected Animator animator;
 	
 	private float speed = 0;
+    public float speedMultiplier = 1.5f;
 	public float direction = 0;
 	private Locomotion locomotion = null;
 	private Rigidbody body;
@@ -15,21 +17,19 @@ public class PedestrianController : MonoBehaviour {
 		body = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
 		locomotion = new Locomotion(animator);
-
 		TSTrafficAI ai = GetComponent<TSTrafficAI>();
 		ai.OnUpdateAI = OnAIUpdate;
 		ai.UpdateCarSpeed = UpdateSpeed;
-
 	}
 
 
-	void UpdateSpeed(out float carSpeed)
+	Vector3 UpdateSpeed()
 	{
-		carSpeed = body.velocity.z;
+        return transform.InverseTransformDirection(body.velocity);
 	}
 	
 	void OnAIUpdate(float steering, float brake, float throttle, bool isUpSideDown ){
-		speed = Mathf.Clamp01(throttle - brake);
+		speed = Mathf.Clamp01(throttle - brake) * speedMultiplier;
 		direction = steering;
 		
 	}

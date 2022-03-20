@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using ITS.AI;
 
 [CustomEditor(typeof(TSEventTriggerSuddenBrake))]
 public class TSEventTriggerEditorSuddenBrake : Editor {

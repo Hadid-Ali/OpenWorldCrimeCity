@@ -11,7 +11,7 @@ public class TSTrafficLightGroupManagerEditor : Editor {
 	TSTrafficLight[] tlights;
 	Color defaultColor;
 	bool hideDetails = true;
-	Texture2D tex = new Texture2D(1,1);
+    const string space = " ";
 	float[] totalTime = new float[0];
 	bool ligthsTimeNotSync = false;
 
@@ -193,7 +193,7 @@ public class TSTrafficLightGroupManagerEditor : Editor {
 					break;
 				}
 				
-				GUI.Label(new Rect(tempRect.x+width,tempRect.y,tLight.lights[ii].lightTime*5,15), tex,EditorStyles.miniTextField);
+				GUI.Label(new Rect(tempRect.x+width,tempRect.y,tLight.lights[ii].lightTime*5,15), space,EditorStyles.miniTextField);
 				width +=tLight.lights[ii].lightTime*5;
 			}
 			GUILayout.EndHorizontal();

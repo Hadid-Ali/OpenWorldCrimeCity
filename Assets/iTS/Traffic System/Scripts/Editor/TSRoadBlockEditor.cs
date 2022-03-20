@@ -1,7 +1,7 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using ITS.Utils;
 
 [CustomEditor(typeof(TSRoadBlock))]
 public class TSRoadBlockEditor : Editor {
@@ -15,10 +15,11 @@ public class TSRoadBlockEditor : Editor {
 //	bool removePoints = false;
 	GUISkin myStyle;
 
-	Texture2D tex = new Texture2D(25,20);
+	Texture2D tex;
 
 	void OnEnable()
 	{
+		tex = new Texture2D(25,20);
 		tempLanes = new HashSet<int>();
 		roadBlock = (TSRoadBlock)target ;
 		if (roadBlock.manager ==null)roadBlock.manager = GameObject.FindObjectOfType<TSMainManager>();
@@ -145,6 +146,7 @@ public class TSRoadBlockEditor : Editor {
 	void CheckPoints(TSPoints[] points, bool rayHit, RaycastHit hit, float range, bool isConnector, int lane, int connector)
 	{
 		int controlID = GUIUtility.GetControlID(FocusType.Passive);
+		if (currentPoint == null){return;}
 		for (int w = 0; w < points.Length;w++) 
 		{
 			currentPoint.lane = lane;

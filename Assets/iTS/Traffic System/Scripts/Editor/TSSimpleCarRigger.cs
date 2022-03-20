@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+using ITS.Utils;
+using ITS.AI;
 using UnityEditor;
 public class TSSimpleCarRigger : EditorWindow {
 	
@@ -55,14 +56,14 @@ public class TSSimpleCarRigger : EditorWindow {
 		rigCarEmpty.AddComponent<ITSDirectionReference>();
 		
 		this.minSize = new Vector2(300,600);
-		SceneView.onSceneGUIDelegate += this.OnSceneGUI;
+		SceneView.duringSceneGui += this.OnSceneGUI;
 		foreach (SceneView scene in SceneView.sceneViews)
 			scene.AlignViewToObject(rigCarEmpty.transform);
 	}
 	
 	void OnDestroy()
 	{
-		SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
+		SceneView.duringSceneGui -= this.OnSceneGUI;
 	}
 	
 	public void OnGUI ()
@@ -91,7 +92,12 @@ public class TSSimpleCarRigger : EditorWindow {
 				{
 					if (center) DestroyImmediate(center);
 					newBody = (GameObject)PrefabUtility.InstantiatePrefab(prueba);
-					if (rigCarEmpty.GetComponentsInChildren<Rigidbody>().Length == 0)
+
+#if UNITY_2018_3_OR_NEWER
+          			PrefabUtility.UnpackPrefabInstance(newBody, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+#endif
+
+          			if (rigCarEmpty.GetComponentsInChildren<Rigidbody>().Length == 0)
 					{
 						rigCarEmpty.AddComponent<Rigidbody>();
 					}
@@ -491,10 +497,10 @@ public class TSSimpleCarRigger : EditorWindow {
 				simpleCar.brakeTorque = 150;
 				simpleCar.maxAcceleration = 5;
 				simpleCar.superSimplePhysics = false;
-				BoxCollider box = rigCarEmpty.AddComponent<BoxCollider>();
-				box.isTrigger = true;
+				//BoxCollider box = rigCarEmpty.AddComponent<BoxCollider>();
+				//box.isTrigger = true;
 				TSTrafficAI trafficAI = rigCarEmpty.GetComponent<TSTrafficAI>();
-				trafficAI.playerSensor = box;
+				//trafficAI.playerSensor = box;
 				rigCarEmpty.layer = LayerMask.NameToLayer("Traffic AI");
 				rigCarEmpty.tag = "TrafficCar";
 				CreatePrefab();
@@ -952,8 +958,7 @@ public class TSSimpleCarRigger : EditorWindow {
 	
 	static void createNew(GameObject obj, string localPath)
 	{
-		Object prefab = PrefabUtility.CreatePrefab (localPath, obj);
-		PrefabUtility.ReplacePrefab(obj, prefab, ReplacePrefabOptions.ConnectToPrefab);
+		PrefabUtility.SaveAsPrefabAssetAndConnect(obj, localPath, InteractionMode.AutomatedAction);
 		AssetDatabase.Refresh();
 	}
 	

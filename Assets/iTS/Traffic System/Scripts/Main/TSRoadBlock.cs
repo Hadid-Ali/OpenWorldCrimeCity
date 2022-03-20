@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ITS.AI;
+using ITS.Utils;
 
 public class TSRoadBlock : MonoBehaviour {
 
@@ -15,7 +17,7 @@ public class TSRoadBlock : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		myID=GetInstanceID();
+		myID=TSUtils.GetUniqueID();
 		if (manager ==null)
 			manager = GameObject.FindObjectOfType<TSMainManager>();
 	}
@@ -45,36 +47,42 @@ public class TSRoadBlock : MonoBehaviour {
 
 	public void UnBlockPoints()
 	{
-		for (int i =0; i < blockingPoints.Length;i++)
+		foreach (var point in blockingPoints)
 		{
-			SetPointReservationID(blockingPoints[i],0);
+			UnReservePoint(point);
 		}
 	}
 
-
-	void SetPointReservationID(TSTrafficLight.TSPointReference point, int reservationID)
+	private void UnReservePoint(TSTrafficLight.TSPointReference point)
 	{
-		TSTrafficLight.TSPointReference roadBlockPoint = new TSTrafficLight.TSPointReference();
 		if (point.connector == -1)
 		{
-			manager.lanes[point.lane].points[point.point].reservationID = reservationID;
-			manager.lanes[point.lane].points[point.point].carwhoReserved =null;
-			roadBlockPoint = point;
+			manager.lanes[point.lane].points[point.point].TryUnReservePoint(myID);
 		}
 		else
 		{
-			manager.lanes[point.lane].connectors[point.connector].points[point.point].reservationID = reservationID;
-			manager.lanes[point.lane].connectors[point.connector].points[point.point].carwhoReserved =null;
-			manager.lanes[point.lane].points[manager.lanes[point.lane].points.Length-1].carwhoReserved =null;
-			manager.lanes[point.lane].points[manager.lanes[point.lane].points.Length-1].reservationID =reservationID;
-			roadBlockPoint.connector = -1;
-			roadBlockPoint.lane = point.lane;
-			roadBlockPoint.point = manager.lanes[point.lane].points.Length-1;
+			manager.lanes[point.lane].connectors[point.connector].points[point.point].TryUnReservePoint(myID);
+			manager.lanes[point.lane].points[manager.lanes[point.lane].points.Length-1].TryUnReservePoint(myID);
+		}
+		
+		SetRoadBlockAhead(point, false);
+	}
+
+	private void SetPointReservationID(TSTrafficLight.TSPointReference point, int reservationID)
+	{
+		if (point.connector == -1)
+		{
+			manager.lanes[point.lane].points[point.point].TryReservePoint(reservationID, null, true);
+		}
+		else
+		{
+			manager.lanes[point.lane].connectors[point.connector].points[point.point].TryReservePoint(reservationID, null, true);
+			manager.lanes[point.lane].points[manager.lanes[point.lane].points.Length-1].TryReservePoint(reservationID, null, true);
 		}
 		SetRoadBlockAhead(point, (reservationID !=0));
 	}
 
-	void SetRoadBlockAhead(TSTrafficLight.TSPointReference point,bool setRoadBlock)
+	private void SetRoadBlockAhead(TSTrafficLight.TSPointReference point,bool setRoadBlock)
 	{
 		float dist =0;
 		int currentPoint = point.point;
