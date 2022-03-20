@@ -48,6 +48,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 		}
 
+		public void TogglePlayerPhysics(bool toggle)
+        {
+			this.m_Rigidbody.isKinematic = !toggle;
+        }
+
         public bool IsAimingPlayer
         {
             get
@@ -236,7 +241,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
 			if(GameManager.instance.playerController.aimingManager.IsAiming)
             {
-				this.m_Rigidbody.velocity = ((GameManager.instance.mainCamera.transform.forward * this.characterController.tpu.v + GameManager.instance.mainCamera.transform.right * this.characterController.tpu.h) * this.aimSpeedNormalize) * Time.deltaTime;
+				this.m_Rigidbody.velocity = ((GameManager.instance.mainCamera.transform.forward * this.characterController.thirdPersonUserControl.v + GameManager.instance.mainCamera.transform.right * this.characterController.thirdPersonUserControl.h) * this.aimSpeedNormalize) * Time.deltaTime;
 			}
         }
 

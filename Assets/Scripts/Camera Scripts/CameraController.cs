@@ -12,21 +12,21 @@ public class CameraController : MonoBehaviour
         this.vehicleCam.playerCar = T;
     }
 
-    public void ToggleCamMode(PlayMode mode)
+    public void ToggleCamMode(ControlsMode mode)
     {
         this.characterCam.enabled = false;
         this.vehicleCam.enabled = false;
         switch(mode)
         {
-            case PlayMode.PLAYER:
+            case ControlsMode.PLAYER:
                 this.characterCam.enabled = true;
                 break;
 
-            case PlayMode.CAR:
+            case ControlsMode.CAR:
                 this.vehicleCam.enabled = true;
                 break;
 
-            case PlayMode.BIKE:
+            case ControlsMode.BIKE:
                 this.vehicleCam.enabled = true;
                 break;
         }

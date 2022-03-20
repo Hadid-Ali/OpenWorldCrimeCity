@@ -302,8 +302,8 @@ MonoBehaviour:
   OrbitValues:
     mode: 0
     Distance: 1.8
-    RightOffset: 0.15
-    Height: 0.8
+    RightOffset: 0.2
+    Height: 1
     ApplyRotationConstraints: 0
     XRotationConstraint: {x: -360, y: 360}
     YRotationConstraint: {x: -30, y: 70}
@@ -311,7 +311,7 @@ MonoBehaviour:
   AimValues:
     mode: 1
     Distance: 1.8
-    RightOffset: 0.15
+    RightOffset: 0.2
     Height: 1
     ApplyRotationConstraints: 1
     XRotationConstraint: {x: -360, y: 360}
