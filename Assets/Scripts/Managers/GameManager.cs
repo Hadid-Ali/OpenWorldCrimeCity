@@ -4,11 +4,11 @@ using UnityEngine;
 using PedestrianSystem;
 using UnityEngine.SceneManagement;
 
-public enum PlayMode
+public enum ControlsMode
 {
-    PLAYER,
-    CAR,
-    BIKE
+    PLAYER = 0,
+    CAR = 1,
+    BIKE = 2
 }
 
 public class GameManager : MonoBehaviour
@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
     public vThirdPersonCamera mainCamera;
     public PedestrianSystemManager pedestrianManager;
     public GameplayHUD gameplayHUD;
-    public CameraController camController;
     public RagdollsPool ragdollsPool;
     public PoliceManager policeManager;
+    public CameraManager cameraManager;
 
     public CameraShake cameraShake;
 
@@ -225,9 +225,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangePlayMode(PlayMode mode)
+    public void ChangePlayMode(ControlsMode mode)
     {
-        this.camController.ToggleCamMode(mode);
-        this.gameplayHUD.ChangeUIMode(mode);
+        this.gameplayHUD.ChangeControlsType(mode);
     }
 }

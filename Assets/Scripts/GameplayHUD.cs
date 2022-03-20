@@ -342,21 +342,21 @@ public class GameplayHUD : MonoBehaviour
         GameManager.instance.playerController.meleeFightHandler.KickAttack();
     }
 
-    public void ChangeUIMode(PlayMode mode)
+    public void ChangeControlsType(ControlsMode mode)
     {
         this.characterControls.SetActive(false);
         this.carControls.SetActive(false);
         switch (mode)
         {
-            case PlayMode.PLAYER:
+            case ControlsMode.PLAYER:
                 this.characterControls.SetActive(true);
                 break;
 
-            case PlayMode.CAR:
+            case ControlsMode.CAR:
                 this.carControls.SetActive(true);
                 break;
 
-            case PlayMode.BIKE:
+            case ControlsMode.BIKE:
                 this.carControls.SetActive(true);
                 break;
 

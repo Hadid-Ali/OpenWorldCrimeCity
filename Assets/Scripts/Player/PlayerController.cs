@@ -19,10 +19,14 @@ public class PlayerController : CharacterController
     public MeleeFightManager meleeFightHandler;
     public PlayerSpawner playerSpawner;
     [HideInInspector]
-    public ThirdPersonUserControl tpu;
+    public ThirdPersonUserControl thirdPersonUserControl;
+    [HideInInspector]
+    public AICharacterControl playerAiController;
 
     public GameObject cutSceneCamera;
     public NearbyEnemyLocator nearbyEnemyLocator;
+
+    private Transform _transform;
 
     public float distance = 5f;
 
@@ -36,7 +40,16 @@ public class PlayerController : CharacterController
         this.fullBodyIK = this.GetComponent<FullBodyIK>();
         this.meleeFightHandler = this.GetComponent<MeleeFightManager>();
         this.playerSpawner = this.GetComponent<PlayerSpawner>();
-        this.tpu = this.GetComponent<ThirdPersonUserControl>();
+        this.thirdPersonUserControl = this.GetComponent<ThirdPersonUserControl>();
+        this.playerAiController = this.GetComponent<AICharacterControl>();
+
+        this._transform = this.transform;
+    }
+
+    public void TogglePlayerForAIMovement(bool toggle)
+    {
+        this.thirdPersonCharacter.TogglePlayerPhysics(!toggle);
+        this.thirdPersonUserControl.enabled = this.thirdPersonCharacter.enabled = this.meleeFightHandler.enabled = !toggle;
     }
 
     public void ToggleCutSceneCamera(bool b,Vector3 cutScenePosition, Vector3 rotation)
@@ -53,6 +66,11 @@ public class PlayerController : CharacterController
             cCam.transform.localPosition = cutScenePosition;
 
         }
+    }
+
+    public void AllignWith(Transform target)
+    {
+        this._transform.eulerAngles = new Vector3(0f, target.eulerAngles.y, 0f);
     }
 
     public override void KillWithForce(Vector3 dir, float ragdForce)
