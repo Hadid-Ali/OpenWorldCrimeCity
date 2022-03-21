@@ -7,6 +7,9 @@ public abstract class EnterableVehicle : Vehicle
     public ControlsMode controlsType = ControlsMode.CAR;
     public GameObject dummyDriver;
 
+    [SerializeField]
+    public VehicleCameraProperties _vehicleCameraProperties;
+
     public float lowSpeedLimit = 2f;
 
     public override void Start()
@@ -29,8 +32,14 @@ public abstract class EnterableVehicle : Vehicle
         this.ToggleDummyDriver(b);
 
         // GameManager.instance.playerController.fullBodyIK.SetIKTargets(this.vehicle.ikTargets);
-        GameManager.instance.cameraManager.EnableVehicleCamera(this.gameObject);
-        this.SetPhysicsEnable(true);
+        if (this._vehicleCameraProperties == null)
+            this._vehicleCameraProperties = this.GetComponent<VehicleCameraProperties>();
+        if (b)
+            GameManager.instance.cameraManager.EnableVehicleCamera(this._vehicleCameraProperties);
+        else
+            GameManager.instance.cameraManager.TogglePlayerCamera(true);
+
+        this.SetPhysicsEnable(b);
         GameManager.instance.ChangePlayMode(b ? this.controlsType : ControlsMode.PLAYER);
         GameManager.instance.playerController.transform.SetParent(b ? this.transform : null);
         GameManager.instance.gameplayHUD.ToggleCarEnterBtn(!b);

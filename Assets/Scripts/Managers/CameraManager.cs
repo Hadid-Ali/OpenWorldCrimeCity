@@ -14,10 +14,11 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private CameraShake _cameraShake;
 
-    public void EnableVehicleCamera(GameObject vehicle)
+    public void EnableVehicleCamera(VehicleCameraProperties vehicle)
     {
 
         this._vehicleCamera.playerCar = vehicle.GetComponent<RCC_CarControllerV3>();
+        this._vehicleCamera.pivot = vehicle.vehiclePivotToAssign;
 
         this.TogglePlayerCamera(false);
         this.ToggleVehicleCamera(true);

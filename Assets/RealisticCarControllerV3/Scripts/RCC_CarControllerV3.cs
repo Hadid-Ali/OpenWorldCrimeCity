@@ -603,10 +603,16 @@ public class RCC_CarControllerV3 : RCC_Core {
 
 	}
 
-	/// <summary>
-	/// Creates the engine curve.
-	/// </summary>
-	public void CreateEngineCurve(){
+    public override void SetPhysicsEnable(bool toggle)
+    {
+        base.SetPhysicsEnable(toggle);
+		this.enabled = true;
+    }
+
+    /// <summary>
+    /// Creates the engine curve.
+    /// </summary>
+    public void CreateEngineCurve(){
 
 		engineTorqueCurve = new AnimationCurve ();
 		engineTorqueCurve.AddKey (0f, 0f);																//	First index of the curve.
