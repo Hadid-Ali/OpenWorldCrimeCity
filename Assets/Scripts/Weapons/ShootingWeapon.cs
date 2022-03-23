@@ -11,17 +11,44 @@ public class ShootingWeapon : Weapon
     public int ammoCount = 50;
     public int ammoCappacity = 200;
 
-    public float shootingRate;
+    public int magazineCount = -100;
 
-    public GameObject muzzle,shell,shellPoint;
+    public bool hasUnlimitedAmmo = true;
+
+    private int _currentMagazineAmmo;
+
+    public float shootingRate;
+    public float weaponReloadingTime = 2f;
+
+    public GameObject muzzle,shell,shellPoint,magazineObject;
 
     private float nextShot = 0.0f;
     private bool isShot = false;
+    protected bool _isReloading = false;
     public AudioClip dryShot;
+
+    public ShootingMechanism shootingPlayer;
+
+    public override void Start()
+    {
+        base.Start();
+        this.CacheMagazine();
+    }
+
+    public void CacheMagazine()
+    {
+        this._currentMagazineAmmo = this.magazineCount;
+    }
 
     public virtual void Fire()
     {
 
+    }
+
+    public override void OnWeaponSelect(WeaponInventory weaponInventory)
+    {
+        Debug.LogError("On Weapon Select");
+        this.shootingPlayer = weaponInventory;
     }
 
     public void FullMagazine()
@@ -36,16 +63,50 @@ public class ShootingWeapon : Weapon
         GameManager.instance.gameplayHUD.GiveNoBulletMessage();
     }
 
-    public override void Shoot()
+    public virtual void ReloadWeapon()
     {
+        if (this.shootingPlayer == null)
+            return;
+
+        this._isReloading = true;
+        this.shootingPlayer.ReloadWeapon();
+        this.CacheMagazine();
+        Invoke("OnWeaponReloaded", this.weaponReloadingTime);
+    }
+
+    public virtual void OnWeaponReloaded()
+    {
+        this.shootingPlayer.OnWeaponReloaded();
+        this._isReloading = false;
+    }
+
+    public bool IsReloading
+    {
+        get
+        {
+            return this._isReloading;
+        }
+    }
+
+    public override bool CanShoot => base.CanShoot & !this._isReloading;
+
+    protected override void _ShootWeapon()
+    {
+        if (this._currentMagazineAmmo <= 0 && this.magazineCount > 0)
+        {
+            this.ReloadWeapon();
+        }
+
         if (this.ammoCount <= 0)
         {
             this.DryShot();
             return;
         }
+
         Debug.Log("Shoot");
+
+        base._ShootWeapon();
         this.PlayWeaponAudio();
-        base.Shoot();
         Instantiate(this.shell, this.shellPoint.transform.position, this.shell.transform.rotation, this.transform);
         if (this.useAmmoMechanism)
         {
@@ -79,7 +140,11 @@ public class ShootingWeapon : Weapon
     {
         if(this.ammoCount>0)
         {
-            this.ammoCount -= 1;
+            if(!this.hasUnlimitedAmmo)
+            {
+                this.ammoCount -= 1;
+            }
+            this._currentMagazineAmmo -= 1;
         }
         else
         {

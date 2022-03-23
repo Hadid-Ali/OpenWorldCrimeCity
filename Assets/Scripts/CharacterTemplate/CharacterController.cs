@@ -11,7 +11,8 @@ public enum Character_STATES
     CHASE,
     LOOKING_FOR_TARGET,
     ATTACK,
-    DEFENSE
+    DEFENSE,
+    DIE
 }
 public enum EntityType
 {
@@ -48,7 +49,9 @@ public class CharacterController : GameEntity
     public bool isPlayer = false;
 
     public bool isHit = false;
-    
+
+    public bool isDead = false;
+
     public float totalhealth = 100;
 
     public virtual void Awake()
@@ -72,7 +75,7 @@ public class CharacterController : GameEntity
 
     public virtual void Start()
     {
-        this.OnCharacterKilled += this.DisableCharacter;
+
     }
 
     public void RotateTo(Transform target)
@@ -156,17 +159,9 @@ public class CharacterController : GameEntity
                 GameManager.instance.policeManager.CallCops(difficulty);
             }
         }
-
-        this.AddForceToRagdoll(ragdForce, dir);
+        this.isDead = true;
+        this.animatorController.DieAnimate(true);
         if (this.OnCharacterKilled != null)
             this.OnCharacterKilled();
-    }
-    
-    public void AddForceToRagdoll(float force,Vector3 direction)
-    {
-        //GameObject R = (GameObject)Instantiate(this.characterRagdoll, this.transform.position, this.transform.rotation);
-        GameObject R = GameManager.instance.ragdollsPool.CreateRagdoll(this.gameEntityName, this.transform.position, this.transform.rotation);
-        //GameObject R = GameManager.instance.poolManager.FindPoolByType(this.gameEntityName).Instantiate(this.transform.position, this.transform.rotation);
-        R.GetComponentInChildren<Rigidbody>().AddForce(force *direction * Time.deltaTime,ForceMode.VelocityChange);
     }
 }

@@ -47,6 +47,7 @@ public class Weapon : GameEntity
 
     protected AudioSource weaponSource;
 
+
     public virtual void Start()
     {
         if (this.GetComponent<AudioSource>())
@@ -64,12 +65,27 @@ public class Weapon : GameEntity
         }
     }
 
+    public virtual void OnWeaponSelect(WeaponInventory weaponInventory)
+    {
+
+    }
+
     public virtual void OnStopShooting()
     {
 
     }
 
-    public virtual void Shoot()
+    public virtual bool CanShoot => true;
+
+    public void Shoot()
+    {
+        if(this.CanShoot)
+        {
+            this._ShootWeapon();
+        }
+    }
+
+    protected virtual void _ShootWeapon()
     {
         GameManager.instance.cameraManager.ShakeMainCamera();
     }

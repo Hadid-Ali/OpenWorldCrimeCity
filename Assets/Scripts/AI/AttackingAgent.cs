@@ -69,6 +69,12 @@ public class AttackingAgent : NavigationAgentController
         }
     }
 
+    public override void KillWithForce(Vector3 dir, float ragdForce)
+    {
+        base.KillWithForce(dir, ragdForce);
+        this.SwitchState(Character_STATES.DIE);
+    }
+
     public virtual void DefenseState()
     {
         this.StopNavigationAndLookAtPlayer(2f);

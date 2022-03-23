@@ -19,7 +19,13 @@ public class HolsterWeapon
     }
 }
 
-public class WeaponInventory : MonoBehaviour
+public interface ShootingMechanism
+{
+    public void ReloadWeapon();
+    public void OnWeaponReloaded();
+}
+
+public class WeaponInventory : MonoBehaviour,ShootingMechanism
 {
 
     public List<Weapon> weapons = new List<Weapon>();
@@ -38,14 +44,39 @@ public class WeaponInventory : MonoBehaviour
 
     private float nextShot;
     private bool isShot = false;
+    private bool _isReloadingWeapon = false;
 
     private void Start()
     {
         this.playerController = this.GetComponent<PlayerController>();
     }
 
+    private void OnEnable()
+    {
+        if(this.currentWeapon)
+            this.playerController.OnWeaponChange(currentWeapon);
+    }
+
+    public void EnableMagazine(int flagToggle)
+    {
+        if (this.shootingWeapon.magazineObject)
+            this.shootingWeapon.magazineObject.SetActive(flagToggle == 1);
+    }
+
+    public void ReloadWeapon()
+    {
+        this.playerController.animatorController.ReloadWeapon();
+        this._isReloadingWeapon = true;
+    }
+
+    public void OnWeaponReloaded()
+    {
+        this._isReloadingWeapon = false;
+    }
+
     public void DrawWeapon(WEAPON weapon)
     {
+        Debug.LogError("Drawing Weapon");
         if(this.currentWeapon)
         {
             this.currentWeapon.gameObject.SetActive(false);
@@ -53,16 +84,6 @@ public class WeaponInventory : MonoBehaviour
         }
 
         List<Weapon> equippedWeapons = this.weapons.FindAll(x => x.isEquippedByPlayer.Equals(true));
-
-        /*
-         *         for(int i=0;i<this.weapons.Count;i++)
-        {
-            if(this.weapons[i].weaponName.Equals(weapon) & this.weapons[i].isEquippedByPlayer)
-            {
-                this.currentWeapon = this.weapons[i];
-            }
-        }
-        */
 
         for(int i=0;i< equippedWeapons.Count;i++)
         {
@@ -72,27 +93,11 @@ public class WeaponInventory : MonoBehaviour
             }
         }
 
-        for(int i=0;i<this.holsterWeapons.Count;i++)
-        {
-            if(!this.holsterWeapons[i].isVisible)
-            {
-                if(this.isWeaponInInventory(this.holsterWeapons[i].weapon))
-                {
-                 //   this.holsterWeapons[i].ToggleWeaponVisibility(true);
-                }
-            }
-
-            if(this.currentWeapon)
-            {
-                if (this.holsterWeapons[i].weapon.Equals(this.currentWeapon.weaponName))
-                {
-                   // this.holsterWeapons[i].ToggleWeaponVisibility(false);
-                }
-            }
-        }
-
         if(this.currentWeapon)
-        this.currentWeapon.gameObject.SetActive(true);
+        {
+            this.currentWeapon.gameObject.SetActive(true);
+            this.currentWeapon.OnWeaponSelect(this);
+        }
 
         this.playerController.OnWeaponChange(currentWeapon);    
 
@@ -134,7 +139,7 @@ public class WeaponInventory : MonoBehaviour
     
     private void Update()
     {
-        if(GameplayHUD.isShooting)
+        if(GameplayHUD.isShooting & !this._isReloadingWeapon)
         {
             this.AttackWithCurrentWeapon();
             Vector3 v = this.transform.eulerAngles;
@@ -161,7 +166,7 @@ public class WeaponInventory : MonoBehaviour
     public void SwitchWeapon()
     {
         int index = this.weapons.FindAll(x => x.isEquippedByPlayer.Equals(true)).Count;
-        if(this.currentWeaponIndex>= index)
+        if (this.currentWeaponIndex >= index)
         {
             this.currentWeaponIndex = 0;
             if (this.currentWeapon)
@@ -172,7 +177,7 @@ public class WeaponInventory : MonoBehaviour
             this.DrawWeapon(WEAPON.NONE);
         }
         else
-        this.DrawWeapon(this.currentWeaponIndex++);
+            this.DrawWeapon(this.currentWeaponIndex++);
     }
 
     public void DamageTarget()

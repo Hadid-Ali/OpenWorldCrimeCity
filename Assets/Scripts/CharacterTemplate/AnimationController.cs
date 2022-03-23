@@ -22,6 +22,16 @@ public class AnimationController : MonoBehaviour
         this._anim = this.GetComponent<Animator>();
     }
 
+    public void DieAnimate(bool toggleFlag)
+    {
+        this._anim.SetBool("IsDead",toggleFlag);
+    }
+
+    public void ReloadWeapon()
+    {
+        this._anim.SetTrigger("Reload");
+    }
+
     public void SetSpeed(float speed)
     {
         this.Animator.SetFloat(Constant.ANIMATOR_STRINGS.SPEED, speed);

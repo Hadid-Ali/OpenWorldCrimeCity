@@ -38,6 +38,11 @@ public class NavigationAgentController : CharacterController
         this.aiController.speed = this.navigationSpeed;
     }
 
+    public override void KillWithForce(Vector3 dir, float ragdForce)
+    {
+        base.KillWithForce(dir, ragdForce);
+        this.aiController.enabled = false;
+    }
     public void StopNavigation()
     {
         if(this.aiController.enabled)
