@@ -429,6 +429,11 @@ public class GameplayHUD : MonoBehaviour
         isShooting = b;
     }
 
+    public void ReloadWeapon()
+    {
+        GameManager.instance.playerController.weaponInventory.ReloadWeapon();
+    }
+
     public void ChangeWeapon()
     {
         bool isSuccessSwitch = false;

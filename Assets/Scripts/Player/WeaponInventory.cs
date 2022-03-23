@@ -21,7 +21,7 @@ public class HolsterWeapon
 
 public interface ShootingMechanism
 {
-    public void ReloadWeapon();
+    public void Reload();
     public void OnWeaponReloaded();
 }
 
@@ -51,6 +51,11 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
         this.playerController = this.GetComponent<PlayerController>();
     }
 
+    public void ReloadWeapon()
+    {
+        this.shootingWeapon.ReloadWeapon();
+    }
+
     private void OnEnable()
     {
         if(this.currentWeapon)
@@ -63,7 +68,7 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
             this.shootingWeapon.magazineObject.SetActive(flagToggle == 1);
     }
 
-    public void ReloadWeapon()
+    public void Reload()
     {
         this.playerController.animatorController.ReloadWeapon();
         this._isReloadingWeapon = true;
@@ -98,6 +103,9 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
             this.currentWeapon.gameObject.SetActive(true);
             this.currentWeapon.OnWeaponSelect(this);
         }
+
+        if(this.currentWeapon is ShootingWeapon)
+            this.shootingWeapon = this.currentWeapon.gameObject.GetComponent<ShootingWeapon>();
 
         this.playerController.OnWeaponChange(currentWeapon);    
 
@@ -217,17 +225,6 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
             switch(this.currentWeapon.weaponAttackMode)
             {
                 case AttackMode.AUTOMATIC:
-
-                    if(!this.shootingWeapon)
-                    {
-                        this.shootingWeapon = this.currentWeapon.gameObject.GetComponent<ShootingWeapon>();
-                    }
-
-                    else if(this.shootingWeapon!=this.currentWeapon)
-                    {
-                        this.shootingWeapon = this.currentWeapon.gameObject.GetComponent<ShootingWeapon>();
-                    }
-
                     if(Time.time>this.nextShot)
                     {
                         this.currentWeapon.Shoot();

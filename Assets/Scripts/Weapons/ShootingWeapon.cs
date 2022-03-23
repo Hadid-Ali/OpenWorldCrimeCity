@@ -69,7 +69,7 @@ public class ShootingWeapon : Weapon
             return;
 
         this._isReloading = true;
-        this.shootingPlayer.ReloadWeapon();
+        this.shootingPlayer.Reload();
         this.CacheMagazine();
         Invoke("OnWeaponReloaded", this.weaponReloadingTime);
     }
