@@ -119,4 +119,19 @@ public class PreferenceManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(string.Format("{0}{1}", drugName, _ownedDrugs), quantity);
     }
+
+    #region For Weapon
+    public static bool GetWeaponLockedStatus(string weaponName)
+    {
+        return PlayerPrefs.GetInt(weaponName, 2) > 0;
+    }
+    public static int GetWeaponRAdCount(string weaponName)
+    {
+        return PlayerPrefs.GetInt(weaponName, 2);
+    }
+    public static void SetWeaponLockedStatus(string weaponName, int rAdCount = 0)
+    {
+        PlayerPrefs.SetInt(weaponName, rAdCount);
+    }
+    #endregion
 }

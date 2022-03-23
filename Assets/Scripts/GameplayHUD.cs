@@ -466,4 +466,9 @@ public class GameplayHUD : MonoBehaviour
     }
 
     #endregion
+
+    public void OpenStoreMenu()
+    {
+        StoreMenu.Instance.OpenStoreMenu();
+    }
 }
