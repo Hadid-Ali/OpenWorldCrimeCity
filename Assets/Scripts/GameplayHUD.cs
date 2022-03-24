@@ -124,6 +124,11 @@ public class GameplayHUD : MonoBehaviour
         }
     }
 
+    public void PauseButtonInput()
+    {
+        GameManager.instance.PauseGame();
+    }
+
     private bool isCloseAiming = false;
 
     public void CloseAiming()
