@@ -16,8 +16,8 @@ public enum WEAPON
 
 public enum WeaponType
 {
-    Rifle,
-    Pistol,
+    Rifle = 0,
+    Pistol = 1,
     RocketLauncher,
     Sniper,
     Melee,

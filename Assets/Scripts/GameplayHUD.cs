@@ -50,10 +50,18 @@ public class GameplayHUD : MonoBehaviour
     public Image[] alertLevels;
     public Sprite alertImage, normalImage;
 
+
+
     private PlayerAiming playerAimingComponent;
 
     [SerializeField]
     private Image closeAimingImage;
+
+    [SerializeField]
+    private Image weaponImage;
+
+    [SerializeField]
+    private List<Sprite> weaponSprites;
 
     [SerializeField]
     private GameObject closeAimingButton;
@@ -468,6 +476,11 @@ public class GameplayHUD : MonoBehaviour
         {
             isShooting = false;
         }
+    }
+
+    public void SetWeaponIcon(int index)
+    {
+        this.weaponImage.sprite = this.weaponSprites[index];
     }
 
     public void ReloadWeapon()

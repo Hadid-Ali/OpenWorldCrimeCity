@@ -123,6 +123,7 @@ public class PlayerController : CharacterController
         //  GameManager.instance.mainCamera.ChangeCameraMode(weapon ? CameraMode.Aim : CameraMode.Orbit);
 
         //GameManager.instance.gameplayHUD.ToggleCrosshair(weapon != null);
+        GameManager.instance.gameplayHUD.SetWeaponIcon((int)weapon.weaponName);
         GameManager.instance.gameplayHUD.shootingJoyStick.gameObject.SetActive(isWeapon);
         this.meleeFightHandler.canMeleeFight = !isWeapon;
         GameManager.instance.gameplayHUD.ToggleMeleeFightControls(!isWeapon);
