@@ -44,11 +44,10 @@ public class AimingManager : MonoBehaviour,PlayerAiming
 
     public IEnumerator RaycastRoutine()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(this.raycastWait);
-            if (this.IsAiming)
-                this.AimRaycast();
+            this.AimRaycast();
         }
     }
 
