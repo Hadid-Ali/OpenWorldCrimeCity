@@ -25,6 +25,16 @@ public class WeaponAttackingAgent : AttackingAgent
         }
     }
 
+    public override void OnTargetFound()
+    {
+        base.OnTargetFound();
+        if(this.weapon)
+        {
+            if (!this.weapon.gameObject.activeSelf)
+                this.weapon.gameObject.SetActive(true);
+        }
+    }
+
     public override void Attack()
     {
         if (this.weapon != null)
