@@ -224,6 +224,7 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
 
     }
 
+    private int firedBullets = 0;
     public void AttackWithCurrentWeapon()
     {
         if(this.currentWeapon)
@@ -233,9 +234,19 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
                 case AttackMode.AUTOMATIC:
                     if(Time.time>this.nextShot)
                     {
-                        this.currentWeapon.Shoot();
-                        this.nextShot = Time.time + this.shootingWeapon.shootingRate;
-                        this.DamageTarget();
+                        if (this.firedBullets <= 0)
+                        {
+
+                            this.firedBullets++;
+                        }
+
+                        if (GameManager.instance.gameplayHUD.canShootFurther & this.firedBullets > 0)
+                        {
+
+                            this.currentWeapon.Shoot();
+                            this.nextShot = Time.time + this.shootingWeapon.shootingRate;
+                            this.DamageTarget();
+                        }
                     }
                     break;
 

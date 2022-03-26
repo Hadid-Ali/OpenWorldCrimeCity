@@ -423,7 +423,7 @@ public class GameplayHUD : MonoBehaviour
 
     public void ToggleCrosshair(bool b)
     {
-        this.crosshair.gameObject.SetActive(b);
+       // this.crosshair.gameObject.SetActive(b);
     }
 
     public void GiveNoBulletMessage()
@@ -439,9 +439,35 @@ public class GameplayHUD : MonoBehaviour
         this.noBulletMessage.SetActive(false);
     }
 
+    private void CheckForTap()
+    {
+        if(!this.isTap)
+        {
+            isShooting = false;
+        }
+    }
+
+    public bool canShootFurther => isTap;
+
+    private bool isTap = false;
+
     public void ToggleIsShooting(bool b)
     {
-        isShooting = b;
+        this.isTap = b;
+        if (b)
+        {
+            isShooting = true;
+
+            if (IsInvoking("CheckForTap"))
+                CancelInvoke("CheckForTap");
+
+            Invoke("CheckForTap", 1f);
+        }
+
+        else if (!IsInvoking("CheckForTap") && !b)
+        {
+            isShooting = false;
+        }
     }
 
     public void ReloadWeapon()
