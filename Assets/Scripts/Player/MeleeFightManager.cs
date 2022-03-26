@@ -98,7 +98,7 @@ public class MeleeFightManager : MonoBehaviour
         {
             Debug.LogError("Apply Melee Damage");
             SoundManager.instance.PlaySound(SoundType.MELEE_PUNCH_KICK);
-            character.OnAttacked(this.attackDamage);
+            character.OnAttacked(this.attackDamage,this.gameObject);
             Particles.Instance.ShowParticle(ParticleType.HIT, impactPoint);
         }
     }

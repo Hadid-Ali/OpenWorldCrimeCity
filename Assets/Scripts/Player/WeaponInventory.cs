@@ -196,7 +196,7 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
             {
                 CharacterController c = this.playerController.aimingManager.aimedObject.GetComponent<CharacterController>();
 
-                c.OnAttacked(this.currentWeapon.hitDamage);
+                c.OnAttacked(this.currentWeapon.hitDamage, this.gameObject);
             }
 
             else

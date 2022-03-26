@@ -60,6 +60,9 @@ public class NavigationAgentController : CharacterController
 
     public void NavigateToPoint(Vector3 v)
     {
+        if (this.isDead)
+            return;
+
         if (!this.aiController.enabled)
             this.aiController.enabled = true;
 
@@ -77,6 +80,13 @@ public class NavigationAgentController : CharacterController
         this.aiController.speed = this.navigationSpeed;
     }
     
+    public void ToggleNavigationComponent(bool toggle)
+    {
+        if (toggle & this.isDead)
+            return;
+
+        this.aiController.enabled = toggle;
+    }
 
     void ResetIsHit()
     {
@@ -84,12 +94,12 @@ public class NavigationAgentController : CharacterController
             this.isHit = false;
     }
 
-    public override void OnAttacked(float damage)
+    public override void OnAttacked(float damage,GameObject attacker)
     {
         this.animatorController.SetHitTaken();
         this.isHit = true;
         Invoke("ResetIsHit", 1f);
-        base.OnAttacked(damage);
+        base.OnAttacked(damage,attacker);
     }
     
 

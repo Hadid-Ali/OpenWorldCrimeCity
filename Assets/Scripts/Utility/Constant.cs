@@ -53,6 +53,13 @@ public class Constant : MonoBehaviour
         public const string ENVTERRAIN = "EnvTerrain";
     }
 
+    public enum TAGS_ENUM
+    {
+        Player,
+        Pedestrian,
+        Enemy,
+    }
+
     public class TAGS
     {
         public const string PEDESTRIAN = "Pedestrian";

@@ -80,11 +80,11 @@ public class EnemyAdvanced : Enemy
         }
     }
 
-    public override void OnAttacked(float damage)
+    public override void OnAttacked(float damage,GameObject attacker)
     {
         if (this.state == Character_STATES.DEFENSE)
             return;
-        base.OnAttacked(damage);
+        base.OnAttacked(damage, attacker);
     }
 
     public override void DefenseState()

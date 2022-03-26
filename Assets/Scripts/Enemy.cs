@@ -25,13 +25,18 @@ public class Enemy : WeaponAttackingAgent
         }
     }
 
-    public override void OnAttacked(float damage)
+    public void InstantAlert()
+    {
+        this.AssignTarget(GameManager.instance.playerController);
+    }
+
+    public override void OnAttacked(float damage,GameObject attacker)
     {
         if (this.wave)
         {
             this.wave.AlertWave();
         }
-        base.OnAttacked(damage);
+        base.OnAttacked(damage, attacker);
     }
 
     public override void KillWithForce(Vector3 dir, float ragdForce)

@@ -100,9 +100,9 @@ public class PlayerController : CharacterController
         this.isPlayer = true;
     }
 
-    public override void OnAttacked(float damage)
+    public override void OnAttacked(float damage,GameObject attacker)
     {
-        base.OnAttacked(damage);
+        base.OnAttacked(damage, attacker);
         GameManager.instance.gameplayHUD.FillPlayerHealthBar(this.health, this.totalhealth);
         if (!IsInvoking("FIllHealth"))
             Invoke("FIllHealth", 1f);
@@ -111,7 +111,7 @@ public class PlayerController : CharacterController
 
     void FIllHealth()
     {
-        this.OnAttacked(-1f);
+        this.OnAttacked(-1f, null);
         if (!IsInvoking("FIllHealth"))
             Invoke("FIllHealth", 1f);
     }

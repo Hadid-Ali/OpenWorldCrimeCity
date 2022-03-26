@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class AttackingAgent : NavigationAgentController
 {
-    public GameObject targetObject;
-    public CharacterController targetController;
+    [SerializeField]
+    private GameObject targetObject;
 
     [SerializeField]
-    List<List<GameObject>> listContainingLists;
-    [SerializeField]
-    Collider[] detectedColliders;
+    protected CharacterController targetController;
 
-    public LayerMask attackingLayers;
-    public LayerMask[] priorityBasedLayerMask;
+
+    [SerializeField]
+    private LayerMask attackingLayers;
+
+    [SerializeField]
+    protected SphereCollider _detectionCollider;
+
+    public Constant.TAGS_ENUM targetTag;
 
     public Character_STATES state = Character_STATES.IDLE;
     public Character_STATES previouState;
@@ -23,32 +27,44 @@ public class AttackingAgent : NavigationAgentController
         attackRate = 0.3f,
         attackDamage = 20f,
         runSpeed = 2f;
+
+    [Range(0.1f,2f)]
+    private float detectionRoutineWait = 0.1f;
+
     private float attackMoment = 0f;
     private bool isInActive = true;
 
-    public override void OnEnable()
+    [SerializeField]
+    protected Transform _raycastLookPoint;
+
+    private WaitForSeconds _waitForSeconds;
+
+    public void OnValidate()
     {
-        //this.FindTarget();
-        Invoke("FindTarget", 1f);
+        if (this._detectionCollider)
+        {
+            if (!this._detectionCollider.isTrigger)
+                this._detectionCollider.isTrigger = true;
+
+            this._detectionCollider.radius = this.detectionRadius;
+        }
     }
 
-    public void OnDisable()
+    public void ToggleDetectionCollider(bool toggle)
     {
-        if (IsInvoking("FindTarget"))
-            CancelInvoke("FindTarget");
+        this._detectionCollider.enabled = toggle;
+    }
+
+    public override void OnEnable()
+    {
+        if (this.targetObject != null)
+            this.AssignTarget(this.targetObject);
     }
 
     void ChasinSwitch()
     {
         this.StopAttack();
         this.SwitchState(Character_STATES.CHASE);
-    }
-
-    [ContextMenu("Alert Enemy")]
-    public virtual void InstantAlert()
-    {
-        if (this.targetController == null)
-            this.AssignTarget(GameManager.instance.playerController);
     }
 
     public virtual void AIStatesEngine()
@@ -87,19 +103,13 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void DamageEnemy()
     {
-        if (!this.targetController)
-        {
-            this.SwitchState(Character_STATES.LOOKING_FOR_TARGET);
-            this.FindTarget();
-            return;
-        }
         Particles.Instance.ShowParticle(ParticleType.HIT, this.targetObject.transform.position + Vector3.up * Random.Range(1f, 1.5f));
-        this.targetController.OnAttacked(this.attackDamage);
+        this.targetController.OnAttacked(this.attackDamage, this.gameObject);
     }
 
     private void Update()
     {
-        if (this.isInActive)
+        if (this.isInActive | this.isDead)
             return;
 
         this.AIStatesEngine();
@@ -165,11 +175,36 @@ public class AttackingAgent : NavigationAgentController
         this.RotateTo(this.targetObject.transform);
     }
 
+    private bool IsNormal => this.state != Character_STATES.ATTACK | this.state != Character_STATES.CHASE;
 
+    public virtual void OnTriggerEnter(Collider col)
+    {
+        if (this.targetController == null | this.IsNormal)
+            this.OnObjectEnterAgentTrigger(col.gameObject);
+    }
+
+    public virtual void OnObjectEnterAgentTrigger(GameObject objectEnter)
+    {
+        if(objectEnter.CompareTag(this.targetTag.ToString()))
+        {
+            this.targetObject = objectEnter;
+            this.ToggleDetectionCollider(false);
+            StartCoroutine(this.Coroutine_FindTarget());
+        }
+    }
+
+    public override void OnAttacked(float damage, GameObject attacker)
+    {
+        base.OnAttacked(damage, attacker);
+        if(attacker.TryGetComponent<CharacterController>(out CharacterController controller))
+        {
+            this.AssignTarget(controller);
+        }
+    }
 
     public virtual void AttackState()
     {
-    
+
         #region CachedCode
         /*
         this.StopNavigation();
@@ -184,9 +219,9 @@ public class AttackingAgent : NavigationAgentController
         */
         #endregion
         this.StopNavigationAndLookAtPlayer(1f);
-        if (Time.time>this.attackMoment)
+        if (Time.time > this.attackMoment)
         {
-            Debug.LogError("AttackState "+this.gameObject);
+            Debug.LogError("AttackState " + this.gameObject);
             //attack
             this.Attack();
             this.attackMoment = Time.time + this.attackRate;
@@ -216,67 +251,38 @@ public class AttackingAgent : NavigationAgentController
         this.OnTargetFound();
     }
 
-    public virtual void OnNoTargetFound()
+    public IEnumerator Coroutine_FindTarget()
     {
-        Vector3 v = Vector3.zero;
-        if (!this.targetObject)
-            v = GameManager.instance.playerController.playerSpawner.PointNearCharacter();
-        else
-        if (this.targetController.GetComponent<CharacterSpawner>())
-            this.targetController.GetComponent<CharacterSpawner>().PointNearCharacter();
+        this._waitForSeconds = new WaitForSeconds(this.detectionRoutineWait);
+        this.state = Character_STATES.LOOKING_FOR_TARGET;
+        bool isTargetFound = false;
 
-        if (v != Vector3.zero)
-            this.NavigateToPoint(v);
+        Transform targetTransform = this.targetObject.transform;
+        while(!isTargetFound)
+        {
+            Ray ray = new Ray(this._raycastLookPoint.position, targetTransform.position - this._raycastLookPoint.position);
 
-        if (!IsInvoking("FindTarget"))
-            Invoke("FindTarget", 0.4f);
+            if(Physics.Raycast(ray,out RaycastHit raycastHit,100f,this.attackingLayers))
+            {
+                if(raycastHit.transform.CompareTag(this.targetTag.ToString()))
+                {
+                    this.AssignTarget(raycastHit.transform.gameObject);
+                    yield break;
+                }
+            }
+
+            yield return this._waitForSeconds;
+        }
         
     }
 
-
-    public virtual void FindTarget()
+    public virtual void AssignTarget(GameObject targetGameObject)
     {
-        this.state = Character_STATES.LOOKING_FOR_TARGET;
-
-        this.animatorController.SetSpeed(0);
-        this.animatorController.SetTurn(0);
-
-        detectedColliders = Physics.OverlapSphere(this.transform.position, this.detectionRadius, this.attackingLayers);
-
-        bool istargetFound = false;
-        listContainingLists = new List<List<GameObject>>();
-
-        for(int i=0;i<this.priorityBasedLayerMask.Length;i++)
-        {
-            listContainingLists.Add(this.ObjectsInLayer(detectedColliders, this.priorityBasedLayerMask[i]));
-        }
-
-
-        for (int i = 0; i <listContainingLists.Count;i++)
-        {
-            if(listContainingLists[i].Count>0)
-            {
-                istargetFound = true;
-                this.targetObject = this.listContainingLists[i][Random.Range(0, this.listContainingLists[i].Count)];
-                break;
-            }
-        }
-
-        if(this.targetObject)
-            if(this.targetObject.GetComponent<CharacterController>())
-            {
-                this.targetController = this.targetObject.GetComponent<CharacterController>();
-            }
-
-        if (istargetFound)
-            this.OnTargetFound();
-
-        else
-            this.OnNoTargetFound();
-
-
+        this.targetObject = targetGameObject;
+        this.AssignTarget(this.targetObject.GetComponent<CharacterController>());
+        this.ToggleDetectionCollider(false);
     }
-    
+
     public bool IsTargetOnAttackingDistance()
     {
         if (!this.targetObject)
@@ -284,20 +290,6 @@ public class AttackingAgent : NavigationAgentController
 
         return Vector3.Distance(this.transform.position, this.targetObject.transform.position) <= this.attackDistance;
     }
-
-    public List<GameObject> ObjectsInLayer(Collider [] objects,LayerMask layer)
-    {
-        List<GameObject> G = new List<GameObject>();
-
-        for(int i=0;i<objects.Length;i++)
-        {
-            if ((layer & (1 << objects[i].gameObject.layer)) != 0)
-            {
-             //   Debug.LogError(objects[i].gameObject);
-                G.Add(objects[i].gameObject);
-            }
-        }
-
-        return G;            
-    }
 }
+
+  

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public enum MissionName
 {
-    INTRODUCTION,
+    CALL_OUT_MY_NAME,
     LETS_HAVE_A_BRAWL,
     MEETING_THE_OLD_BUDS
 }

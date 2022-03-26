@@ -83,9 +83,9 @@ namespace PedestrianSystem
             StartCoroutine(this.NavigateToTarget());
         }
 
-        public override void OnAttacked(float damage)
+        public override void OnAttacked(float damage,GameObject attacker)
         {
-            base.OnAttacked(damage);
+            base.OnAttacked(damage, attacker);
             this.ReactionOnAttacked();
         }
 
