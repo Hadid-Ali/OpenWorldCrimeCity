@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Enemy : WeaponAttackingAgent
 {   
-
     public EnemyWaves wave;
-    public bool waitForBeingAttacked = false;
 
     public UnityEvent eventOnBeingKilled;
 
@@ -15,14 +13,6 @@ public class Enemy : WeaponAttackingAgent
    void StartEnemy()
     {
 
-    }
-
-    public override void OnEnable()
-    {
-        if(!this.waitForBeingAttacked)
-        {
-            base.OnEnable();
-        }
     }
 
     public void InstantAlert()

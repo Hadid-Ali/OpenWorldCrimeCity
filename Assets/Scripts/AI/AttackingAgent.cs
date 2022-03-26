@@ -196,6 +196,7 @@ public class AttackingAgent : NavigationAgentController
     public override void OnAttacked(float damage, GameObject attacker)
     {
         base.OnAttacked(damage, attacker);
+
         if(attacker.TryGetComponent<CharacterController>(out CharacterController controller))
         {
             this.AssignTarget(controller);
@@ -204,20 +205,6 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void AttackState()
     {
-
-        #region CachedCode
-        /*
-        this.StopNavigation();
-        if (!this.IsTargetOnAttackingDistance())
-        {
-            this.StopAttack();
-            this.SwitchState(Character_STATES.CHASE);
-            return;
-        }
-
-        this.RotateTo(this.targetObject.transform);
-        */
-        #endregion
         this.StopNavigationAndLookAtPlayer(1f);
         if (Time.time > this.attackMoment)
         {
@@ -232,6 +219,7 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void OnTargetFound()
     {
+        this.ToggleDetectionCollider(false);
         if (this.IsTargetOnAttackingDistance())
         {
             this.StopNavigation();

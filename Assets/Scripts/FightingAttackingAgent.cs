@@ -6,15 +6,9 @@ public class FightingAttackingAgent : AttackingAgent
 {   
     public Vector2 attackRange = new Vector2(1, 5);
 
-    public override void OnEnable()
-    {
-    }
-
     public override void Start()
     {
         base.Start();
-        this.animatorController.ToggleAttack(true);
-        this.AssignTarget(GameManager.instance.playerController);
     }
 
 

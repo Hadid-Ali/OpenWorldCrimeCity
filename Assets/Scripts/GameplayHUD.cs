@@ -82,13 +82,22 @@ public class GameplayHUD : MonoBehaviour
             this.totalCurrentCash.text = string.Format("{0}$", PreferenceManager.CashBalance);
         }
     }
-    
+
+    private void OnEnable()
+    {
+    }
+
+    void CacheAimingComponent()
+    {
+        if (this.playerAimingComponent == null)
+            this.playerAimingComponent = GameManager.instance.playerController.aimingManager;
+    }
+
     private void Start()
     {
         if (this.actionBtn != null)
             this.actionBtn.onClick.AddListener(this.ActionButtonEvent);
 
-        this.playerAimingComponent = GameManager.instance.playerController.aimingManager;
 
         this.UpdateCashEarned();
 
@@ -139,6 +148,7 @@ public class GameplayHUD : MonoBehaviour
 
     private void ToggleCloseAiming(bool bToggle)
     {
+        this.CacheAimingComponent();
         this.playerAimingComponent.AimWeapon(bToggle);
         this.closeAimingImage.color = bToggle ? Color.green : Color.white;
         this.mainTouchPad.offsetDrag = bToggle ? 4f : 1f;

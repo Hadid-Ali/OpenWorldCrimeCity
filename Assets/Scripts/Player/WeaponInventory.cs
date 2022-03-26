@@ -49,6 +49,7 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
     private void Start()
     {
         this.playerController = this.GetComponent<PlayerController>();
+        this.DrawWeapon(this.weapons[0].weaponName);
     }
 
     public void ReloadWeapon()
@@ -174,18 +175,23 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
     public void SwitchWeapon()
     {
         int index = this.weapons.FindAll(x => x.isEquippedByPlayer.Equals(true)).Count;
-        if (this.currentWeaponIndex >= index)
-        {
-            this.currentWeaponIndex = 0;
-            if (this.currentWeapon)
-            {
-                this.currentWeapon.gameObject.SetActive(false);
-                this.currentWeapon = null;
-            }
-            this.DrawWeapon(WEAPON.NONE);
-        }
-        else
-            this.DrawWeapon(this.currentWeaponIndex++);
+
+        this.currentWeaponIndex++;
+        this.currentWeaponIndex %= this.weapons.Count;
+
+        //if (this.currentWeaponIndex >= index)
+        //{
+        //    this.currentWeaponIndex = 0;
+        //    if (this.currentWeapon)
+        //    {
+        //        this.currentWeapon.gameObject.SetActive(false);
+        //        this.currentWeapon = null;
+        //    }
+        //    this.DrawWeapon(WEAPON.NONE);
+        //}
+        //else
+
+        this.DrawWeapon(this.currentWeaponIndex);
     }
 
     public void DamageTarget()
