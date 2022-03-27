@@ -11,6 +11,13 @@ public enum MessageMode
     Ok
 }
 
+public interface GameplayInstructionBarManager
+{
+    public void OnMainInstructionBarShow();
+    public void OnMainInstructionBarHide(string shortInstructionToShow);
+}
+
+
 public enum ControlsType
 {
     Movement,
@@ -20,7 +27,7 @@ public enum ControlsType
 
 public delegate void HudDelegate();
 
-public class GameplayHUD : MonoBehaviour
+public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 {
     public HudDelegate yesBtnDelegate, noBtnDelegate, okBtnDelegate;
     public Animator screenAnimator;
@@ -70,6 +77,22 @@ public class GameplayHUD : MonoBehaviour
     private GameObject crosshairFocus;
 
     public static GameplayHUD Instance;
+
+    [SerializeField]
+    private GameplayInstructionBar _gameplayInstructionBar;
+
+    [SerializeField]
+    private GameObject shortInstructionBar;
+
+    void GameplayInstructionBarManager.OnMainInstructionBarShow()
+    {
+
+    }
+
+    void GameplayInstructionBarManager.OnMainInstructionBarHide(string shortInstructionToShow)
+    {
+
+    }
 
     public void SetAlertLevel(int level)
     {
