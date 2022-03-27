@@ -69,6 +69,8 @@ public class GameplayHUD : MonoBehaviour
     [SerializeField]
     private GameObject crosshairFocus;
 
+    public static GameplayHUD Instance;
+
     public void SetAlertLevel(int level)
     {
         for (int i = 0; i < this.alertLevels.Length; i++)
@@ -93,6 +95,19 @@ public class GameplayHUD : MonoBehaviour
 
     private void OnEnable()
     {
+        Instance = this;
+        CutSceneHandler.OnCutSceneEnd_Event += CutSceneHandler_OnCutSceneEnd_Event;
+    }
+
+    private void OnDisable()
+    {
+        Instance = null;
+        CutSceneHandler.OnCutSceneEnd_Event -= CutSceneHandler_OnCutSceneEnd_Event;
+    }
+
+    private void CutSceneHandler_OnCutSceneEnd_Event()
+    {
+        gameplayControls.SetActive(true);
     }
 
     void CacheAimingComponent()
@@ -530,4 +545,12 @@ public class GameplayHUD : MonoBehaviour
     {
         StoreMenu.Instance.OpenStoreMenu();
     }
+
+    #region Dialogues
+    [Header("Dialogues Panel")]
+    public GameObject dialoguesPanel;
+    public Image dialogueIcon;
+    public Text dialogueText;
+    //[Space (10)]
+    #endregion
 }
