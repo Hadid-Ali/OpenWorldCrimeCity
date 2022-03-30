@@ -569,6 +569,11 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         StoreMenu.Instance.OpenStoreMenu();
     }
 
+    public void OpenShop()
+    {
+        ShopManager.Instance.OpenShop();
+    }
+
     #region Dialogues
     [Header("Dialogues Panel")]
     public GameObject dialoguesPanel;
