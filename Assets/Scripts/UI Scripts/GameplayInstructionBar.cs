@@ -43,15 +43,13 @@ public class GameplayInstructionBar : InstructionBar
         if (!this.isInit)
             this.Init();
 
+        this.SetInstruction(instruction);
         StartCoroutine(this.Coroutine_ShowInstruction(instruction, reward));
     }
 
     private IEnumerator Coroutine_ShowInstruction(string instruction, string reward)
     {
-        this.SetInstruction(instruction);
-        this.rewardText.text = reward;
-
-        this.gameObject.SetActive(true);
+        this.rewardText.text = $"REWARD: {reward}$";
 
         yield return new WaitForSecondsRealtime(this._waitBeforeBell);
         this.AnimateBell();

@@ -82,16 +82,21 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     private GameplayInstructionBar _gameplayInstructionBar;
 
     [SerializeField]
-    private GameObject shortInstructionBar;
+    private InstructionBar shortInstructionBar;
 
     void GameplayInstructionBarManager.OnMainInstructionBarShow()
     {
-
+        this.shortInstructionBar.ToggleInstructionBar(false);
     }
 
     void GameplayInstructionBarManager.OnMainInstructionBarHide(string shortInstructionToShow)
     {
+        this.shortInstructionBar.SetInstruction(shortInstructionToShow);
+    }
 
+    public void ShowNewInstruction(string text,float reward)
+    {
+        this._gameplayInstructionBar.ShowInstruction(text, reward.ToString());
     }
 
     public void SetAlertLevel(int level)

@@ -39,20 +39,19 @@ public class CutSceneCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.instance.mainCamera.gameObject.SetActive(false);
-        GameManager.instance.gameplayHUD.gameplayControls.SetActive(false);
+        GameManager.instance.cameraManager.TogglePlayerCamera(false);
+        GameManager.instance.gameplayHUD.ToggleGameplayControls(false);
+
         for (int i=0;i<this.cutSceneText.Count;i++)
         {
             this.cutSceneDuration += this.cutSceneText[i].time;
         }
 
-        GameManager.instance.mainCamera.gameObject.SetActive(false);
-
         for(int i=0;i<this.eventsOnStart.Count;i++)
         {
             StartCoroutine(this.eventsOnStart[i].EventCall());
         }
-
+        Debug.LogError($"Duration {this.cutSceneDuration}");
         Invoke("CompleteCutScene", this.cutSceneDuration);
         if (this.cutSceneText.Count > 0)
             GameManager.instance.gameplayHUD.ResetInstruction();
@@ -68,7 +67,7 @@ public class CutSceneCamera : MonoBehaviour
     {
         for(int i=0;i<this.cutSceneText.Count;i++)
         {
-            GameManager.instance.gameplayHUD.TypeInstruction(this.cutSceneText[i].text,this.cutSceneText[i].time);
+      //      GameManager.instance.gameplayHUD.TypeInstruction(this.cutSceneText[i].text,this.cutSceneText[i].time);
             yield return new WaitForSeconds(this.cutSceneText[i].time+1f);
         }
     }
@@ -80,7 +79,7 @@ public class CutSceneCamera : MonoBehaviour
             StartCoroutine(this.eventsOnEnd[i].EventCall());
         }
         GameManager.instance.mainCamera.lockCamera = false;
-        GameManager.instance.gameplayHUD.TypeInstruction(this.endingText.text, this.endingText.time);
+  //      GameManager.instance.gameplayHUD.TypeInstruction(this.endingText.text, this.endingText.time);
         if (!this.GetComponent<Camera>())
         {
             GameManager.instance.playerController.ToggleCutSceneCamera(false, this.transform.position, this.transform.eulerAngles);
@@ -111,8 +110,9 @@ public class CutSceneCamera : MonoBehaviour
         else
         {
 
-            GameManager.instance.mainCamera.gameObject.SetActive(true);
-            GameManager.instance.gameplayHUD.gameplayControls.SetActive(true);
+            GameManager.instance.cameraManager.TogglePlayerCamera(true);
+            GameManager.instance.gameplayHUD.ToggleGameplayControls(true);
+
         }
     }
 }

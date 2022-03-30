@@ -8,6 +8,26 @@ public enum MissionName
     LETS_HAVE_A_BRAWL,
     MEETING_THE_OLD_BUDS
 }
+
+[System.Serializable]
+public class LevelInstructionObject
+{
+    [SerializeField]
+    private string instruction;
+    [SerializeField]
+    private int cashReward;
+
+    public string GetInstruction
+    {
+        get => this.instruction;
+    }
+
+    public int GetReward
+    {
+        get => this.cashReward;
+    }
+}
+
 public class Mission : MonoBehaviour
 {
     public Transform playerStartPosition;
@@ -21,6 +41,9 @@ public class Mission : MonoBehaviour
     public Difficulty callingCops;
 
     public float durationBeforeMissionComplete = 0f;
+
+    public List<LevelInstructionObject> levelInstructions;
+
 
     public MissionName missionName;
 
@@ -37,6 +60,14 @@ public class Mission : MonoBehaviour
         //PreferenceManager.ClearedLevels = this.currentLevel;
     }
 
+    public LevelInstructionObject GetLevelInstruction(int index)
+    {
+        if(index < this.levelInstructions.Count)
+        {
+            return this.levelInstructions[index];
+        }
+        return null;
+    }
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -53,6 +84,8 @@ public class Mission : MonoBehaviour
 
         GameManager.instance.currentMission = this;
     }
+
+
 
     public void MissionComplete()
     {

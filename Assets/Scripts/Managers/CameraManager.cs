@@ -20,7 +20,7 @@ public class CameraManager : MonoBehaviour
         this._vehicleCamera.playerCar = vehicle.GetComponent<RCC_CarControllerV3>();
         this._vehicleCamera.pivot = vehicle.vehiclePivotToAssign;
 
-        this.TogglePlayerCamera(false);
+        this.TogglePlayerCameraControls(false);
         this.ToggleVehicleCamera(true);
     }
 
@@ -28,7 +28,7 @@ public class CameraManager : MonoBehaviour
     {
         this._mainCameraController.SetMainTarget(player.transform);
         this.ToggleVehicleCamera(false);
-        this.TogglePlayerCamera(true);
+        this.TogglePlayerCameraControls(true);
     }
 
     public void ShakeMainCamera()
@@ -42,9 +42,14 @@ public class CameraManager : MonoBehaviour
         this._vehicleCamera.enabled = toggle;
     }
 
-    public void TogglePlayerCamera(bool toggle)
+    public void TogglePlayerCameraControls(bool toggle)
     {
         this._mainCameraController.enabled = toggle;
+    }
+
+    public void TogglePlayerCamera(bool toggle)
+    {
+        this._mainCamera.gameObject.SetActive(toggle);
     }
 
 }
