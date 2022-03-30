@@ -45,6 +45,6 @@ public class LoadingHandler : MonoBehaviour
     private void UpdateUI()
     {
         fillerImg.fillAmount = dummyfill/100;
-        fillerTxt.text = string.Format("{0}%", dummyfill);
+        fillerTxt.text = Mathf.FloorToInt(dummyfill) +"%";
     }
 }
