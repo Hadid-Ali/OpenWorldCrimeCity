@@ -78,7 +78,6 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
     public static GameplayHUD Instance;
 
-<<<<<<< Updated upstream
     [SerializeField]
     private GameplayInstructionBar _gameplayInstructionBar;
 
@@ -95,8 +94,6 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
     }
 
-=======
->>>>>>> Stashed changes
     public void SetAlertLevel(int level)
     {
         for (int i = 0; i < this.alertLevels.Length; i++)
