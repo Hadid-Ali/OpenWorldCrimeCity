@@ -116,7 +116,7 @@ public class CharacterController : GameEntity
 
     public virtual void OnEnable()
     {
-        this.health = 100f;
+        this.health = this.totalhealth;
 
     }
 

@@ -98,12 +98,18 @@ public class PlayerController : CharacterController
     {
         base.Start();
         this.isPlayer = true;
+        this.SetPlayerhealth();
+    }
+
+    private void SetPlayerhealth()
+    {
+        GameManager.instance.gameplayHUD.FillPlayerHealthBar(this.health, this.totalhealth);
     }
 
     public override void OnAttacked(float damage,GameObject attacker)
     {
         base.OnAttacked(damage, attacker);
-        GameManager.instance.gameplayHUD.FillPlayerHealthBar(this.health, this.totalhealth);
+        this.SetPlayerhealth();
         if (!IsInvoking("FIllHealth"))
             Invoke("FIllHealth", 1f);
         //  GameManager.instance.gameplayHUD.ShowHurtEffect();

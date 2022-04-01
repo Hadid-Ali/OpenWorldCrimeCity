@@ -8,7 +8,9 @@ public class Enemy : WeaponAttackingAgent
     public EnemyWaves wave;
 
     public UnityEvent eventOnBeingKilled;
+    public float destroyTime = 2f;
 
+    public GameObject enemyIndicator;
 
    void StartEnemy()
     {
@@ -38,5 +40,10 @@ public class Enemy : WeaponAttackingAgent
 
         if (this.eventOnBeingKilled != null)
             this.eventOnBeingKilled.Invoke();
+
+        if (this.enemyIndicator)
+            this.enemyIndicator.SetActive(false);
+
+        Destroy(this.gameObject,this.destroyTime);
     }
 }

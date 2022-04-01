@@ -46,7 +46,7 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         missionButton,homeTransitionButton,farmsTransitionButton,restockAmmoBtn,
         bcutton;
 
-    public Text messageText, titleText, instruction, cashEarned,totalCurrentCash;
+    public Text messageText, titleText, instruction, cashEarned,totalCurrentCash,playerHealthText;
 
     public static bool isShooting = false;
     public static bool isAiming = false;
@@ -346,6 +346,7 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     public void FillPlayerHealthBar(float currentHealth, float fullHealth)
     {
         this.playerHealthBar.fillAmount = currentHealth / fullHealth;
+        this.playerHealthText.text = currentHealth.ToString();
     }
 
     public void HideHB()
