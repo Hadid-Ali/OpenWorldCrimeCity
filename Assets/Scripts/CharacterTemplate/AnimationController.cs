@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
+    [SerializeField]
     private Animator _anim;
 
     public Animator Animator
@@ -25,6 +26,11 @@ public class AnimationController : MonoBehaviour
     public void DieAnimate(bool toggleFlag)
     {
         this._anim.SetBool("IsDead",toggleFlag);
+    }
+
+    public void ToggleAnimation(string animatorParameter,bool toggle)
+    {
+        this.Animator.SetBool(animatorParameter, toggle);
     }
 
     public void ReloadWeapon()

@@ -10,28 +10,17 @@ public class WeaponAttackingAgent : AttackingAgent
     public override void Start()
     {
         base.Start();
-        try
-        {
-            this.animatorController.SetWeapon(this.weapon.weaponType);
-        }
-        catch(System.Exception e)
-        {
-            if (this.animatorController == null)
-                Debug.LogError("Animator Exception");
-            if (this.weapon == null)
-                Debug.LogError("Weapon");
-
-            Debug.LogError("Exception " + e);
-        }
     }
 
-    public override void OnTargetFound()
+    public override void OnAgentAlert()
     {
-        base.OnTargetFound();
-        if(this.weapon)
+        base.OnAgentAlert();
+        if (this.weapon)
         {
             if (!this.weapon.gameObject.activeSelf)
                 this.weapon.gameObject.SetActive(true);
+
+            this.animatorController.SetWeapon(this.weapon.weaponType);
         }
     }
 

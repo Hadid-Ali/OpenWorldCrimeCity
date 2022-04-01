@@ -13,9 +13,9 @@ public class NavigationAgentController : CharacterController
     
     public float iterationsLimitForTarget = 4;
 
-    public override void OnEnable()
+    public override void Awake()
     {
-        base.OnEnable();
+        base.Awake();
 
         this.aiController = this.GetComponent<NavMeshAgent>();
         this.aiController.speed = this.navigationSpeed;

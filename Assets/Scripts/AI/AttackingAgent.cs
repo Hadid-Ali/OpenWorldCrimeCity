@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StartAnimationType
+{
+    Idle,
+    Talking,
+    TalkingOnPhone,
+    Smoking,
+}
+
 public class AttackingAgent : NavigationAgentController
 {
     [SerializeField]
@@ -39,6 +47,20 @@ public class AttackingAgent : NavigationAgentController
 
     private WaitForSeconds _waitForSeconds;
 
+    [SerializeField]
+    private StartAnimationType startingAnimation = StartAnimationType.Idle;
+
+    [SerializeField]
+    private GameObject objectToShowOnStart;
+
+    public void ToggleStartAnimation(bool toggle)
+    {
+        this.animatorController.ToggleAnimation(this.startingAnimation.ToString(), toggle);
+
+        if (this.objectToShowOnStart != null)
+            this.objectToShowOnStart.SetActive(toggle);
+    }
+
     public void OnValidate()
     {
         if (this._detectionCollider)
@@ -59,6 +81,8 @@ public class AttackingAgent : NavigationAgentController
     {
         if (this.targetObject != null)
             this.AssignTarget(this.targetObject);
+
+        this.ToggleStartAnimation(true);
     }
 
     void ChasinSwitch()
@@ -230,6 +254,12 @@ public class AttackingAgent : NavigationAgentController
             this.SwitchState(Character_STATES.CHASE);
         }
         this.isInActive = false;
+        this.OnAgentAlert();
+    }
+
+    public virtual void OnAgentAlert()
+    {
+        this.ToggleStartAnimation(false);
     }
 
     public virtual void AssignTarget(CharacterController charController)
