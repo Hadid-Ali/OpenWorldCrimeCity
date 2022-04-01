@@ -62,3 +62,4 @@ crashlytics-build.properties
 
 Assets/Scripts/Loading/LoadingHandler.cs
 *.unity
+Assets/Open World Crime Environment/Scenes/day.unity
