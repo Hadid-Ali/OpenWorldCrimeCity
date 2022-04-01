@@ -15,7 +15,6 @@ public class LoadingHandler : MonoBehaviour
 
     public delegate void OnLoadingComplete();
     public static OnLoadingComplete OnLoadingCompleteEvent;
-
     void OnEnable()
     {
         DontDestroyOnLoad(gameObject);
