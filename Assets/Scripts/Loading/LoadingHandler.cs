@@ -41,6 +41,7 @@ public class LoadingHandler : MonoBehaviour
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
+
     private void UpdateUI()
     {
         fillerImg.fillAmount = dummyfill/100;
