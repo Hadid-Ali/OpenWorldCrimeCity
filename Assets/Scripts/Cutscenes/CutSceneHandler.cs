@@ -14,6 +14,8 @@ public class CutSceneHandler : MonoBehaviour
     public delegate void OnCutSceneEnd();
     public static event OnCutSceneEnd OnCutSceneEnd_Event;
 
+    public GameObject enableObjectAfterCutsceneEnd;
+
     private void Start()
     {
         routine = ShowCutScene();
@@ -83,6 +85,8 @@ public class CutSceneHandler : MonoBehaviour
             OnCutSceneEnd_Event();
         }
         cameraTransform.gameObject.SetActive(false);
+        if(enableObjectAfterCutsceneEnd)
+            enableObjectAfterCutsceneEnd.SetActive(true);
     }
 
     private bool IsShowingSecondCamera()
@@ -119,7 +123,7 @@ public class CutSceneHandler : MonoBehaviour
 
     private bool CheckIfCameraReached(Vector3 target)
     {
-        return Vector3.Distance(cameraTransform.position,target) < 0.1f;
+        return Vector3.Distance(cameraTransform.position,target) < 0.01f;
     }
 }
 

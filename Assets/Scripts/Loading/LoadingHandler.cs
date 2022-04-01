@@ -13,6 +13,9 @@ public class LoadingHandler : MonoBehaviour
     private float dummyfill;
     private float speed = 5f;
 
+    public delegate void OnLoadingComplete();
+    public static OnLoadingComplete OnLoadingCompleteEvent;
+
     void OnEnable()
     {
         DontDestroyOnLoad(gameObject);
@@ -39,6 +42,10 @@ public class LoadingHandler : MonoBehaviour
         UpdateUI();
 
         yield return new WaitForSeconds(2);
+        if (OnLoadingCompleteEvent != null)
+        {
+            OnLoadingCompleteEvent();
+        }
         Destroy(gameObject);
     }
 
