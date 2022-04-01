@@ -13,8 +13,11 @@ public class LoadingHandler : MonoBehaviour
     private float dummyfill;
     private float speed = 5f;
 
+<<<<<<< Updated upstream
     public delegate void OnLoadingComplete();
     public static OnLoadingComplete OnLoadingCompleteEvent;
+=======
+>>>>>>> Stashed changes
     void OnEnable()
     {
         DontDestroyOnLoad(gameObject);
@@ -41,16 +44,23 @@ public class LoadingHandler : MonoBehaviour
         UpdateUI();
 
         yield return new WaitForSeconds(2);
+<<<<<<< Updated upstream
         if (OnLoadingCompleteEvent != null)
         {
             OnLoadingCompleteEvent();
         }
+=======
+>>>>>>> Stashed changes
         Destroy(gameObject);
     }
 
     private void UpdateUI()
     {
         fillerImg.fillAmount = dummyfill/100;
+<<<<<<< Updated upstream
         fillerTxt.text = Mathf.FloorToInt(dummyfill)+"%";
+=======
+        fillerTxt.text = string.Format("{0}%", dummyfill);
+>>>>>>> Stashed changes
     }
 }
