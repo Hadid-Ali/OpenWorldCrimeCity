@@ -50,6 +50,8 @@ public class DialogueSequence : MonoBehaviour
 
     private int index = 0;
 
+    public bool isPhoneCall = true;
+
     public UnityEvent eventOnSequenceComplete;
 
     public bool shouldEnableControlsAfter = true;

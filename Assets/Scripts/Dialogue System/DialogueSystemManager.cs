@@ -8,7 +8,11 @@ public class DialogueSystemManager : MonoBehaviour
     public static DialogueSystemManager instance;
 
     public GameObject dialoguesCanvas;
+
     public GameObject nextDialogueIcon;
+    public GameObject dialogueInputObject;
+
+    public GameObject phoneCallIconObject;
 
     private DialogueSequence currentDialogueSequence;
     private int currentDIalogueIndex = 0;
@@ -17,9 +21,6 @@ public class DialogueSystemManager : MonoBehaviour
 
     [SerializeField]
     private Text dialogueText;
-
-    private GameObject currentBGImage;
-    private GameObject currentNarratorNameObject;
 
     private bool isDialogueSequenceInProcess;
 
@@ -84,9 +85,28 @@ public class DialogueSystemManager : MonoBehaviour
     public void SetupSequence(DialogueSequence dialogueSequence)
     {
         this.currentDialogueSequence = dialogueSequence;
-        this.ProceedToNextDialogue();
+        if(dialogueSequence.isPhoneCall)
+        {
+            this.ShowPhoneCall();
+        }
+
+        else
+        {
+            this.ProceedToNextDialogue();
+        }
     }
 
+    public void ShowPhoneCall()
+    {
+        GameManager.instance.gameplayHUD.ToggleGameplayControls(false);
+        this.dialogueInputObject.SetActive(false);
+        this.phoneCallIconObject.SetActive(true);
+    }
+
+    public void HidePhoneCallobject()
+    {
+        this.phoneCallIconObject.SetActive(false);
+    }
 
     public void ToggleDialogueCanvas(bool toggle,bool toggleControls)
     {
@@ -99,7 +119,9 @@ public class DialogueSystemManager : MonoBehaviour
     public void ShowDialogue(DialogueObject dialogueObject)
     {
         this.isDialogueSequenceInProcess = true;
+
         this.nextDialogueIcon.SetActive(false);
+        this.dialogueInputObject.SetActive(true);
 
         this.currentDialogue = dialogueObject;
 
