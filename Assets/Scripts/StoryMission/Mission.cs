@@ -127,7 +127,7 @@ public class Mission : MonoBehaviour
 
     void CompleteMission()
     {
-        GameManager.instance.MissionComplete(this.cashEarning);
+       // GameManager.instance.MissionComplete(this.cashEarning);
         Destroy(this.gameObject);
     }
 

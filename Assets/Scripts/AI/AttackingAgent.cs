@@ -8,6 +8,7 @@ public enum StartAnimationType
     Talking,
     TalkingOnPhone,
     Smoking,
+    Disable
 }
 
 public class AttackingAgent : NavigationAgentController
@@ -117,7 +118,7 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void DefenseState()
     {
-        this.StopNavigationAndLookAtPlayer(2f);
+       // this.StopNavigationAndLookAtPlayer(2f);
     }
 
     public virtual void OnStateChanged(Character_STATES state)
@@ -229,7 +230,7 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void AttackState()
     {
-        this.StopNavigationAndLookAtPlayer(1f);
+        this.StopNavigationAndLookAtPlayer(0f);
         if (Time.time > this.attackMoment)
         {
             Debug.LogError("AttackState " + this.gameObject);

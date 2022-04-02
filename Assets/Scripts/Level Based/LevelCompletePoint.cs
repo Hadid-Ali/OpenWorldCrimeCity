@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelCompletePoint : MonoBehaviour
+public class LevelCompletePoint : RewardPoint
 {
-
-    void Start()
+    public override void OnRewardEarn()
     {
-            
+        GameManager.instance.EarnReward(this.reward, true);
     }
 }

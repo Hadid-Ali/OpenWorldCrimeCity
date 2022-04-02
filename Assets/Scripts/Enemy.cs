@@ -33,6 +33,9 @@ public class Enemy : WeaponAttackingAgent
 
     public override void KillWithForce(Vector3 dir, float ragdForce)
     {
+        if (this.isDead)
+            return;
+
         base.KillWithForce(dir, ragdForce);
 
         if (this.wave)

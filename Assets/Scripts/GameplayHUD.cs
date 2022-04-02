@@ -84,6 +84,12 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     [SerializeField]
     private InstructionBar shortInstructionBar;
 
+    [SerializeField]
+    private GameObject cashEarnedPanel;
+
+    [SerializeField]
+    private Text cashEarnedPanelText;
+
     void GameplayInstructionBarManager.OnMainInstructionBarShow()
     {
         this.shortInstructionBar.ToggleInstructionBar(false);
@@ -225,6 +231,21 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     public void FadeScreenOut()
     {
         this.screenAnimator.SetTrigger("FadingOut");
+    }
+
+    public void ShowCashEarned(int cashEarned)
+    {
+        StartCoroutine(this.Coroutine_ShowCashPanel(cashEarned));
+    }
+
+    private IEnumerator Coroutine_ShowCashPanel(int cashReward)
+    {
+        this.cashEarnedPanelText.text = $"Cash Earned: {cashReward}$";
+        this.cashEarnedPanel.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        this.cashEarnedPanel.SetActive(false);
     }
 
     public void MissionComplete(float reward)

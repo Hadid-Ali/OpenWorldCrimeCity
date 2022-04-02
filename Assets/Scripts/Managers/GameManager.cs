@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     public string iOSRateLink = "itms-apps://itunes.apple.com/app/idYOUR_ID", AndroidRateLink = "market://details?id=YOUR_ID";
 
+    public int totalCashEarned = 0;
 
     public void OnRateButton()
     {
@@ -85,6 +86,23 @@ public class GameManager : MonoBehaviour
     {
         this.StartMission(PreferenceManager.ClearedLevels + 1);
     }
+
+    public void EarnReward(int rewardToGive,bool isLevelComplete)
+    {
+        PreferenceManager.CashBalance += rewardToGive;
+        this.totalCashEarned += rewardToGive;
+
+        if(isLevelComplete)
+        {
+            this.MissionComplete();
+        }
+        
+        else
+        {
+            this.gameplayHUD.ShowCashEarned(rewardToGive);
+        }
+    }
+
     
     public void ReStockAmmo()
     {
@@ -108,12 +126,10 @@ public class GameManager : MonoBehaviour
         GameObject missionObject = (GameObject) Instantiate(Resources.Load(string.Format("Levels/Mission{0}", index)));
     }
 
-    public void MissionComplete(float reward)
+    public void MissionComplete()
     {
         PreferenceManager.ClearedLevels += 1;
-        Debug.LogError(PreferenceManager.ClearedLevels);
-        this.gameplayHUD.MissionComplete(reward);
-        PreferenceManager.CashBalance += reward;
+        this.gameplayHUD.MissionComplete(this.totalCashEarned);
 
         PreferenceManager.CurrentLevel++;
     }
