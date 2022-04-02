@@ -45,7 +45,6 @@ public class DialogueObject : SimpleDialogue
 public class DialogueSequence : MonoBehaviour
 {
     public List<DialogueObject> sequenceDialogues;
-    public CharacterIdentity narratorA, narratorB;
 
     public float waitBeforeDialogues = 0f;
 
@@ -53,12 +52,14 @@ public class DialogueSequence : MonoBehaviour
 
     public UnityEvent eventOnSequenceComplete;
 
-    public bool isLevelStartSequence;
     public bool shouldEnableControlsAfter = true;
+
+    private DialogueSystemManager dialogueSystemManager;
 
     private void Start()
     {
-        
+        if (this.dialogueSystemManager == null)
+            this.dialogueSystemManager = DialogueSystemManager.instance;
     }
 
     private void OnEnable()
@@ -68,16 +69,13 @@ public class DialogueSequence : MonoBehaviour
 
     public void StartDialogueSequence()
     {
-        DialoguesCanvas.instance.ToggleDialogueCanvas(true, false);
-        DialoguesCanvas.instance.SetupSequence(this);
+        this.dialogueSystemManager.ToggleDialogueCanvas(true, false);
+        this.dialogueSystemManager.SetupSequence(this);
     }
 
     private void OnDisable()
     {
         this.eventOnSequenceComplete.Invoke();
-        DialoguesCanvas.instance.ToggleDialogueCanvas(false,this.shouldEnableControlsAfter);
-
-        if (this.isLevelStartSequence)
-            GameManager.instance.InitGameplay();
+        this.dialogueSystemManager.ToggleDialogueCanvas(false,this.shouldEnableControlsAfter);
     }
 }

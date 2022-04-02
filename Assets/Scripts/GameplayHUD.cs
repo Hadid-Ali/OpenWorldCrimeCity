@@ -590,12 +590,75 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
     #region Dialogue System
 
+    [SerializeField]
     private Button callButton;
+
+    public Action onTextWritten;
 
     public void ShowCallButton(bool toggle)
     {
         this.ToggleGameplayControls(false);
         this.callButton.gameObject.SetActive(toggle);
+    }
+
+    public bool isTextWriting = false;
+    private string currentString;
+
+    private Text textComponent;
+
+    private float typingDuration;
+    private Coroutine textRoutine;
+
+    public void StopTextWriting(bool shouldFill = true)
+    {
+        if (this.textComponent != null & shouldFill)
+            this.textComponent.text = this.currentString;
+
+        this.StopCoroutine(this.textRoutine);
+
+        isTextWriting = false;
+
+        this.textComponent = null;
+        this.currentString = null;
+
+        if (onTextWritten != null)
+            onTextWritten();
+    }
+
+    public void TypeText(Text textComponent, string textToType, float typingDuration)
+    {
+        if (this.isTextWriting)
+        {
+            this.StopTextWriting();
+        }
+        this.textComponent = textComponent;
+        this.currentString = textToType;
+
+        isTextWriting = true;
+
+        this.typingDuration = typingDuration;
+
+        this.textRoutine = StartCoroutine(this.TypeTextProcedurally());
+    }
+
+    public IEnumerator TypeTextProcedurally()
+    {
+        char[] letters = this.currentString.ToCharArray();
+
+        float durationBetweenLetters = typingDuration / letters.Length;
+
+        int characterIndex = 0;
+        this.textComponent.text = "";
+
+        while (characterIndex < letters.Length)
+        {
+            textComponent.text += letters[characterIndex++];
+            yield return new WaitForSeconds(durationBetweenLetters);
+        }
+
+        this.StopTextWriting();
+
+
     }
 
     #endregion

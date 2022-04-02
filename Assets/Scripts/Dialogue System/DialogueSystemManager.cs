@@ -8,23 +8,19 @@ public class DialogueSystemManager : MonoBehaviour
     public static DialogueSystemManager instance;
 
     public GameObject dialoguesCanvas;
-
-    public Text[] characterNamesTexts;
-    public Text[] dialoguesTexts;
-
     public GameObject nextDialogueIcon;
-
-    public Image[] narratorImages;
-    public Image[] narratorBGImages;
 
     private DialogueSequence currentDialogueSequence;
     private int currentDIalogueIndex = 0;
 
     private DialogueObject currentDialogue;
-    private Dictionary<CharacterIdentity, int> dialogueHashTable;
-    private Text currentdialogueText;
+
+    [SerializeField]
+    private Text dialogueText;
+
     private GameObject currentBGImage;
     private GameObject currentNarratorNameObject;
+
     private bool isDialogueSequenceInProcess;
 
     [SerializeField]
@@ -49,15 +45,15 @@ public class DialogueSystemManager : MonoBehaviour
     public void DialogueInput()
     {
         if(SoundManager.instance)
-        SoundManager.instance.PlaySound(SoundType.CLICK);
+        SoundManager.instance.PlaySound(SoundType.CLICK_SOUND); 
 
         if (this.dialoguesAudioSource.isPlaying)
             this.dialoguesAudioSource.Stop();
         
-        if(GameManager.instance.gameplayHud.isTextWriting)
+        if(GameManager.instance.gameplayHUD.isTextWriting)
         {
-            GameManager.instance.gameplayHud.StopTextWriting();
-            this.currentdialogueText.text = this.currentDialogue.dialogueString;
+            GameManager.instance.gameplayHUD.StopTextWriting();
+            this.dialogueText.text = this.currentDialogue.dialogueString;
         }
         else
         {
@@ -87,21 +83,7 @@ public class DialogueSystemManager : MonoBehaviour
 
     public void SetupSequence(DialogueSequence dialogueSequence)
     {
-        CharacterIdentity narratora = dialogueSequence.narratorA;
-        CharacterIdentity narratorb = dialogueSequence.narratorB;
-
         this.currentDialogueSequence = dialogueSequence;
-        this.dialogueHashTable = new Dictionary<CharacterIdentity, int>();
-
-        this.dialogueHashTable.Add(narratora, 0);
-        this.dialogueHashTable.Add(narratorb, 1);
-
-        this.characterNamesTexts[0].text = narratora.ToString();
-        this.characterNamesTexts[1].text = narratorb.ToString();
-
-        this.narratorImages[0].sprite = this.narratorBGImages[0].sprite = this.dialogueNarrators.Find(x => x.characterIdentity == narratora).characterAvatar;
-        this.narratorImages[1].sprite = this.narratorBGImages[1].sprite = this.dialogueNarrators.Find(x => x.characterIdentity == narratorb).characterAvatar;
-
         this.ProceedToNextDialogue();
     }
 
@@ -110,7 +92,7 @@ public class DialogueSystemManager : MonoBehaviour
     {
         this.StopAllCoroutines();
         this.dialoguesCanvas.SetActive(toggle);
-        GameManager.instance.gameplayHud.ToggleGameplayControls(toggleControls);
+        GameManager.instance.gameplayHUD.ToggleGameplayControls(toggleControls);
     }
 
 
@@ -118,32 +100,8 @@ public class DialogueSystemManager : MonoBehaviour
     {
         this.isDialogueSequenceInProcess = true;
         this.nextDialogueIcon.SetActive(false);
-        if (this.currentNarrator != dialogueObject.dialogueNarrator)
-        {
-            this.currentNarrator = dialogueObject.dialogueNarrator;
-        }
+
         this.currentDialogue = dialogueObject;
-
-        if (this.currentNarratorNameObject)
-            this.currentNarratorNameObject.SetActive(false);
-
-        int index = this.dialogueHashTable[dialogueObject.dialogueNarrator];
-
-        this.currentNarratorNameObject = this.characterNamesTexts[index].gameObject;
-        this.currentNarratorNameObject.SetActive(true);
-
-        if (this.currentdialogueText)
-            this.currentdialogueText.gameObject.SetActive(false);
-
-        this.currentdialogueText = this.dialoguesTexts[index];
-
-        this.currentdialogueText.gameObject.SetActive(true);
-
-        if (this.currentBGImage)
-            this.currentBGImage.SetActive(true);
-
-        this.currentBGImage = this.narratorBGImages[index].gameObject;
-        this.currentBGImage.SetActive(false);
 
         if(dialogueObject.dialogueClip!=null)
         {
@@ -154,8 +112,8 @@ public class DialogueSystemManager : MonoBehaviour
 
         dialogueObject.EnableAndDisableObjects();
 
-        GameManager.instance.gameplayHud.onTextWritten += this.OnDialogueWritten;
-      GameManager.instance.gameplayHud.TypeText(this.currentdialogueText, dialogueObject.dialogueString, dialogueObject.timeForDialogueToWrite);
+        GameManager.instance.gameplayHUD.onTextWritten += this.OnDialogueWritten;
+      GameManager.instance.gameplayHUD.TypeText(this.dialogueText, dialogueObject.dialogueString, dialogueObject.timeForDialogueToWrite);
     }
 
 }
