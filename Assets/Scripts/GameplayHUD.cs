@@ -587,4 +587,16 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     public Text dialogueText;
     //[Space (10)]
     #endregion
+
+    #region Dialogue System
+
+    private Button callButton;
+
+    public void ShowCallButton(bool toggle)
+    {
+        this.ToggleGameplayControls(false);
+        this.callButton.gameObject.SetActive(toggle);
+    }
+
+    #endregion
 }
