@@ -31,7 +31,7 @@ public class MainMenuManager : MonoBehaviour
         {
             case ("Play"):
                 {
-                    loadingScreen.SetActive(true);
+                    modeSelection.SetActive(true);
                     break;
                 }
             case ("RateUs"):
@@ -59,6 +59,67 @@ public class MainMenuManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    #endregion
+
+    #region Mode Selection Screen
+
+    [Header("------------ Mode Selection Screen ------------")]
+    public GameObject modeSelection;
+
+    public void ModeSelectionBtnClicked(string btnName)
+    {
+        switch (btnName)
+        {
+            case "PlayBtn":
+                {
+                    loadingScreen.SetActive(true);
+                    break;
+                }
+            case "ModeSelectionClosed":
+                {
+                    modeSelection.SetActive(false);
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
+    public void ModeBtnClicked(int mode)
+    {
+        switch (mode)
+        {
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
+    #endregion
+
+
+    #region Game Quit
+
+    public void OnGameQuitClicked()
+    {
+        Application.Quit();
     }
 
     #endregion
