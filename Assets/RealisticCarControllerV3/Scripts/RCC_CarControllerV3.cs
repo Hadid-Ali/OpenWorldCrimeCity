@@ -606,7 +606,7 @@ public class RCC_CarControllerV3 : RCC_Core {
     public override void SetPhysicsEnable(bool toggle)
     {
         base.SetPhysicsEnable(toggle);
-		this.enabled = true;
+		this.enabled = toggle;
     }
 
     /// <summary>

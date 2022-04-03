@@ -7,6 +7,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public class SimpleDialogue
 {
+    [Multiline,TextArea(3,10)]
     public string dialogueString;
     public AudioClip dialogueClip;
 
@@ -51,12 +52,15 @@ public class DialogueSequence : MonoBehaviour
     private int index = 0;
 
     public bool isPhoneCall = true;
+    public bool isLevelStartSequence;
 
     public UnityEvent eventOnSequenceComplete;
 
     public bool shouldEnableControlsAfter = true;
 
     private DialogueSystemManager dialogueSystemManager;
+
+    public Transform playerPoint;
 
     private void Start()
     {
@@ -71,6 +75,11 @@ public class DialogueSequence : MonoBehaviour
 
     public void StartDialogueSequence()
     {
+        if(this.playerPoint)
+        {
+            GameManager.instance.playerController.transform.position = this.playerPoint.position;
+        }
+
         this.dialogueSystemManager.ToggleDialogueCanvas(true, false);
         this.dialogueSystemManager.SetupSequence(this);
     }
@@ -79,5 +88,11 @@ public class DialogueSequence : MonoBehaviour
     {
         this.eventOnSequenceComplete.Invoke();
         this.dialogueSystemManager.ToggleDialogueCanvas(false,this.shouldEnableControlsAfter);
+
+        if(this.isLevelStartSequence)
+        {
+            GameManager.instance.currentMission.PositionPlayerForMission();
+            GameManager.instance.gameplayHUD.ToggleGameplayControls(true);
+        }
     }
 }

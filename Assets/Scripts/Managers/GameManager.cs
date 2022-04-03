@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public string iOSRateLink = "itms-apps://itunes.apple.com/app/idYOUR_ID", AndroidRateLink = "market://details?id=YOUR_ID";
 
     public int totalCashEarned = 0;
+    public int totalKills = 0;
 
     public void OnRateButton()
     {
@@ -80,6 +81,11 @@ public class GameManager : MonoBehaviour
             {
                 this.StartMission(1);
             }
+    }
+
+    public DistanceCalculator DistanceCalculator
+    {
+        get => this.playerController;
     }
 
     public void StartNextMission()

@@ -4,8 +4,17 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+public interface DistanceCalculator
+{
+    void CalculateDistanceAndShow(Vector3 Position);
 
-public class PlayerController : CharacterController
+    void EnableDistanceCalculator();
+
+    void DisableDistanceCalculator();
+
+}
+
+public class PlayerController : CharacterController, DistanceCalculator
 {
     [HideInInspector]
     public AimingManager aimingManager;
@@ -30,6 +39,7 @@ public class PlayerController : CharacterController
 
     public float distance = 5f;
 
+    private Camera _mainCamera;
 
     public override void Awake()
     {
@@ -45,6 +55,40 @@ public class PlayerController : CharacterController
 
         this._transform = this.transform;
     }
+
+
+    public override void Start()
+    {
+        base.Start();
+        this.isPlayer = true;
+        this.SetPlayerhealth();
+        this._mainCamera = GameManager.instance.cameraManager._mainCamera;
+    }
+
+    #region Distance_Calculator_Adapters
+
+    void DistanceCalculator.CalculateDistanceAndShow(Vector3 Position)
+    {
+        float distance = Vector3.Distance(Position, this._transform.position);
+
+        Vector3 targetPosition = this._mainCamera.WorldToScreenPoint(Position);
+
+        Vector3 positionToSet = new Vector3(targetPosition.x, targetPosition.y, 0f);
+
+        GameManager.instance.gameplayHUD.SetDistanceAndPosition(distance, positionToSet);
+    }
+
+    void DistanceCalculator.EnableDistanceCalculator()
+    {
+        GameManager.instance.gameplayHUD.ToggleDistanceMeter(true);
+    }
+
+    void DistanceCalculator.DisableDistanceCalculator()
+    {
+        GameManager.instance.gameplayHUD.ToggleDistanceMeter(false);
+    }
+
+    #endregion
 
     public void TogglePlayerForAIMovement(bool toggle)
     {
@@ -93,13 +137,6 @@ public class PlayerController : CharacterController
 
     }
 
-
-    public override void Start()
-    {
-        base.Start();
-        this.isPlayer = true;
-        this.SetPlayerhealth();
-    }
 
     private void SetPlayerhealth()
     {

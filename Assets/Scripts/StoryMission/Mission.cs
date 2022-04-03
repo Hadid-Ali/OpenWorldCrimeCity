@@ -31,7 +31,7 @@ public class LevelInstructionObject
 public class Mission : MonoBehaviour
 {
     public Transform playerStartPosition;
-    public CutSceneCamera startCamera, endingCamera;
+    public GameObject startCutSceneObject;
     public float cashEarning = 0f;
 
     public int currentLevel;
@@ -72,20 +72,23 @@ public class Mission : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        if (this.startCamera)
-            this.startCamera.gameObject.SetActive(true);
+        if (this.startCutSceneObject)
+            this.startCutSceneObject.SetActive(true);
+
+        GameManager.instance.currentMission = this;
+        this.PositionPlayerForMission();
+    }
+
+    public void PositionPlayerForMission()
+    {
 
         if (this.playerStartPosition)
         {
             GameManager.instance.playerController.gameObject.transform.position = this.playerStartPosition.position;
             GameManager.instance.playerController.gameObject.transform.rotation = this.playerStartPosition.rotation;
-            
+
         }
-
-        GameManager.instance.currentMission = this;
     }
-
-
 
     public void MissionComplete()
     {
@@ -109,15 +112,7 @@ public class Mission : MonoBehaviour
 
     void MissionCompletion()
     {
-        if (this.endingCamera)
-        {
-            this.endingCamera.gameObject.SetActive(true);
-            Invoke("CompleteMission", this.endingCamera.cutSceneDuration);
-        }
-        else
-        {
-            this.CompleteMission();
-        }
+      
     }
 
     public virtual void OnEnemyNeutralized()

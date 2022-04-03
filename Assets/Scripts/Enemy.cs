@@ -38,6 +38,8 @@ public class Enemy : WeaponAttackingAgent
 
         base.KillWithForce(dir, ragdForce);
 
+        GameManager.instance.totalKills++;
+
         if (this.wave)
             this.wave.WaveEnemyKilled();
 

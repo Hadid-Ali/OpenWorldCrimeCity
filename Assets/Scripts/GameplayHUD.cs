@@ -47,6 +47,7 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         bcutton;
 
     public Text messageText, titleText, instruction, cashEarned,totalCurrentCash,playerHealthText;
+    public Text totalKills;
 
     public static bool isShooting = false;
     public static bool isAiming = false;
@@ -89,6 +90,13 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
     [SerializeField]
     private Text cashEarnedPanelText;
+
+    [SerializeField]
+    private Text distanceText;
+
+    [SerializeField]
+    private Image targetImage;
+
 
     void GameplayInstructionBarManager.OnMainInstructionBarShow()
     {
@@ -253,11 +261,10 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         this.ToggleGameplayControls(false);
         this.missionComplete.SetActive(true);
 
-        this.cashEarned.text = string.Format("Cash Earned: {0}$", reward.ToString());
+        this.cashEarned.text = $"{reward}$";
+        this.totalKills.text = GameManager.instance.totalKills.ToString();
 
         this.UpdateCashEarned();
-
-        Invoke("DisableMenu", 5f);
 
     }
     
@@ -683,4 +690,30 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     }
 
     #endregion
+
+    #region Distance And Target
+
+    private Transform _targetObjectTransform;
+
+    public void SetDistanceAndPosition(float distance,Vector3 position)
+    {
+        if (!this.targetImage)
+            return;
+
+        if (this._targetObjectTransform == null)
+            this._targetObjectTransform = this.targetImage.transform;
+
+        this._targetObjectTransform.position = position;
+
+        this.distanceText.text = $"{distance}m";
+
+    }
+
+    public void ToggleDistanceMeter(bool b)
+    {
+        this.targetImage.gameObject.SetActive(b);
+    }
+
+    #endregion
+
 }
