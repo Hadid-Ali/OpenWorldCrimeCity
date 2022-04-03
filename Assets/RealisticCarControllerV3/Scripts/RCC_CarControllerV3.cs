@@ -990,6 +990,13 @@ public class RCC_CarControllerV3 : RCC_Core {
 
 	}
 
+	public override void DisableVehicleControls()
+    {
+		base.DisableVehicleControls();
+		this.brakeTorque *= 10000000;
+		this.canControl = false;
+    }
+
 	private void Inputs() {
 
 		if (canControl) {
@@ -1036,7 +1043,7 @@ public class RCC_CarControllerV3 : RCC_Core {
 			brakeInput = 0f;
 			steerInput = 0f;
 			boostInput = 0f;
-			handbrakeInput = 1f;
+			handbrakeInput = 1000000f;
 
 		}
 
@@ -1056,7 +1063,7 @@ public class RCC_CarControllerV3 : RCC_Core {
 		brakeInput = Mathf.Clamp01(brakeInput);
 		steerInput = Mathf.Clamp(steerInput, -1f, 1f);
 		boostInput = Mathf.Clamp01(boostInput);
-		handbrakeInput = Mathf.Clamp01(handbrakeInput);
+		//handbrakeInput = Mathf.Clamp01(handbrakeInput);
 
 	}
 
@@ -1616,7 +1623,7 @@ public class RCC_CarControllerV3 : RCC_Core {
 
 				if (allWheelColliders [i].canHandbrake)
 					allWheelColliders [i].ApplyBrakeTorque ((brakeTorque * handbrakeInput) * allWheelColliders [i].handbrakeMultiplier);
-				
+				Debug.LogError($"Hand Brake Input: {handbrakeInput}");
 			}
 
 			if (!appliedBrake && brakeInput >= .05f) {

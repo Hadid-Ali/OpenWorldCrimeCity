@@ -11,16 +11,38 @@ public abstract class EnterableVehicle : Vehicle
     public VehicleCameraProperties _vehicleCameraProperties;
 
     public float lowSpeedLimit = 2f;
+    protected bool disableVehicle;
+
+    [SerializeField]
+    protected float maxDrag = 30f;
+
+    protected float handBrakeInput = 20f;
+
 
     public override void Start()
     {
         base.Start();
     }
 
+
+    public virtual void DisableVehicleControls()
+    {
+        this.disableVehicle = true;
+    }
+
+    private void LateUpdate()
+    {
+        if (!this.disableVehicle || this.rb.drag >= this.maxDrag)
+            return;
+
+        this.rb.drag += this.handBrakeInput * Time.deltaTime;
+    }
+
     public virtual void SetPhysicsEnable(bool toggle)
     {
         if (this.rb == null)
             this.TryGetComponent<Rigidbody>(out this.rb);
+
         this.rb.isKinematic = !toggle;
     }
 

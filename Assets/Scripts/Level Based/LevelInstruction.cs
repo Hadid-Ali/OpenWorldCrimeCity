@@ -6,7 +6,14 @@ public class LevelInstruction : MonoBehaviour
 {
     public int instructionIndex = 0;
 
+    public float waitBeforeInstruction = 1f;
+
     private void OnEnable()
+    {
+        Invoke("GiveInstruction", this.waitBeforeInstruction);  
+    }
+
+    void GiveInstruction()
     {
         Mission mission = this.GetComponentInParent<Mission>();
         LevelInstructionObject instructionObject = mission.GetLevelInstruction(this.instructionIndex);

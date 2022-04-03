@@ -30,12 +30,18 @@ public class GameplayInstructionBar : InstructionBar
         this._gameplayInstructionBarManager.OnMainInstructionBarShow();
     }
 
+    private void OnDisable()
+    {
+        Debug.LogError("GameObject");
+    }
+
     private void Init()
     {
         if (this.isInit)
             return;
 
         this._gameplayInstructionBarManager = GameManager.instance.gameplayHUD;
+        this.isInit = true;
     }
 
     public void ShowInstruction(string instruction,string reward)
@@ -51,11 +57,17 @@ public class GameplayInstructionBar : InstructionBar
     {
         this.rewardText.text = $"REWARD: {reward}$";
 
-        yield return new WaitForSecondsRealtime(this._waitBeforeBell);
+        Debug.LogError("Show Instruction");
+
+        yield return new WaitForSeconds(this._waitBeforeBell);
         this.AnimateBell();
+
+        Debug.LogError($"After Animate Bell {this._waitBeforeBell}");
 
         yield return new WaitForSecondsRealtime(this._instructionAnimateDuration);
         this._gameplayInstructionBarManager.OnMainInstructionBarHide(instruction);
+
+        Debug.LogError($"After Animate Bell {this._waitBeforeBell}");
 
         this.gameObject.SetActive(false);
     }

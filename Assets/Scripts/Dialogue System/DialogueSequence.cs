@@ -77,7 +77,7 @@ public class DialogueSequence : MonoBehaviour
     {
         if(this.playerPoint)
         {
-            GameManager.instance.playerController.transform.position = this.playerPoint.position;
+            GameManager.instance.playerController.SituatePlayerAt(this.playerPoint);
         }
 
         this.dialogueSystemManager.ToggleDialogueCanvas(true, false);

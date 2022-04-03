@@ -95,7 +95,7 @@ public class RCC_WheelCollider : RCC_Core {
 	public bool canBrake = false;		//	Can this wheel brake?
 	[Range(0f, 1f)]public float brakingMultiplier = 1f;
 	public bool canHandbrake = false;		//	Can this wheel handbrake?
-	[Range(0f, 1f)]public float handbrakeMultiplier = 1f;
+	[Range(0f, 50000f)]public float handbrakeMultiplier = 1f;
 
 	[Space()]
 	public float width = .275f;	//	Width.

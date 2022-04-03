@@ -123,6 +123,12 @@ public class PlayerController : CharacterController, DistanceCalculator
         GameManager.instance.GameOver();
     }
 
+    public void SituatePlayerAt(Transform transformPoint)
+    {
+        this._transform.position = transformPoint.position;
+        this._transform.eulerAngles = transformPoint.eulerAngles;
+    }
+
     public Vector3 NearbyPositionAtLayer()
     {
 
