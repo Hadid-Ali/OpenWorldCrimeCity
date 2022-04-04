@@ -210,6 +210,11 @@ namespace CnControls
             VerticalAxis.Value = verticalValue * this.inputMultipleThreshold;
         }
 
+        public void Reset()
+        {
+            this.OnPointerUp(null);
+        }
+
         public void OnPointerUp(PointerEventData eventData)
         {
             // When we lift our finger, we reset everything to the initial state

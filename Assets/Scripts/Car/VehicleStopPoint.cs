@@ -16,7 +16,7 @@ public class VehicleStopPoint : MonoBehaviour
 
         if (enterableVehicle)
         {
-            enterableVehicle.DisableVehicleControls();
+            enterableVehicle.ApplyStoppingBrake();
         }
     }
 }

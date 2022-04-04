@@ -56,6 +56,10 @@ public class PlayerController : CharacterController, DistanceCalculator
         this._transform = this.transform;
     }
 
+    public void OnDisable()
+    {
+        GameManager.instance.gameplayHUD.ResetMovementJoystickInputs();
+    }
 
     public override void Start()
     {

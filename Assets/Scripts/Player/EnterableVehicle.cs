@@ -18,6 +18,8 @@ public abstract class EnterableVehicle : Vehicle
 
     protected float handBrakeInput = 20f;
 
+    public bool isMissionVehicle = false;
+    public float waitBeforeLeavingVehicle = 2f;
 
     public override void Start()
     {
@@ -25,9 +27,15 @@ public abstract class EnterableVehicle : Vehicle
     }
 
 
-    public virtual void DisableVehicleControls()
+    public virtual void ApplyStoppingBrake()
     {
         this.disableVehicle = true;
+        Invoke("LeaveVehicle", this.waitBeforeLeavingVehicle);
+    }
+
+    private void LeaveVehicle()
+    {
+        this.SwitchToCar(false);
     }
 
     private void LateUpdate()
@@ -59,13 +67,18 @@ public abstract class EnterableVehicle : Vehicle
         if (b)
             GameManager.instance.cameraManager.EnableVehicleCamera(this._vehicleCameraProperties);
         else
-            GameManager.instance.cameraManager.TogglePlayerCamera(true);
+            GameManager.instance.cameraManager.EnablePlayerCamera(GameManager.instance.playerController.gameObject);
 
         this.SetPhysicsEnable(b);
         GameManager.instance.ChangePlayMode(b ? this.controlsType : ControlsMode.PLAYER);
         GameManager.instance.playerController.transform.SetParent(b ? this.transform : null);
-        GameManager.instance.gameplayHUD.ToggleCarEnterBtn(!b);
-        GameManager.instance.gameplayHUD.ToggleCarExitBtn(b);
+
+        if(!this.isMissionVehicle)
+        {
+            GameManager.instance.gameplayHUD.ToggleCarEnterBtn(!b);
+            GameManager.instance.gameplayHUD.ToggleCarExitBtn(b);
+        }
+
         GameManager.instance.playerController.gameObject.SetActive(!b);
 
 

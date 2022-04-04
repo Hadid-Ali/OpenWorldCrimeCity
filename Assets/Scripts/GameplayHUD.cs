@@ -97,10 +97,17 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     [SerializeField]
     private Image targetImage;
 
+    [SerializeField]
+    private SimpleJoystick movementJoystick;
 
     void GameplayInstructionBarManager.OnMainInstructionBarShow()
     {
         this.shortInstructionBar.ToggleInstructionBar(false);
+    }
+
+    public void ResetMovementJoystickInputs()
+    {
+        this.movementJoystick.Reset();
     }
 
     void GameplayInstructionBarManager.OnMainInstructionBarHide(string shortInstructionToShow)

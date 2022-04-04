@@ -990,9 +990,9 @@ public class RCC_CarControllerV3 : RCC_Core {
 
 	}
 
-	public override void DisableVehicleControls()
+	public override void ApplyStoppingBrake()
     {
-		base.DisableVehicleControls();
+		base.ApplyStoppingBrake();
 		this.brakeTorque *= 10000000;
 		this.canControl = false;
     }

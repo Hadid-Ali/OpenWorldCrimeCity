@@ -527,6 +527,7 @@ public class RCC_Editor : Editor {
 
 	private void ConfigurationTab() {
 
+		this.carScript.isMissionVehicle = EditorGUILayout.Toggle("Is Mission Vehicle", this.carScript.isMissionVehicle);
 		EditorGUILayout.Space();
 		GUI.color = Color.cyan;
 		EditorGUILayout.HelpBox("Configurations", MessageType.None);
