@@ -50,6 +50,7 @@ public class WeaponAttackingAgent : AttackingAgent
 
     public override void StopAttack()
     {
+        Debug.LogError("Stop Attack");
         if (this.isInAttackPose)
         {
             this.isInAttackPose = false;

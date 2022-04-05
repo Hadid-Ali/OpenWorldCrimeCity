@@ -103,7 +103,6 @@ public class ShootingWeapon : Weapon
             return;
         }
 
-        Debug.Log("Shoot");
 
         base._ShootWeapon();
         this.PlayWeaponAudio();

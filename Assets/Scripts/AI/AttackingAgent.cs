@@ -88,6 +88,7 @@ public class AttackingAgent : NavigationAgentController
 
     void ChasinSwitch()
     {
+        Debug.LogError("Chasin Switch", this.gameObject);
         this.StopAttack();
         this.SwitchState(Character_STATES.CHASE);
     }
@@ -118,7 +119,7 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void DefenseState()
     {
-       // this.StopNavigationAndLookAtPlayer(2f);
+        this.StopNavigationAndLookAtPlayer(2f);
     }
 
     public virtual void OnStateChanged(Character_STATES state)
@@ -231,6 +232,7 @@ public class AttackingAgent : NavigationAgentController
     public virtual void AttackState()
     {
         this.StopNavigationAndLookAtPlayer(0f);
+
         if (Time.time > this.attackMoment)
         {
             Debug.LogError("AttackState " + this.gameObject);
@@ -244,6 +246,7 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void OnTargetFound()
     {
+        Debug.LogError("ON Target Found");
         this.ToggleDetectionCollider(false);
         if (this.IsTargetOnAttackingDistance())
         {
@@ -265,6 +268,9 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void AssignTarget(CharacterController charController)
     {
+        if (!this.isInActive)
+            return;
+
         this.targetController = charController;
         this.targetObject = charController.gameObject;
         this.OnTargetFound();
@@ -307,7 +313,7 @@ public class AttackingAgent : NavigationAgentController
         if (!this.targetObject)
             return false;
 
-        return Vector3.Distance(this.transform.position, this.targetObject.transform.position) <= this.attackDistance;
+        return Vector3.Distance(this.transform.position, this.targetObject.transform.position) <= this.attackDistance + 1.5f;
     }
 }
 

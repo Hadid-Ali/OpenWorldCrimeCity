@@ -122,6 +122,7 @@ public class CharacterController : GameEntity
 
     public virtual void OnAttacked(float damage,GameObject attacker)
     {
+
         this.health -= damage;
 
         this.health = Mathf.Clamp(this.health, 0, this.totalhealth);
