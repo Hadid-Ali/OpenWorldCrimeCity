@@ -95,14 +95,14 @@ public class GameManager : MonoBehaviour
         this.StartMission(PreferenceManager.ClearedLevels + 1);
     }
 
-    public void EarnReward(int rewardToGive,bool isLevelComplete)
+    public void EarnReward(int rewardToGive,bool isLevelComplete,float waitBeforeLevelComplete = 1f)
     {
         PreferenceManager.CashBalance += rewardToGive;
         this.totalCashEarned += rewardToGive;
 
         if(isLevelComplete)
         {
-            this.MissionComplete();
+            Invoke("MissionComplete", waitBeforeLevelComplete);
         }
         
         else

@@ -13,6 +13,13 @@ public class UtilityMethods : MonoBehaviour
         return v;
     }
 
+
+    public static IEnumerator Coroutine_InvokeEvent(EventWithDelay eventWithDelay)
+    {
+        yield return new WaitForSeconds(eventWithDelay.durationBeforeInvoke);
+        eventWithDelay.eventToInvoke.Invoke();
+    }
+
     public static Vector3 FixEulerAngles(Vector3 sourceAngle) => new Vector3(sourceAngle.x >= 180 ? sourceAngle.x - 360 : sourceAngle.x, sourceAngle.y >= 180 ? sourceAngle.y - 360 : sourceAngle.y, sourceAngle.z >= 180 ? sourceAngle.z - 360 : sourceAngle.z);
 
     public static void StopRoutines()

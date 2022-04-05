@@ -10,10 +10,9 @@ public enum Difficulty
     Hard,
     None
 }
+
 public class Constant : MonoBehaviour
 {
-
-
     public enum GameEntity
     {
         PLAYER,
