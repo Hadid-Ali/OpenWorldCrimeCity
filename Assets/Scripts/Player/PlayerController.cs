@@ -14,7 +14,17 @@ public interface DistanceCalculator
 
 }
 
-public class PlayerController : CharacterController, DistanceCalculator
+public enum CheckPointEventType
+{
+    ANIMATOR
+}
+
+public interface PlayerCheckPointInterface
+{
+    void OnPlayerEnterCheckPOint(string data, CheckPointEventType eventType);
+}
+
+public class PlayerController : CharacterController, DistanceCalculator, PlayerCheckPointInterface
 {
     [HideInInspector]
     public AimingManager aimingManager;
@@ -59,6 +69,17 @@ public class PlayerController : CharacterController, DistanceCalculator
     public void OnDisable()
     {
         GameManager.instance.gameplayHUD.ResetMovementJoystickInputs();
+    }
+
+    void PlayerCheckPointInterface.OnPlayerEnterCheckPOint(string data, CheckPointEventType eventType)
+    {
+        switch (eventType)
+        {
+            case CheckPointEventType.ANIMATOR:
+                this.animatorController.SetTrigger(data);
+                break;
+        }
+
     }
 
     public override void Start()

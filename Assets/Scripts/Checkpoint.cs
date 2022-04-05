@@ -10,6 +10,8 @@ public class Checkpoint : MonoBehaviour
 
     public string expectedTag = Constant.TAGS.PLAYER;
 
+    protected bool isSingleInteractable = false;
+
     private void OnDisable()
     {
         this.OnCheckPointExited();
@@ -52,6 +54,9 @@ public class Checkpoint : MonoBehaviour
 
     public virtual void OnTriggerExit(Collider col)
     {
+        if (this.isSingleInteractable)
+            return;
+
         if (col.CompareTag(Constant.TAGS.PLAYER))
         {
             if (isEntered)

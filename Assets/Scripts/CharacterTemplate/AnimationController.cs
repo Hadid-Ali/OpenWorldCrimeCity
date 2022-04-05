@@ -137,6 +137,11 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    public void SetTrigger(string trigger)
+    {
+        this.Animator.SetTrigger(trigger);
+    }
+
     public void ToggleAttack(bool b)
     {
         this.Animator.SetBool(Constant.ANIMATOR_STRINGS.ATTACK, b);

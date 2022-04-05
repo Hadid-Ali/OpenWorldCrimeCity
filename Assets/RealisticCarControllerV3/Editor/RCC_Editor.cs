@@ -528,6 +528,8 @@ public class RCC_Editor : Editor {
 	private void ConfigurationTab() {
 
 		this.carScript.isMissionVehicle = EditorGUILayout.Toggle("Is Mission Vehicle", this.carScript.isMissionVehicle);
+		EditorGUILayout.PropertyField(serializedObject.FindProperty("onBrakeApply"), new GUIContent("Event On Brake Apply", "Event on Brakes Apply"));
+
 		EditorGUILayout.Space();
 		GUI.color = Color.cyan;
 		EditorGUILayout.HelpBox("Configurations", MessageType.None);

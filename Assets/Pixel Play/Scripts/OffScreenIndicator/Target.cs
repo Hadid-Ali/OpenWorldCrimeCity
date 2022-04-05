@@ -21,6 +21,13 @@ public class Target : MonoBehaviour
     [SerializeField]
     private Sprite customIconSprite;
 
+    public bool useCustomIcon = false;
+    public bool useCustomOffset = false;
+    public bool useCustomPositionOffset = false;
+
+    public Vector2 customIconSize = new Vector2(30, 30);
+    public Vector3 customIconPosition = new Vector2(30, 30);
+
     /// <summary>
     /// Please do not assign its value yourself without understanding its use.
     /// A reference to the target's indicator, 

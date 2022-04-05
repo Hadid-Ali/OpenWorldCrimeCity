@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class EnterableVehicle : Vehicle
 {
@@ -21,6 +22,8 @@ public abstract class EnterableVehicle : Vehicle
     public bool isMissionVehicle = false;
     public float waitBeforeLeavingVehicle = 2f;
 
+    public UnityEvent onBrakeApply;
+
     public override void Start()
     {
         base.Start();
@@ -36,6 +39,8 @@ public abstract class EnterableVehicle : Vehicle
     private void LeaveVehicle()
     {
         this.SwitchToCar(false);
+        if (this.onBrakeApply != null)
+            this.onBrakeApply.Invoke();
     }
 
     private void LateUpdate()

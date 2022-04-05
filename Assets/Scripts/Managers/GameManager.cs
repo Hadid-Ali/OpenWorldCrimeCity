@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
+    public PlayerCheckPointInterface playerCheckPointHandler => this.playerController;
+
     public void ShakeCamera()
     {
         this.cameraShake.enabled = true;

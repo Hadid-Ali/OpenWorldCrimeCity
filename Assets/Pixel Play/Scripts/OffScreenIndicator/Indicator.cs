@@ -10,6 +10,8 @@ public class Indicator : MonoBehaviour
     private Image indicatorImage;
     private Text distanceText;
 
+    private RectTransform _rectTransform;
+
     /// <summary>
     /// Gets if the game object is active in hierarchy.
     /// </summary>
@@ -36,6 +38,7 @@ public class Indicator : MonoBehaviour
     {
         indicatorImage = transform.GetComponent<Image>();
         distanceText = transform.GetComponentInChildren<Text>();
+        this._rectTransform = this.indicatorImage.rectTransform;
     }
 
     /// <summary>
@@ -50,6 +53,16 @@ public class Indicator : MonoBehaviour
     public void SetImageSprite(Sprite sprite)
     {
         this.indicatorImage.sprite = sprite;
+    }
+
+    public void SetImageSize(Vector2 customSizee)
+    {
+        this._rectTransform.sizeDelta = customSizee;
+    }
+
+    public void SetImageOffset(Vector3 offset)
+    {
+        this._rectTransform.position += offset;
     }
 
     /// <summary>

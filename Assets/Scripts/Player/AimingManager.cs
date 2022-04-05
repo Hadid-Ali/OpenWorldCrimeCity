@@ -38,7 +38,16 @@ public class AimingManager : MonoBehaviour,PlayerAiming
         this.playerController = this.GetComponent<PlayerController>();
         this.spine = this.playerController.animatorController.GetAnimatorBone(this.aimingBone);
         this.transformHipBone = this.playerController.animatorController.GetAnimatorBone(HumanBodyBones.Hips);
-        this.mainCam = GameManager.instance.mainCamera.GetComponent<Camera>();
+        this.mainCam = GameManager.instance.cameraManager._mainCamera;
+    }
+
+    void OnEnable()
+    {
+        Invoke("StartAiming", 0.5f);
+    }
+
+    void StartAiming()
+    {
         this.routine = StartCoroutine(this.RaycastRoutine());
     }
 
@@ -63,7 +72,7 @@ public class AimingManager : MonoBehaviour,PlayerAiming
         RaycastHit hit;
         if(Physics.Raycast(R,out hit,40f,this.aimMask))
         {
-         //   Debug.LogError(hit.transform.gameObject);
+            Debug.LogError(hit.transform.gameObject);
             this.aimedObject = hit.transform.gameObject;
             this.aimingAtPoint = hit.point;
             GameManager.instance.gameplayHUD.ChangeCrosshair(this.aimedObject);
