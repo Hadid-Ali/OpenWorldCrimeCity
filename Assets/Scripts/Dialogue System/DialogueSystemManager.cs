@@ -37,6 +37,9 @@ public class DialogueSystemManager : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+    }
 
     public void OnDialogueWritten()
     {
@@ -84,6 +87,7 @@ public class DialogueSystemManager : MonoBehaviour
 
     public void SetupSequence(DialogueSequence dialogueSequence)
     {
+        this.dialogueText.text = "";
         this.currentDialogueSequence = dialogueSequence;
         if(dialogueSequence.isPhoneCall)
         {
