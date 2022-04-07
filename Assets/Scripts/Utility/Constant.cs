@@ -82,8 +82,7 @@ public class Constant : MonoBehaviour
     public class Scenes
     {
         public const string gameplayScene = "City";
-        public const string farmingScene = "PACKINCLUSIONfarm";
-        public const string savinghudScene = "Gameplya";
+        public const string maineMenu = "MainMenu";
     }
 
 
@@ -115,6 +114,14 @@ public class Constant : MonoBehaviour
 
         public const string COMBO_INDEX = "ComboIndex";
         public const string IS_FIGHTING = "IsFighting";
+    }
+
+    public static class GameplayData
+    {
+        public static int currentLevel = 3;
+        public static int totalLevels = 5;
+
+        public static bool IsLastLevel => currentLevel >= totalLevels;
     }
 }
 

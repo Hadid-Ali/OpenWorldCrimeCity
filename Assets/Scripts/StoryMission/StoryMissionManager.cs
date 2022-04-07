@@ -7,7 +7,7 @@ public class StoryMissionManager : MonoBehaviour
     //Later to be shifted from resources
     public List<string> missions;
 
-    private Mission currentMission;
+    private LevelData currentMission;
 
     public string levelFolderPrefix = "Levels\\";
 
@@ -15,7 +15,7 @@ public class StoryMissionManager : MonoBehaviour
     {
         GameObject G = (GameObject) Instantiate(Resources.Load(string.Format("{0}{1}", levelFolderPrefix, this.missions[PreferenceManager.CurrentLevel])));
 
-        this.currentMission = G.GetComponent<Mission>();
+        this.currentMission = G.GetComponent<LevelData>();
     }
 
 }

@@ -15,7 +15,7 @@ public class LevelInstruction : MonoBehaviour
 
     void GiveInstruction()
     {
-        Mission mission = this.GetComponentInParent<Mission>();
+        LevelData mission = this.GetComponentInParent<LevelData>();
         LevelInstructionObject instructionObject = mission.GetLevelInstruction(this.instructionIndex);
 
         if (instructionObject != null)

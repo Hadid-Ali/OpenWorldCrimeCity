@@ -3,40 +3,17 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class LevelCompletePopup : MonoBehaviour
+public class LevelCompletePopup : LevelEndPanel
 {
-    public Text coinsTxt, killCount, rewardedCoinsTxt;
-    public Image cpImage;
+    public GameObject nextButton;
 
-    void Start()
+    public override void OnLevelEndPanelShow()
     {
-        coinsTxt.text = "$"+PreferenceManager.CashBalance;
-        killCount.text = "/";
-        rewardedCoinsTxt.text = "$500";
+        this.nextButton.SetActive(!Constant.GameplayData.IsLastLevel);
     }
 
-    public void UpdateCP(Sprite sprite)
+    public void NextMission()
     {
-        cpImage.sprite = sprite;
-    }
-
-    public void HomeBtnPressed()
-    {
-
-    }
-
-    public void RetryBtnPressed()
-    {
-
-    }
-
-    public void NextBtnPressed()
-    {
-
-    }
-
-    public void BackBtnPressed()
-    {
-        Destroy(gameObject);
+        GameManager.instance.StartNextMission();
     }
 }

@@ -31,19 +31,6 @@ public class PreferenceManager : MonoBehaviour
         }
     }
 
-    public static int ClearedLevels
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(_clearedLevels);
-        }
-
-        set
-        {
-            PlayerPrefs.SetInt(_clearedLevels, value);
-        }
-    }
-
     public static float CashBalance
     {
         set

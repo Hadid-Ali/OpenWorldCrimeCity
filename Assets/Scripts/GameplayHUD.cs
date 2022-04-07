@@ -173,17 +173,6 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
         this.UpdateCashEarned();
 
-        this.homeTransitionButton.onClick.AddListener(() =>
-        {
-            this.LoadScene(Constant.Scenes.savinghudScene);
-        });
-
-        if(this.farmsTransitionButton)
-        this.farmsTransitionButton.onClick.AddListener(() =>
-        {
-            this.LoadScene(Constant.Scenes.farmingScene);
-        });
-
         if(this.missionButton)
         this.missionButton.onClick.AddListener(() =>
         {
@@ -283,8 +272,8 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
     public void MissionFail()
     {
+        this.ToggleGameplayControls(false);
         this.missionFail.SetActive(true);
-        Invoke("DisableMissionFail", 1f);
     }
 
     void DisableMissionFail()

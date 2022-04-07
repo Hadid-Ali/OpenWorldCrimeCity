@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PedestrianAttackMissions : Mission
+public class PedestrianAttackMissions : LevelData
 {
     public float numberOfPedestriansToAttack = -100;
     public float numberOfPedestrians = 0;

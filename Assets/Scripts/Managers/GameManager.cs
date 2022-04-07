@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public GameRegionManager regionManager;
     public MapCanvasController radarController;
 
-    public Mission currentMission;
+    public LevelData currentMission;
 
     public bool isfirstWeaponSelected = false;
 
@@ -78,11 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (Application.loadedLevelName.Equals(Constant.Scenes.gameplayScene))
-            if (PreferenceManager.ClearedLevels <= 0)
-            {
-                this.StartMission(1);
-            }
+
     }
 
     public DistanceCalculator DistanceCalculator
@@ -92,7 +88,8 @@ public class GameManager : MonoBehaviour
 
     public void StartNextMission()
     {
-        this.StartMission(PreferenceManager.ClearedLevels + 1);
+        Constant.GameplayData.currentLevel++;
+        this.RestartGame();
     }
 
     public void EarnReward(int rewardToGive,bool isLevelComplete,float waitBeforeLevelComplete = 1f)
@@ -126,20 +123,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartMission(int index)
-    {
-        if (PreferenceManager.ClearedLevels >= Constant.Levels.totalLevels)
-            return;
-
-        GameObject missionObject = (GameObject) Instantiate(Resources.Load(string.Format("Levels/Mission{0}", index)));
-    }
 
     public void MissionComplete()
     {
-        PreferenceManager.ClearedLevels += 1;
-        this.gameplayHUD.MissionComplete(this.totalCashEarned);
+        if (PreferenceManager.CurrentLevel > Constant.GameplayData.totalLevels)
+            PreferenceManager.CurrentLevel ++;
 
-        PreferenceManager.CurrentLevel++;
+        this.gameplayHUD.MissionComplete(this.totalCashEarned);
     }
     
 
@@ -162,11 +152,6 @@ public class GameManager : MonoBehaviour
         this.gamePauseMenu.SetActive(false);
     }
 
-    [ContextMenu("Cleared Levels")]
-    public void ClearedLevels()
-    {
-        Debug.Log("Cleared Levels: " + PreferenceManager.ClearedLevels);
-    }
 
    [ContextMenu("Clear Prefs")]
     public void ClearPrefs()
@@ -174,34 +159,10 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
     
-    public void PlayGame()
-    {
-        this.mainMenuElements.SetActive(false);
-        this.gameplayElements.SetActive(true);
-        Constant.isMainMenu = false;
-        if(Constant.isFirstPlay)
-        {
-            Constant.isFirstPlay = false;
-            if (this.welcomeText)
-            {
-                this.welcomeText.SetActive(true);
-                Invoke("HideText",2f);
-            }
-        }
-    }
-    
-    void HideText()
-    {
-        if (this.welcomeText)
-            this.welcomeText.SetActive(false);
-    }
-
     public void QuitToMainMenu()
     {
         Time.timeScale = 1f;
-
-        SceneManager.LoadSceneAsync(1);
-        Constant.isMainMenu = true;
+        SceneManager.LoadSceneAsync(Constant.Scenes.maineMenu);
     }
 
     public void PlayClickSound()
@@ -212,16 +173,15 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Time.timeScale = 1f;
-
         Application.Quit();
     }
+
+
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
-
-        SceneManager.LoadSceneAsync(1);
-        Constant.isMainMenu = false;
+        SceneManager.LoadScene(Constant.Scenes.gameplayScene);
     }
 
     public void SetGameQuality(int i)
