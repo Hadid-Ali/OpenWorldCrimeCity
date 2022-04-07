@@ -119,9 +119,14 @@ public class vThirdPersonCamera : MonoBehaviour
 
     #endregion
 
-    void Start()
+    void Awake()
     {
         Init();
+    }
+
+    private void OnEnable()
+    {
+        this.CentralizeCamera();
     }
 
     public void Init()
@@ -223,6 +228,17 @@ public class vThirdPersonCamera : MonoBehaviour
                 this.ApplyConfigurations(this.AimValues, canChangeFOV);
                 break;
         }
+    }
+
+    public void CentralizeCamera()
+    {
+        this.lockCamera = true;
+        Invoke("LockCameraDisable", 0.15f);
+    }
+
+    private void LockCameraDisable()
+    {
+        this.lockCamera = false;
     }
 
     void LateUpdate()

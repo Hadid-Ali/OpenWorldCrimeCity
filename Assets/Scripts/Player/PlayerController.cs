@@ -186,8 +186,8 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
     void FIllHealth()
     {
         this.OnAttacked(-1f, null);
-        if (!IsInvoking("FIllHealth"))
-            Invoke("FIllHealth", 1f);
+        //if (!IsInvoking("FIllHealth"))
+        //    Invoke("FIllHealth", 1f);
     }
 
     public void OnWeaponChange(Weapon weapon)
