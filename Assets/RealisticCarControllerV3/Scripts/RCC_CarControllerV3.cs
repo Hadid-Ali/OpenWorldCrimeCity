@@ -1623,7 +1623,6 @@ public class RCC_CarControllerV3 : RCC_Core {
 
 				if (allWheelColliders [i].canHandbrake)
 					allWheelColliders [i].ApplyBrakeTorque ((brakeTorque * handbrakeInput) * allWheelColliders [i].handbrakeMultiplier);
-				Debug.LogError($"Hand Brake Input: {handbrakeInput}");
 			}
 
 			if (!appliedBrake && brakeInput >= .05f) {
