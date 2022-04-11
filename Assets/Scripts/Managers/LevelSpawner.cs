@@ -29,4 +29,10 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
+    public void ActivateLevel()
+    {
+        if (this._currentLevel != null)
+            this._currentLevel.ActivateLevel();
+    }
+
 }

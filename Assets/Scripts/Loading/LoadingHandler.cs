@@ -45,7 +45,9 @@ public class LoadingHandler : MonoBehaviour
         {
             OnLoadingCompleteEvent();
         }
+
         Destroy(gameObject);
+
     }
 
     private void UpdateUI()

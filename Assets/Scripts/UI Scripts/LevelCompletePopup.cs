@@ -5,11 +5,18 @@ using UnityEngine;
 
 public class LevelCompletePopup : LevelEndPanel
 {
-    public GameObject nextButton;
+    [SerializeField]
+    private GameObject normalCompleteMenu;
+
+    [SerializeField]
+    private GameObject gameCompleteMenu;
 
     public override void OnLevelEndPanelShow()
     {
-        this.nextButton.SetActive(!Constant.GameplayData.IsLastLevel);
+        bool isLastLevel = Constant.GameplayData.IsLastLevel;
+
+        this.normalCompleteMenu.SetActive(isLastLevel);
+        this.gameCompleteMenu.SetActive(!isLastLevel);
     }
 
     public void NextMission()

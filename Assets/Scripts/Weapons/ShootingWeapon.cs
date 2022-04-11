@@ -20,7 +20,7 @@ public class ShootingWeapon : Weapon
     public float shootingRate;
     public float weaponReloadingTime = 2f;
 
-    public GameObject muzzle,shell,shellPoint,magazineObject;
+    public GameObject muzzle,shell,shellPoint,magazineObject,holsterObject;
 
     private float nextShot = 0.0f;
     private bool isShot = false;
@@ -28,6 +28,14 @@ public class ShootingWeapon : Weapon
     public AudioClip dryShot;
 
     public ShootingMechanism shootingPlayer;
+
+    private void OnEnable()
+    {
+        if(this.holsterObject)
+        {
+            this.holsterObject.SetActive(false);
+        }
+    }
 
     public override void Start()
     {

@@ -72,7 +72,6 @@ public class AimingManager : MonoBehaviour,PlayerAiming
         RaycastHit hit;
         if(Physics.Raycast(R,out hit,40f,this.aimMask))
         {
-            Debug.LogError(hit.transform.gameObject);
             this.aimedObject = hit.transform.gameObject;
             this.aimingAtPoint = hit.point;
             GameManager.instance.gameplayHUD.ChangeCrosshair(this.aimedObject);

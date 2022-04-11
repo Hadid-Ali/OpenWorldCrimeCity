@@ -207,7 +207,7 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         this.ToggleCloseAiming(this.isCloseAiming);
     }
 
-    private void ToggleCloseAiming(bool bToggle)
+    public void ToggleCloseAiming(bool bToggle)
     {
         this.CacheAimingComponent();
         this.playerAimingComponent.AimWeapon(bToggle);

@@ -25,7 +25,7 @@ public class UEventClass
 }
 
 
-public class CutSceneCamera : MonoBehaviour
+public class CutSceneCamera : DisableControls
 {
     public CutSceneCamera nextCutSceneCamera;
 
@@ -33,10 +33,9 @@ public class CutSceneCamera : MonoBehaviour
 
     public List<UEventClass> eventsOnStart, eventsOnEnd;
 
-    private void OnEnable()
+    public override void OnEnable()
     {
-        GameManager.instance.cameraManager.TogglePlayerCamera(false);
-        GameManager.instance.gameplayHUD.ToggleGameplayControls(false);
+        base.OnEnable();
 
         for(int i=0;i<this.eventsOnStart.Count;i++)
         {
@@ -80,7 +79,7 @@ public class CutSceneCamera : MonoBehaviour
     }
 
 
-    private void OnDisable()
+    public override void OnDisable()
     {
         if(this.nextCutSceneCamera)
         {
@@ -89,9 +88,7 @@ public class CutSceneCamera : MonoBehaviour
 
         else
         {
-
-            GameManager.instance.cameraManager.TogglePlayerCamera(true);
-            GameManager.instance.gameplayHUD.ToggleGameplayControls(true);
+            base.OnDisable();
 
         }
     }

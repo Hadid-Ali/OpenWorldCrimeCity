@@ -19,6 +19,12 @@ public enum CheckPointEventType
     ANIMATOR
 }
 
+public enum PlayerPositionMode
+{
+    Normal,
+    Aim
+}
+
 public interface PlayerCheckPointInterface
 {
     void OnPlayerEnterCheckPOint(string data, CheckPointEventType eventType);
@@ -45,6 +51,8 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
     public GameObject cutSceneCamera;
     public NearbyEnemyLocator nearbyEnemyLocator;
 
+    private Rigidbody _rigidbody;
+
     private Transform _transform;
 
     public float distance = 5f;
@@ -64,6 +72,7 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
         this.playerAiController = this.GetComponent<AICharacterControl>();
 
         this._transform = this.transform;
+        this._rigidbody = this.GetComponent<Rigidbody>();
     }
 
     public void OnDisable()
@@ -88,6 +97,29 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
         this.isPlayer = true;
         this.SetPlayerhealth();
         this._mainCamera = GameManager.instance.cameraManager._mainCamera;
+    }
+
+    public void SetParent(Transform parentTransform, Transform positionToSet,PlayerPositionMode playerPositionMode)
+    {
+        this._rigidbody.isKinematic = true;
+        this._transform.SetParent(parentTransform);
+        this._transform.position = positionToSet.position;
+        this.transform.rotation = positionToSet.rotation;
+
+
+        switch (playerPositionMode)
+        {
+            case PlayerPositionMode.Aim:
+                GameManager.instance.cameraManager.ToggleLockCamera(true);
+                GameManager.instance.gameplayHUD.ToggleCloseAiming(true);
+                Invoke("DisableCameraLock", 1f);
+                break;
+        }        
+    }
+
+    private void DisableCameraLock()
+    {
+        GameManager.instance.cameraManager.ToggleLockCamera(false);
     }
 
     #region Distance_Calculator_Adapters
@@ -145,7 +177,7 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
     public override void KillWithForce(Vector3 dir, float ragdForce)
     {
         base.KillWithForce(dir, ragdForce);
-        GameManager.instance.GameOver();
+        GameManager.instance.MissionFail();
     }
 
     public void SituatePlayerAt(Transform transformPoint)
@@ -178,8 +210,6 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
     {
         base.OnAttacked(damage, attacker);
         this.SetPlayerhealth();
-        if (!IsInvoking("FIllHealth"))
-            Invoke("FIllHealth", 1f);
         //  GameManager.instance.gameplayHUD.ShowHurtEffect();
     }
 

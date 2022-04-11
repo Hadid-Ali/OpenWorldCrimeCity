@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public MapCanvasController radarController;
 
     public LevelData currentMission;
+    public LevelSpawner levelSpawner;
 
     public bool isfirstWeaponSelected = false;
 
@@ -49,6 +50,13 @@ public class GameManager : MonoBehaviour
 
     public int totalCashEarned = 0;
     public int totalKills = 0;
+
+    public NavigationBehaviour navigationBehaviour;
+
+    public void AssignNavigationTarget(NavigationTarget navigationTarget)
+    {
+        this.navigationBehaviour.AssignTarget(navigationTarget);
+    }
 
     public void OnRateButton()
     {
@@ -78,7 +86,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        LoadingHandler.OnLoadingCompleteEvent += this.ActivateLevel;
+    }
 
+    public void ActivateLevel()
+    {
+        this.levelSpawner.ActivateLevel();
     }
 
     public DistanceCalculator DistanceCalculator
@@ -131,13 +144,15 @@ public class GameManager : MonoBehaviour
 
         this.gameplayHUD.MissionComplete(this.totalCashEarned);
     }
-    
-
-    public void GameOver()
+   
+    public void MissionFail()
     {
-        this.gameplayHUD.characterControls.SetActive(false);
-        this.gameplayHUD.carControls.SetActive(false);
-        this.gameOverMenu.SetActive(true);
+        Invoke("_MissionFail", 2f);
+    }
+    
+    private void _MissionFail()
+    {
+        GameManager.instance.gameplayHUD.MissionFail();
     }
 
     public void PauseGame()

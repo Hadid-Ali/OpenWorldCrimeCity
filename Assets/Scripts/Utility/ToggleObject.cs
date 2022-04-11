@@ -9,7 +9,8 @@ public class ToggleObject : MonoBehaviour
 
     void Start()
     {
-        this.objectToToggle.SetActive(this.toggle);    
+        if (this.objectToToggle)
+            this.objectToToggle.SetActive(this.toggle);
     }
 
 }

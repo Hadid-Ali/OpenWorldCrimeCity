@@ -60,6 +60,11 @@ public class LevelData : MonoBehaviour
         //PreferenceManager.ClearedLevels = this.currentLevel;
     }
 
+    public void ActivateLevel()
+    {
+        this.gameObject.SetActive(true);
+    }
+
     public LevelInstructionObject GetLevelInstruction(int index)
     {
         if(index < this.levelInstructions.Count)

@@ -37,6 +37,11 @@ public class CameraManager : MonoBehaviour
             this._cameraShake.enabled = true;
     }
 
+    public void ToggleLockCamera(bool toggleLock)
+    {
+        this._mainCameraController.lockCamera = toggleLock;
+    }
+
     public void ToggleVehicleCamera(bool toggle)
     {
         this._vehicleCamera.enabled = toggle;

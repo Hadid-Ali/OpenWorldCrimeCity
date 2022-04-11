@@ -303,7 +303,7 @@ public class vThirdPersonCamera : MonoBehaviour
         if (!lockCamera)
         {
             mouseY = vExtensions.ClampAngle(mouseY, yMinLimit, yMaxLimit);
-            //     mouseX = vExtensions.ClampAngle(mouseX, xMinLimit, xMaxLimit);
+            mouseX = vExtensions.ClampAngle(mouseX, xMinLimit, xMaxLimit);
         }
         else
         {
