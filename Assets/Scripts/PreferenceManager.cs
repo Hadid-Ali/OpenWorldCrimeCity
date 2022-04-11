@@ -22,7 +22,7 @@ public class PreferenceManager : MonoBehaviour
     {
         get
         {
-            return PlayerPrefs.GetInt(_levelIndex);
+            return PlayerPrefs.GetInt(_levelIndex,1);
         }
 
         set

@@ -10,7 +10,7 @@ public class LevelSelectionScreen : MonoBehaviour
 
     public void LevelButtonPress(int levelIndex)
     {
-        if (levelIndex > PreferenceManager.CurrentLevel)
+        if (this.levelSelectionButtons[levelIndex -1].IsLocked)
             return;
 
         if (this.currentIndex >= 0)
