@@ -100,6 +100,8 @@ public class vThirdPersonCamera : MonoBehaviour
     [SerializeField]
     private Vector3 finalYVector;
     private Vector3 CamPosition;
+
+    [SerializeField]
     private Camera _camera;
     private float distance = 5f;
     private float mouseY = 0f;
@@ -134,6 +136,7 @@ public class vThirdPersonCamera : MonoBehaviour
         if (target == null)
             return;
 
+        if(_camera==null)
         _camera = GetComponent<Camera>();
         currentTarget = target;
         currentTargetPos = new Vector3(currentTarget.position.x, currentTarget.position.y + offSetPlayerPivot, currentTarget.position.z);

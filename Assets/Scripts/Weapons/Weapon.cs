@@ -87,6 +87,6 @@ public class Weapon : GameEntity
 
     protected virtual void _ShootWeapon()
     {
-        GameManager.instance.cameraManager.ShakeMainCamera();
+        GameManager.instance.cameraManager.SetCameraShake();
     }
 }

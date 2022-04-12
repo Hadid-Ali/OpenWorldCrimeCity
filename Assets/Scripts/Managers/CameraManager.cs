@@ -12,7 +12,7 @@ public class CameraManager : MonoBehaviour
     public RCC_Camera _vehicleCamera;
 
     [SerializeField]
-    private CameraShake _cameraShake;
+    private CameraShaker _cameraShaker;
 
     public void EnableVehicleCamera(VehicleCameraProperties vehicle)
     {
@@ -31,10 +31,9 @@ public class CameraManager : MonoBehaviour
         this.TogglePlayerCameraControls(true);
     }
 
-    public void ShakeMainCamera()
+    public void SetCameraShake()
     {
-        if (this._cameraShake)
-            this._cameraShake.enabled = true;
+        this._cameraShaker.SetCameraShake();
     }
 
     public void ToggleLockCamera(bool toggleLock)
