@@ -80,6 +80,11 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
         GameManager.instance.gameplayHUD.ResetMovementJoystickInputs();
     }
 
+    public Vector3 EulerAngles
+    {
+        get => this._transform.eulerAngles;
+    }
+
     void PlayerCheckPointInterface.OnPlayerEnterCheckPOint(string data, CheckPointEventType eventType)
     {
         switch (eventType)
@@ -178,6 +183,12 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
     {
         base.KillWithForce(dir, ragdForce);
         GameManager.instance.MissionFail();
+        Invoke("Disable", 2f);
+    }
+
+    void Disable()
+    {
+        this.gameObject.SetActive(false);
     }
 
     public void SituatePlayerAt(Transform transformPoint)
