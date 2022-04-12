@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameEntitySpawner playerWavesSpawner;
     public Vehicle playerVehicle;
 
+    public ObjectPoolsManager objectPools;
+
     public TaxiModuleManager taxiModule;
     public EnvironmentAnimator environmentAnimator;
 

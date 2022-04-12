@@ -19,6 +19,8 @@ public class AttackingAgent : NavigationAgentController
     [SerializeField]
     protected CharacterController targetController;
 
+    [SerializeField]
+    protected bool skipChase = false;
 
     [SerializeField]
     private LayerMask attackingLayers;
@@ -313,7 +315,7 @@ public class AttackingAgent : NavigationAgentController
         if (!this.targetObject)
             return false;
 
-        return Vector3.Distance(this.transform.position, this.targetObject.transform.position) <= this.attackDistance + 1.5f;
+        return Vector3.Distance(this.transform.position, this.targetObject.transform.position) <= this.attackDistance + 1.5f | this.skipChase;
     }
 }
 

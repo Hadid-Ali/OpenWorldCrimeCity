@@ -20,7 +20,7 @@ public class ShootingWeapon : Weapon
     public float shootingRate;
     public float weaponReloadingTime = 2f;
 
-    public GameObject muzzle,shell,shellPoint,magazineObject,holsterObject;
+    public GameObject muzzle,shellPoint,magazineObject,holsterObject;
 
     private float nextShot = 0.0f;
     private bool isShot = false;
@@ -28,6 +28,9 @@ public class ShootingWeapon : Weapon
     public AudioClip dryShot;
 
     public ShootingMechanism shootingPlayer;
+
+    private Transform _shellPointTransform;
+    private Transform _selfTransform;
 
     private void OnEnable()
     {
@@ -40,6 +43,10 @@ public class ShootingWeapon : Weapon
     public override void Start()
     {
         base.Start();
+
+        this._shellPointTransform = this.shellPoint.transform;
+        this._selfTransform = this.transform;
+
         this.CacheMagazine();
     }
 
@@ -114,7 +121,8 @@ public class ShootingWeapon : Weapon
 
         base._ShootWeapon();
         this.PlayWeaponAudio();
-        Instantiate(this.shell, this.shellPoint.transform.position, this.shell.transform.rotation, this.transform);
+        GameManager.instance.objectPools.shellsPool.Instantiate(this._shellPointTransform.position, this._shellPointTransform.rotation,this._selfTransform);
+        //Instantiate(this.shell, this.shellPoint.transform.position, this.shell.transform.rotation, this.transform);
         if (this.useAmmoMechanism)
         {
             this.ConsumeBullet();
