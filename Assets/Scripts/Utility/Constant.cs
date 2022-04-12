@@ -45,6 +45,10 @@ public class Constant : MonoBehaviour
         MARINES_B
     } 
 
+    public static class UtilityData
+    {
+        public static bool IsInternetAvailable => Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork || Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork;
+    }
 
     
     public class LAYERS
@@ -81,7 +85,7 @@ public class Constant : MonoBehaviour
 
     public class Scenes
     {
-        public const string gameplayScene = "City";
+        public const string gameplayScene = "day";
         public const string maineMenu = "MainMenu";
     }
 
@@ -118,7 +122,7 @@ public class Constant : MonoBehaviour
 
     public static class GameplayData
     {
-        public static int currentLevel = 5;
+        public static int currentLevel = 1;
         public static int totalLevels = 5;
 
         public static bool IsLastLevel => currentLevel >= totalLevels;

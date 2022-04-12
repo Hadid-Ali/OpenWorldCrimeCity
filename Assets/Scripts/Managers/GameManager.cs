@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public bool isGameMode = true;
 
-    public GameObject mainMenuElements, gameplayElements, gameOverMenu, gamePauseMenu, welcomeText;
+    public GameObject mainMenuElements, gameplayElements, welcomeText;
 
     public string iOSRateLink = "itms-apps://itunes.apple.com/app/idYOUR_ID", AndroidRateLink = "market://details?id=YOUR_ID";
 
@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
     public int totalKills = 0;
 
     public NavigationBehaviour navigationBehaviour;
+
+    public AdsManager _adsManager;
 
     public void AssignNavigationTarget(NavigationTarget navigationTarget)
     {
@@ -83,7 +85,21 @@ public class GameManager : MonoBehaviour
             this.mainMenuElements.SetActive(Constant.isMainMenu);
             this.gameplayElements.SetActive(!Constant.isMainMenu);
         }
+        this._adsManager = AdsManager.Instance;
         instance = this;
+    }
+
+    public void OnDialogueSequenceEnd(bool isPhoneCall)
+    {
+        if(isPhoneCall)
+        {
+            this.ShowInterstitial();
+        }
+    }
+
+    public void ShowInterstitial()
+    {
+        this._adsManager.ShowInterstitial();
     }
 
     private void Start()
@@ -144,6 +160,8 @@ public class GameManager : MonoBehaviour
         if (PreferenceManager.CurrentLevel > Constant.GameplayData.totalLevels)
             PreferenceManager.CurrentLevel ++;
 
+        this.ShowInterstitial();
+
         this.gameplayHUD.MissionComplete(this.totalCashEarned);
     }
    
@@ -154,19 +172,21 @@ public class GameManager : MonoBehaviour
     
     private void _MissionFail()
     {
+        this.ShowInterstitial();
         GameManager.instance.gameplayHUD.MissionFail();
     }
 
     public void PauseGame()
     {
-        this.gamePauseMenu.SetActive(true);
+        this.ShowInterstitial();
+        this.gameplayHUD.TogglePauseMenu(true);
         Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
-        this.gamePauseMenu.SetActive(false);
+        this.gameplayHUD.TogglePauseMenu(false);
     }
 
 

@@ -16,10 +16,7 @@ public class LevelSelectionButton : MonoBehaviour
 
     private void Start()
     {
-        if(this.IsLocked)
-        {
-            this.lockedImage.SetActive(true);
-        }
+        this.CheckLevelLocking();
     }
 
     public void SetUnlocked()
@@ -31,7 +28,10 @@ public class LevelSelectionButton : MonoBehaviour
 
     public void CheckLevelLocking()
     {
-
+        if (this.IsLocked)
+        {
+            this.lockedImage.SetActive(true);
+        }
     }
 
     public void LevelButtonPress()

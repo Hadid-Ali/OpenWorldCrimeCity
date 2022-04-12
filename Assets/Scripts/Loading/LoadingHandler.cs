@@ -27,8 +27,10 @@ public class LoadingHandler : MonoBehaviour
 
     IEnumerator Loading()
     {
-        while (dummyfill < 100)
+        Debug.LogError("Start Routine");
+        while (dummyfill < 100 & !operation.isDone)
         {
+            Debug.LogError("Load Routine");
             yield return new WaitForEndOfFrame();
             dummyfill += speed * Time.deltaTime;
             UpdateUI();

@@ -15,8 +15,8 @@ public class LevelCompletePopup : LevelEndPanel
     {
         bool isLastLevel = Constant.GameplayData.IsLastLevel;
 
-        this.normalCompleteMenu.SetActive(isLastLevel);
-        this.gameCompleteMenu.SetActive(!isLastLevel);
+        this.normalCompleteMenu.SetActive(!isLastLevel);
+        this.gameCompleteMenu.SetActive(isLastLevel);
     }
 
     public void NextMission()

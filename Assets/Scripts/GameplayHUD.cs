@@ -42,6 +42,9 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         missionComplete, missionFail,
         homeMenu;
 
+    [SerializeField]
+    private GameObject pauseMenu;
+
     public Button actionBtn, carEnterBtn, carExitBtn, punchBtn,
         missionButton,homeTransitionButton,farmsTransitionButton,restockAmmoBtn,
         bcutton;
@@ -103,6 +106,11 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     void GameplayInstructionBarManager.OnMainInstructionBarShow()
     {
         this.shortInstructionBar.ToggleInstructionBar(false);
+    }
+
+    public void TogglePauseMenu(bool toggle)
+    {
+        this.pauseMenu.SetActive(toggle);
     }
 
     public void ResetMovementJoystickInputs()

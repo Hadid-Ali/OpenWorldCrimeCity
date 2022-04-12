@@ -67,6 +67,7 @@ public class DialogueSystemManager : MonoBehaviour
 
     private void CompleteSequence()
     {
+        GameManager.instance.OnDialogueSequenceEnd(this.currentDialogueSequence.isPhoneCall);
         this.currentDIalogueIndex = 0;
         this.currentDialogueSequence.gameObject.SetActive(false);
         this.currentDialogueSequence = null;
