@@ -589,6 +589,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.1745283
+        functionName: MagazineOut
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.3206522
         functionName: EnableMagazine
         data: 
@@ -596,8 +603,22 @@ ModelImporter:
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.5597826
+      - time: 0.5519014
+        functionName: MagazineIn
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6093182
         functionName: EnableMagazine
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.775352
+        functionName: ReloadEffect
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

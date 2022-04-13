@@ -63,6 +63,8 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
             this.playerController.OnWeaponChange(currentWeapon);
     }
 
+
+
     public void EnableMagazine(int flagToggle)
     {
         if (this.shootingWeapon.magazineObject)
@@ -73,6 +75,21 @@ public class WeaponInventory : MonoBehaviour,ShootingMechanism
     {
         this.playerController.animatorController.ReloadWeapon();
         this._isReloadingWeapon = true;
+    }
+
+    public void MagazineOut()
+    {
+        this.currentWeapon.PlayWeaponSound(WeaponSoundType.MAGAZINE_OUT);
+    }
+
+    public void MagazineIn()
+    {
+        this.currentWeapon.PlayWeaponSound(WeaponSoundType.MAGAZINE_IN);
+    }
+
+    public void ReloadEffect()
+    {
+        this.currentWeapon.PlayWeaponSound(WeaponSoundType.RELOAD);
     }
 
     public void OnWeaponReloaded()

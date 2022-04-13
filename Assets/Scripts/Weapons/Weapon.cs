@@ -14,6 +14,14 @@ public enum WEAPON
     SWORD
 }
 
+public enum WeaponSoundType
+{
+    MAGAZINE_OUT,
+    MAGAZINE_IN,
+    RELOAD,
+    SHOOT
+}
+
 public enum WeaponType
 {
     Rifle = 0,
@@ -47,12 +55,51 @@ public class Weapon : GameEntity
 
     protected AudioSource weaponSource;
 
+    [SerializeField]
+    protected AudioClip magazineOutSound;
+
+    [SerializeField]
+    protected AudioClip magazineInSound;
+
+    [SerializeField]
+    protected AudioClip reloadSound;
 
     public virtual void Start()
     {
         if (this.GetComponent<AudioSource>())
             this.weaponSource = this.GetComponent<AudioSource>();
     }
+
+    protected void PlayWeaponSound(AudioClip audio)
+    {
+        if (this.weaponSource)
+        {
+            if (audio != null)
+            {
+                this.weaponSource.PlayOneShot(audio);
+            }
+        }
+    }
+
+    public void PlayWeaponSound(WeaponSoundType soundType)
+    {
+        switch(soundType)
+        {
+            case WeaponSoundType.MAGAZINE_OUT:
+                this.PlayWeaponSound(this.magazineOutSound);
+                break;
+
+            case WeaponSoundType.MAGAZINE_IN:
+                this.PlayWeaponSound(this.magazineInSound);
+                break;
+
+            case WeaponSoundType.RELOAD:
+                this.PlayWeaponSound(this.reloadSound);
+                break;
+        }    
+    }
+
+
 
     public virtual void PlayWeaponAudio()
     {
