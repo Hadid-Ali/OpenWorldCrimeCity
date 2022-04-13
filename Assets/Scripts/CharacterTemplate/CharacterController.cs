@@ -126,6 +126,9 @@ public class CharacterController : GameEntity
         this.health -= damage;
 
         this.health = Mathf.Clamp(this.health, 0, this.totalhealth);
+
+        this.health = Mathf.FloorToInt(this.health);
+
         if(this.health<=0)
         {
             this.KillWithForce(GameManager.instance.playerController.transform.forward, 100f);

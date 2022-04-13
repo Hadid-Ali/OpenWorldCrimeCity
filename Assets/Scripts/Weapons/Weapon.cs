@@ -64,6 +64,9 @@ public class Weapon : GameEntity
     [SerializeField]
     protected AudioClip reloadSound;
 
+    [SerializeField]
+    protected bool hasCameraShake = false;
+
     public virtual void Start()
     {
         if (this.GetComponent<AudioSource>())
@@ -134,6 +137,9 @@ public class Weapon : GameEntity
 
     protected virtual void _ShootWeapon()
     {
-        GameManager.instance.cameraManager.SetCameraShake();
+        if(this.hasCameraShake)
+        {
+            GameManager.instance.cameraManager.SetCameraShake();
+        }   
     }
 }

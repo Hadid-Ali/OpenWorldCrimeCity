@@ -32,6 +32,9 @@ public class ShootingWeapon : Weapon
     private Transform _shellPointTransform;
     private Transform _selfTransform;
 
+    [SerializeField]
+    protected bool hasWeaponShell = false;
+
     private void OnEnable()
     {
         if(this.holsterObject)
@@ -121,8 +124,11 @@ public class ShootingWeapon : Weapon
 
         base._ShootWeapon();
         this.PlayWeaponAudio();
-        GameManager.instance.objectPools.shellsPool.Instantiate(this._shellPointTransform.position, this._shellPointTransform.rotation,this._selfTransform);
-        //Instantiate(this.shell, this.shellPoint.transform.position, this.shell.transform.rotation, this.transform);
+
+        if(this.hasWeaponShell)
+        {
+            GameManager.instance.objectPools.shellsPool.Instantiate(this._shellPointTransform.position, this._shellPointTransform.rotation, this._selfTransform);
+        }
         if (this.useAmmoMechanism)
         {
             this.ConsumeBullet();
