@@ -43,6 +43,7 @@ public class LevelSelectionButton : MonoBehaviour
 
     public void ToggleIsSelected(bool toggle)
     {
-        this.selectedImage.SetActive(toggle);
+        if (this.selectedImage)
+            this.selectedImage.SetActive(toggle);
     }
 }
