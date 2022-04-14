@@ -237,7 +237,6 @@ public class AttackingAgent : NavigationAgentController
 
         if (Time.time > this.attackMoment)
         {
-            Debug.LogError("AttackState " + this.gameObject);
             //attack
             this.Attack();
             this.attackMoment = Time.time + this.attackRate;
