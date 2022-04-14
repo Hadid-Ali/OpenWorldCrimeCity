@@ -35,5 +35,6 @@ public class LevelSelectionScreen : MonoBehaviour
 
         this.currentIndex = levelIndex - 1;
         this.levelSelectionButtons[this.currentIndex].LevelButtonPress();
+        MainMenuManager.Instance.OnLevelSelected();
     }
 }

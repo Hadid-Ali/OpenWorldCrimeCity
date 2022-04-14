@@ -48,6 +48,7 @@ public class Constant : MonoBehaviour
     public static class UtilityData
     {
         public static bool IsInternetAvailable => Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork || Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork;
+        public static bool isMenuTransition = false;
     }
 
     

@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public static MainMenuManager Instance;
+
     [Header("------------ Common ------------")]
     [SerializeField]
     private Text[] coinsTexts;
+
     [SerializeField]
-    private GameObject settingsPopup,loadingScreen;
+    private GameObject settingsPopup,loadingScreen,mainMenu;
 
 
     private AdsManager _adsManager;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -37,6 +45,7 @@ public class MainMenuManager : MonoBehaviour
             case ("Play"):
                 {
                     this._adsManager.ShowInterstitial();
+                    this.mainMenu.SetActive(false);
                     modeSelection.SetActive(true);
                     break;
                 }
@@ -86,12 +95,19 @@ public class MainMenuManager : MonoBehaviour
                 }
             case "ModeSelectionClosed":
                 {
+                    this.mainMenu.SetActive(true);
                     modeSelection.SetActive(false);
                     break;
                 }
             default:
                 break;
         }
+    }
+
+    public void OnLevelSelected()
+    {
+        this._adsManager.ShowInterstitial();
+        loadingScreen.SetActive(true);
     }
 
     public void ModeBtnClicked(int mode)
@@ -118,6 +134,8 @@ public class MainMenuManager : MonoBehaviour
                 break;
         }
     }
+
+
 
     #endregion
 

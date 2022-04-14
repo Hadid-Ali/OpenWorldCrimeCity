@@ -23,6 +23,7 @@ public class LoadingHandler : MonoBehaviour
 
         operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(2);
         StartCoroutine(Loading());
+        Constant.UtilityData.isMenuTransition = true;
     }
 
     IEnumerator Loading()

@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
     public void ActivateLevel()
     {
         this.levelSpawner.ActivateLevel();
+        Constant.UtilityData.isMenuTransition = false;
     }
 
     public DistanceCalculator DistanceCalculator

@@ -26,6 +26,11 @@ public class LevelSpawner : MonoBehaviour
 
             GameObject levelObject = (GameObject)Instantiate(Resources.Load(levelNameToSpawn));
             this._currentLevel = levelObject.GetComponent<LevelData>();
+
+            if(!Constant.UtilityData.isMenuTransition)
+            {
+                levelObject.SetActive(true);
+            }
         }
     }
 
