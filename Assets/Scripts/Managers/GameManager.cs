@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
 
     public AdsManager _adsManager;
 
+    public void WatchRewardedAd(System.Action action)
+    {
+        this._adsManager.ShowRewardedVideo(action, null,null,"Player Health");
+    }
+
     public void AssignNavigationTarget(NavigationTarget navigationTarget)
     {
         this.navigationBehaviour.AssignTarget(navigationTarget);
@@ -86,7 +91,19 @@ public class GameManager : MonoBehaviour
             this.gameplayElements.SetActive(!Constant.isMainMenu);
         }
         this._adsManager = AdsManager.Instance;
+        StartCoroutine(this.Coroutine_AdsRequests());
         instance = this;
+    }
+
+    public IEnumerator Coroutine_AdsRequests()
+    {
+        WaitForSecondsRealtime waitForSeconds = new WaitForSecondsRealtime(2f);
+
+        yield return waitForSeconds;
+        this._adsManager.RequestInterstitial();
+
+        yield return waitForSeconds;
+        this._adsManager.RequestRewardedVideo();
     }
 
     public void OnDialogueSequenceEnd(bool isPhoneCall)
@@ -97,8 +114,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RequestInterstitial()
+    {
+        if (this._adsManager)
+            this._adsManager.RequestInterstitial();
+    }
+
     public void ShowInterstitial()
     {
+        if(this._adsManager)
         this._adsManager.ShowInterstitial();
     }
 
@@ -158,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     public void MissionComplete()
     {
-        if (PreferenceManager.CurrentLevel > Constant.GameplayData.totalLevels)
+        if (PreferenceManager.CurrentLevel < Constant.GameplayData.totalLevels)
             PreferenceManager.CurrentLevel ++;
 
         this.ShowInterstitial();

@@ -58,6 +58,11 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
     public float distance = 5f;
 
     private Camera _mainCamera;
+    
+    [SerializeField]
+    private float healthToShowButton = 150;
+
+    private bool isButtonShown = false;
 
     public override void Awake()
     {
@@ -103,6 +108,7 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
         this.SetPlayerhealth();
         this._mainCamera = GameManager.instance.cameraManager._mainCamera;
     }
+
 
     public void SetParent(Transform parentTransform, Transform positionToSet,PlayerPositionMode playerPositionMode)
     {
@@ -174,6 +180,11 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
         }
     }
 
+    public void WatchAdForHealth()
+    {
+        GameManager.instance.WatchRewardedAd(this.FIllHalfHealth); 
+    }
+
     public void AllignWith(Transform target)
     {
         this._transform.eulerAngles = new Vector3(0f, target.eulerAngles.y, 0f);
@@ -221,12 +232,25 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
     {
         base.OnAttacked(damage, attacker);
         this.SetPlayerhealth();
-        //  GameManager.instance.gameplayHUD.ShowHurtEffect();
+
+        if(this.health<= this.healthToShowButton & !this.isButtonShown)
+        {
+            this.isButtonShown = true;
+            GameManager.instance.gameplayHUD.ToggleWatchAdButton(true);
+        }
+          //GameManager.instance.gameplayHUD.ShowHurtEffect();
     }
 
-    void FIllHealth()
+    public void FIllHalfHealth()
     {
-        this.OnAttacked(-1f, null);
+        this.isButtonShown = false;
+        GameManager.instance.gameplayHUD.ToggleWatchAdButton(false);
+        this.FIllHealth(Mathf.FloorToInt(this.health / 2));
+    }
+
+    void FIllHealth(int amount)
+    {
+        this.OnAttacked(-amount, null);
         //if (!IsInvoking("FIllHealth"))
         //    Invoke("FIllHealth", 1f);
     }

@@ -123,7 +123,7 @@ public class Constant : MonoBehaviour
 
     public static class GameplayData
     {
-        public static int currentLevel = 1;
+        public static int currentLevel = 3;
         public static int totalLevels = 5;
 
         public static bool IsLastLevel => currentLevel >= totalLevels;

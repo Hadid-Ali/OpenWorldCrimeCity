@@ -28,6 +28,7 @@ public class LevelSelectionButton : MonoBehaviour
 
     public void CheckLevelLocking()
     {
+        Debug.LogError($"Level Index : { PreferenceManager.CurrentLevel}");
         if (this.IsLocked)
         {
             this.lockedImage.SetActive(true);

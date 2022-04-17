@@ -267,6 +267,9 @@ public class AdmobAdsManager : AdsManager
         if (this.IsInterstitialAdReady || this.isInterstitialRequestGiven || !this.isAdmobInitialized || !Constant.UtilityData.IsInternetAvailable)
             return;
 
+        if(this.interstitialAd!=null)
+            this.interstitialAd.Destroy();
+
         this.interstitialAd = new InterstitialAd(this.interstitialID);
 
         AdRequest request = new AdRequest.Builder().Build();
@@ -432,14 +435,12 @@ private void RewardedAd_OnUserEarnedReward(object sender, Reward e)
                 MobileAdsEventExecutor.ExecuteInUpdate(this.rewardedDelegate);
             }
             this.isLinkerAd = false;
-            MobileAdsEventExecutor.ExecuteInUpdate(this.RequestInterstitial);
-
         }
 
+        MobileAdsEventExecutor.ExecuteInUpdate(this.RequestInterstitial);
         this.isInterstitialRequestGiven = false;
      //   GALogger.LogAdmobInterstitialEvent(AdEventType.AdClose);
      //   this.InterstitialAdEvent(GAAdAction.Clicked);
-        this.interstitialAd.Destroy();
     }
 
     private void InterstitialAd_OnAdFailedToLoad(object sender, AdFailedToLoadEventArgs e)

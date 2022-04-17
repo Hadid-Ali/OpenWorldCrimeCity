@@ -103,6 +103,12 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     [SerializeField]
     private SimpleJoystick movementJoystick;
 
+    [SerializeField]
+    private GameObject watchAdPanel;
+
+    [SerializeField]
+    private GameObject watchAdButton;
+
     void GameplayInstructionBarManager.OnMainInstructionBarShow()
     {
         this.shortInstructionBar.ToggleInstructionBar(false);
@@ -116,6 +122,21 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     public void ResetMovementJoystickInputs()
     {
         this.movementJoystick.Reset();
+    }
+
+    public void ToggleWatchAdForHealth(bool toggle)
+    {
+        this.watchAdPanel.SetActive(toggle);
+    }
+
+    public void ToggleWatchAdButton(bool toggle)
+    {
+        this.watchAdButton.SetActive(toggle);
+    }
+
+    public void WatchAdForHealth()
+    {
+        this.ToggleWatchAdForHealth(true);
     }
 
     void GameplayInstructionBarManager.OnMainInstructionBarHide(string shortInstructionToShow)

@@ -52,6 +52,8 @@ public class DialogueSequence : MonoBehaviour
     private int index = 0;
 
     public bool isPhoneCall = true;
+
+    public bool canShowAdAfter = true;
     public bool isLevelStartSequence;
 
     public UnityEvent eventOnSequenceComplete;
