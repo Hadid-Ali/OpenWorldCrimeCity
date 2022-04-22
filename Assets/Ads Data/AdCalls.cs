@@ -44,6 +44,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
 
     public bool TestAds, TwoBanners;
 
+    private Action rewardedDelegate;
 
     #region ----------------------- Start --------------------------
     private void Start()
@@ -542,7 +543,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
 
         }
     }
-    public void RewardVideo(string _reward)
+    public void RewardVideo(Action _reward)
     {
         if (!IsValidSDK())
         {
@@ -552,7 +553,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
 
         try
         {
-            reward = _reward;
+            this.rewardedDelegate = _reward;
 #if UNITY_EDITOR
             RewardUser();
 #endif
@@ -638,7 +639,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     #endregion
     void RewardUser()
     {
-        if (OnRewardCompleted != null)
-            OnRewardCompleted(reward);
+        if (this.rewardedDelegate != null)
+            this.rewardedDelegate();
     }
 }

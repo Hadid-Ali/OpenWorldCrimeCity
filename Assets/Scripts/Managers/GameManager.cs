@@ -55,11 +55,9 @@ public class GameManager : MonoBehaviour
 
     public NavigationBehaviour navigationBehaviour;
 
-    public AdsManager _adsManager;
-
     public void WatchRewardedAd(System.Action action)
     {
-        this._adsManager.ShowRewardedVideo(action, null,null,"Player Health");
+        AdCalls.instance.RewardVideo(action);
     }
 
     public void AssignNavigationTarget(NavigationTarget navigationTarget)
@@ -90,8 +88,7 @@ public class GameManager : MonoBehaviour
             this.mainMenuElements.SetActive(Constant.isMainMenu);
             this.gameplayElements.SetActive(!Constant.isMainMenu);
         }
-        this._adsManager = AdsManager.Instance;
-        StartCoroutine(this.Coroutine_AdsRequests());
+   //     StartCoroutine(this.Coroutine_AdsRequests());
         instance = this;
     }
 
@@ -100,10 +97,10 @@ public class GameManager : MonoBehaviour
         WaitForSecondsRealtime waitForSeconds = new WaitForSecondsRealtime(2f);
 
         yield return waitForSeconds;
-        this._adsManager.RequestInterstitial();
+     //   this._adsManager.RequestInterstitial();
 
         yield return waitForSeconds;
-        this._adsManager.RequestRewardedVideo();
+       // this._adsManager.RequestRewardedVideo();
     }
 
     public void OnDialogueSequenceEnd(bool isPhoneCall)
@@ -116,14 +113,13 @@ public class GameManager : MonoBehaviour
 
     public void RequestInterstitial()
     {
-        if (this._adsManager)
-            this._adsManager.RequestInterstitial();
+  //      if (this._adsManager)
+    //        this._adsManager.RequestInterstitial();
     }
 
     public void ShowInterstitial()
     {
-        if(this._adsManager)
-        this._adsManager.ShowInterstitial();
+        AdCalls.instance.Admob_Unity();
     }
 
     private void Start()

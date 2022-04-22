@@ -106,7 +106,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnLevelSelected()
     {
-        this._adsManager.ShowInterstitial();
+        //this._adsManager.ShowInterstitial();
+        AdCalls.instance.Admob_Unity();
         loadingScreen.SetActive(true);
     }
 
