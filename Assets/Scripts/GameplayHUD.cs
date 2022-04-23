@@ -72,6 +72,15 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     private Image weaponImage;
 
     [SerializeField]
+    private GameObject shootingButton;
+
+    [SerializeField]
+    private GameObject reloadButton;
+
+    [SerializeField]
+    private GameObject weaponChangeButton;
+
+    [SerializeField]
     private List<Sprite> weaponSprites;
 
     [SerializeField]
@@ -741,4 +750,34 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
     #endregion
 
+    #region Tutorial Utility Methods
+
+    public void ShowUIElements( List<ControlsToShow> uiElements)
+    {
+        bool hasAllControls = uiElements.Contains(ControlsToShow.AllControls);
+
+        this.movementJoystick.gameObject.SetActive(hasAllControls || uiElements.Contains(ControlsToShow.Joystick));
+        this.mainTouchPad.gameObject.SetActive(hasAllControls || uiElements.Contains(ControlsToShow.TouchPanel));
+
+        this.shootingJoyStick.gameObject.SetActive(hasAllControls);
+        this.healthBarParent.SetActive(hasAllControls);
+
+        this.closeAimingButton.SetActive(hasAllControls);
+        this.shootingButton.SetActive(hasAllControls);
+        this.reloadButton.SetActive(hasAllControls);
+        this.weaponChangeButton.SetActive(hasAllControls);
+
+        this.shortInstructionBar.gameObject.SetActive(hasAllControls);
+    }
+
+    public void HideAllUIElements()
+    {
+        this.movementJoystick.gameObject.SetActive(false);
+        this.mainTouchPad.gameObject.SetActive(false);
+
+        this.shootingJoyStick.gameObject.SetActive(false);
+        this.playerHealthBar.gameObject.SetActive(false);
+    }
+
+    #endregion
 }

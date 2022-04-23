@@ -251,7 +251,7 @@ public class vThirdPersonCamera : MonoBehaviour
 
         CameraMovement();
         // RotateCamera(Input.GetAxis("Mouse X") * Vector1.x * this.Vector_2.x, Input.GetAxis("Mouse Y") * Vector1.y * this.Vector_2.y);
-        RotateCamera(CnInputManager.GetAxis("CamX") * Vector1.x * this.Vector_2.x, CnInputManager.GetAxis("CamY") * Vector1.y * this.Vector_2.y);
+        RotateCamera(InputManager.CameraInputX * Vector1.x * this.Vector_2.x, InputManager.CameraInputY * Vector1.y * this.Vector_2.y);
     }
 
     public Vector2 Vector1 = new Vector2(10f, 10f);
