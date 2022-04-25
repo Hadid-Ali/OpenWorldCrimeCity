@@ -13,6 +13,8 @@ public class LevelSelectionButton : MonoBehaviour
     [SerializeField]
     private int levelIndex;
 
+    [SerializeField]
+    private bool canLockLevel = true;
 
     private void Start()
     {
@@ -24,7 +26,7 @@ public class LevelSelectionButton : MonoBehaviour
         this.lockedImage.SetActive(false);
     }
 
-    public bool IsLocked => PreferenceManager.CurrentLevel < this.levelIndex;
+    public bool IsLocked => PreferenceManager.CurrentLevel < this.levelIndex && this.canLockLevel;
 
     public void CheckLevelLocking()
     {

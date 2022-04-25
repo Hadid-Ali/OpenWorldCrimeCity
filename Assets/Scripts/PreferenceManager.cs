@@ -16,13 +16,27 @@ public class PreferenceManager : MonoBehaviour
     const string _levelIndex = "levelIndex";
     const string _clearedLevels = "clearedLevels";
     const string _currentLevel = "currentLevel";
-    
+
+    const string _basicTutorialPlayed = "basicTutorialPlayed";
+
+    public static bool IsBasicTutorialPlayed
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(_basicTutorialPlayed, 0) == 1;
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt(_basicTutorialPlayed, 1);
+        }
+    }
 
     public static int CurrentLevel
     {
         get
         {
-            return PlayerPrefs.GetInt(_levelIndex,1);
+            return PlayerPrefs.GetInt(_levelIndex, 1);
         }
 
         set
@@ -30,6 +44,7 @@ public class PreferenceManager : MonoBehaviour
             PlayerPrefs.SetInt(_levelIndex, value);
         }
     }
+
 
     public static float CashBalance
     {

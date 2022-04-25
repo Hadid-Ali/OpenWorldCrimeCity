@@ -14,18 +14,16 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private GameObject settingsPopup,loadingScreen,mainMenu;
 
-
-    private AdsManager _adsManager;
+    private AdCalls _adsManager;
 
     private void Awake()
     {
         Instance = this;
+        this._adsManager = AdCalls.instance;
     }
 
     void Start()
     {
-        this._adsManager = AdsManager.Instance;
-        this._adsManager.RequestInterstitial();
         UpdateUI();
     }
 
@@ -44,7 +42,6 @@ public class MainMenuManager : MonoBehaviour
         {
             case ("Play"):
                 {
-                    this._adsManager.ShowInterstitial();
                     this.mainMenu.SetActive(false);
                     modeSelection.SetActive(true);
                     break;
@@ -89,7 +86,7 @@ public class MainMenuManager : MonoBehaviour
         {
             case "PlayBtn":
                 {
-                    this._adsManager.ShowInterstitial();
+                    this._adsManager.Admob_Unity();
                     loadingScreen.SetActive(true);
                     break;
                 }

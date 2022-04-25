@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 
 public enum ControlsToShow
 {
     TouchPanel,
     Joystick,
     AllControls
+}
+
+public enum TutorialsManagerType
+{
+    Basic_Character,
+    Driving
 }
 
 public enum TutorialType
@@ -85,9 +93,45 @@ public class TutorialsManager : MonoBehaviour
     [SerializeField]
     private Text messagePanelText;
 
+    [SerializeField]
+    private TutorialsManagerType tutorialsSection;
+
+    public UnityEvent eventOnTutorialsCompletion;
+
     private void Awake()
     {
+        bool isTutorialAlreadyPlayed = false;
+
+        switch (this.tutorialsSection)
+        {
+            case TutorialsManagerType.Basic_Character:
+
+                isTutorialAlreadyPlayed = PreferenceManager.IsBasicTutorialPlayed;
+
+                break;
+        }
+
+        if(isTutorialAlreadyPlayed)
+        {
+            this.InvokeCompletionEvent();
+        }
+
         Instance = this;
+    }
+
+    private void InvokeCompletionEvent()
+    {
+        if (this.eventOnTutorialsCompletion != null)
+            this.eventOnTutorialsCompletion.Invoke();
+
+        switch (this.tutorialsSection)
+        {
+            case TutorialsManagerType.Basic_Character:
+                PreferenceManager.IsBasicTutorialPlayed = true;
+                break;
+        }
+
+        this.gameObject.SetActive(false);
     }
 
     public void CompleteCurrentTutorial()
@@ -97,7 +141,7 @@ public class TutorialsManager : MonoBehaviour
 
         if (this._currentTutorial.CompleteTutorials)
         {
-            this.gameObject.SetActive(false);
+            this.InvokeCompletionEvent();
         }
     }
 
