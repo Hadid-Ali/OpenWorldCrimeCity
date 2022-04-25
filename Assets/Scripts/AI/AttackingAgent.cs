@@ -131,7 +131,7 @@ public class AttackingAgent : NavigationAgentController
 
     public virtual void DamageEnemy()
     {
-        Particles.Instance.ShowParticle(ParticleType.HIT, this.targetObject.transform.position + Vector3.up * Random.Range(1f, 1.5f));
+      //  Particles.Instance.ShowParticle(ParticleType.HIT, this.targetObject.transform.position + Vector3.up * Random.Range(1f, 1.5f));
         this.targetController.OnAttacked(this.attackDamage, this.gameObject);
     }
 
