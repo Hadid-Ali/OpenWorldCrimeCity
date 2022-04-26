@@ -133,7 +133,6 @@ public class DialogueSystemManager : MonoBehaviour
         if(dialogueObject.dialogueClip!=null)
         {
             this.dialoguesAudioSource.clip = dialogueObject.dialogueClip;
-            this.dialoguesAudioSource.pitch = dialogueObject.dialoguePitch;
             this.dialoguesAudioSource.Play();
         }
 

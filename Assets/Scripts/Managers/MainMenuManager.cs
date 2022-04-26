@@ -16,6 +16,9 @@ public class MainMenuManager : MonoBehaviour
 
     private AdCalls _adsManager;
 
+    [SerializeField]
+    private string moreGamesURL;
+
     private void Awake()
     {
         Instance = this;
@@ -38,6 +41,7 @@ public class MainMenuManager : MonoBehaviour
     #region MainMenu
     public void MainMenuButtonPressed(string btnName)
     {
+        SoundManager.instance.PlaySound(SoundType.CLICK_SOUND);
         switch (btnName)
         {
             case ("Play"):
@@ -48,6 +52,7 @@ public class MainMenuManager : MonoBehaviour
                 }
             case ("RateUs"):
                 {
+                    Reveiwrequest.instance.RequestReview();
                     break;
                 }
             case ("Shop"):
@@ -57,6 +62,7 @@ public class MainMenuManager : MonoBehaviour
                 }
             case ("MoreGames"):
                 {
+                    Application.OpenURL(this.moreGamesURL);
                     break;
                 }
             case ("RemoveAds"):
@@ -82,6 +88,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ModeSelectionBtnClicked(string btnName)
     {
+        SoundManager.instance.PlaySound(SoundType.CLICK_SOUND);
         switch (btnName)
         {
             case "PlayBtn":

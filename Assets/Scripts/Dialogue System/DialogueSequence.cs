@@ -11,7 +11,6 @@ public class SimpleDialogue
     public string dialogueString;
     public AudioClip dialogueClip;
 
-    public float dialoguePitch = 0.9f;
     public float timeForDialogueToWrite = 2f;
 
     public GameObject[] objectsToEnable;
