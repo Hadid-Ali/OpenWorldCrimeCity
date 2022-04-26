@@ -390,6 +390,10 @@ public class RCC_CarControllerV3 : RCC_Core {
 
     public RCC_TruckTrailer attachedTrailer;
 
+	public GameObject VehicleBodyForStatic;
+
+	public GameObject VehicleBodyForDriving;
+
 	void Awake (){
 		
 		// Overriding Fixed TimeStep.
@@ -467,6 +471,12 @@ public class RCC_CarControllerV3 : RCC_Core {
 	{
 		this.enabled = b;
 		base.SwitchToCar(b);
+
+		if (this.VehicleBodyForDriving == null || this.VehicleBodyForDriving.activeSelf)
+			return;
+
+		this.VehicleBodyForStatic.SetActive(false);
+		this.VehicleBodyForDriving.SetActive(true);
 	}
 
 	/// <summary>

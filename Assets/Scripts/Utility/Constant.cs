@@ -126,6 +126,8 @@ public class Constant : MonoBehaviour
         public static int currentLevel = 1;
         public static int totalLevels = 5;
 
+        public static bool allLevelsUnlocked = false;
+
         public static bool IsLastLevel => currentLevel >= totalLevels;
     }
 }

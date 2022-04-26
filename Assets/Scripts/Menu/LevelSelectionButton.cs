@@ -26,7 +26,7 @@ public class LevelSelectionButton : MonoBehaviour
         this.lockedImage.SetActive(false);
     }
 
-    public bool IsLocked => PreferenceManager.CurrentLevel < this.levelIndex && this.canLockLevel;
+    public bool IsLocked => PreferenceManager.CurrentLevel < this.levelIndex && this.canLockLevel && !Constant.GameplayData.allLevelsUnlocked;
 
     public void CheckLevelLocking()
     {

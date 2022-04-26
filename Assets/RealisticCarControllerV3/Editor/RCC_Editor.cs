@@ -529,6 +529,8 @@ public class RCC_Editor : Editor {
 
 		this.carScript.isMissionVehicle = EditorGUILayout.Toggle("Is Mission Vehicle", this.carScript.isMissionVehicle);
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("onBrakeApply"), new GUIContent("Event On Brake Apply", "Event on Brakes Apply"));
+		EditorGUILayout.PropertyField(serializedObject.FindProperty("VehicleBodyForStatic"), new GUIContent("Body Object For Static", "Assign Body Object For Static Vehicle"));
+		EditorGUILayout.PropertyField(serializedObject.FindProperty("VehicleBodyForDriving"), new GUIContent("Body Object For Driving", "Assign Body Object For Dynamic"));
 
 		EditorGUILayout.Space();
 		GUI.color = Color.cyan;
