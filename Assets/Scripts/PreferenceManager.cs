@@ -19,6 +19,19 @@ public class PreferenceManager : MonoBehaviour
 
     const string _basicTutorialPlayed = "basicTutorialPlayed";
 
+    public static bool IsFirstTimePlayed
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("FIRST_TIME", 0) == 1;
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("FIRST_TIME", 1);
+        }
+    }
+
     public static bool IsBasicTutorialPlayed
     {
         get
