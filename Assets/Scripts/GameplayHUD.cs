@@ -194,6 +194,7 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     private void CutSceneHandler_OnCutSceneEnd_Event()
     {
         CutSceneHandler.OnCutSceneEnd_Event -= CutSceneHandler_OnCutSceneEnd_Event;
+        if(gameplayControls)
         gameplayControls.SetActive(true);
     }
 

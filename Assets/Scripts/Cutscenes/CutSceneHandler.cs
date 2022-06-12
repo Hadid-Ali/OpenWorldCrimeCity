@@ -73,6 +73,7 @@ public class CutSceneHandler : MonoBehaviour
                 }
                 else
                 {
+                    yield return new WaitForSeconds(targetData.delayForNext);
                     index++;
                     dialogueIndex = 0;
                     GameplayHUD.Instance.dialoguesPanel.SetActive(false);
@@ -146,6 +147,7 @@ public class CutSceneData
     public bool moveCameraInstantly = false, showSecondCamera = false, hideSecondCamera = false, showFadingAfter = false;
     public float waitForDialogue, cameraMoveSpeed = 1;
     public DialogueData[] dialoguesData;
+    public float delayForNext = 0;
 }
 
 [System.Serializable]
