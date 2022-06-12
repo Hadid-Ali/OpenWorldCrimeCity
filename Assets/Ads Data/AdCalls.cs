@@ -5,11 +5,94 @@ using UnityEngine.Advertisements;
 using GoogleMobileAds.Api;
 using System;
 using UnityEngine.UI;
+using GoogleMobileAds.Common;
 
 public enum AdSizes
 {
     Banner, SmartBanner
 }
+
+public enum AdStatus
+{
+    NotLoading,
+    Loading,
+    Loaded,
+    Shown,
+    Request_Given,
+    Request_Not_Given
+}
+
+public static class PluginPreReqs
+{
+    public static bool IsInternetAvailable => Application.internetReachability != NetworkReachability.NotReachable;
+
+    public static bool IsAdsCapable => IsValidSDK() && IsValidDevice();
+
+    private static bool _isValidSdkInitialized = false;
+    private static bool _isValidSDK;
+
+    private static bool _isDeviceSpecsCalculated = false;
+    private static bool _isValidDevice = false;
+
+    public static bool IsValidSDK()
+    {
+#if UNITY_ANDROID
+        if(!_isValidSdkInitialized)
+        {
+            string info = SystemInfo.operatingSystem;
+
+            string sdkversion = info.Substring(0, 16);
+            if (sdkversion.Equals("Android OS 8.1.0") && SystemInfo.systemMemorySize < 2048)
+            {
+                if (AppMetrica.Instance != null)
+                    AppMetrica.Instance.ReportEvent("InValidSDK");
+
+                _isValidSDK =  false;
+            }
+            else
+            {
+                if (AppMetrica.Instance != null)
+                    AppMetrica.Instance.ReportEvent("ValidSDK");
+                _isValidSDK =  true;
+            }
+#elif UNITY_IPHONE
+            _isValidSDK =  true;
+#endif
+            _isValidSdkInitialized = true;
+        }
+
+        return _isValidSDK;
+    }
+
+
+    public static bool IsValidDevice()
+    {
+#if UNITY_ANDROID
+        if(!_isDeviceSpecsCalculated)
+        {
+            if (SystemInfo.systemMemorySize < 1024)
+            {
+                if (AppMetrica.Instance != null)
+                    AppMetrica.Instance.ReportEvent("InValidDevice");
+
+                _isValidDevice = false;
+            }
+            else
+            {
+                if (AppMetrica.Instance != null)
+                    AppMetrica.Instance.ReportEvent("ValidDevice");
+
+                _isValidDevice =  true;
+            }
+#elif UNITY_IPHONE
+            _isValidDevice =  true;
+#endif
+            _isDeviceSpecsCalculated = true;
+        }
+        return _isValidDevice;
+    }
+}
+
 public class AdCalls : MonoBehaviour, IUnityAdsListener
 {
     string reward;
@@ -46,6 +129,9 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
 
     private Action rewardedDelegate;
 
+    private AdStatus _interstitialStatus;
+    private AdStatus _rewardedStatus;
+
     #region ----------------------- Start --------------------------
     private void Start()
     {
@@ -71,11 +157,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
 
             #region Unity
 #if UNITY_ANDROID
-         //   if (!IsValidSDK() || !IsValidDevice())
-            {
-
-            }
-         //   else
+            if (PluginPreReqs.IsAdsCapable)
             {
                 Advertisement.Initialize(UnityIdAndroid, TestAds);
             }
@@ -87,14 +169,12 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
 
             #region Admob
 
-            if (!IsValidSDK())
+            if (!PluginPreReqs.IsAdsCapable)
             {
-         //       return;
+                return;
             }
-            Debug.LogError("Initialize Admob");
             MobileAds.Initialize(initStatus =>
             {
-                Debug.LogError("Initialized Admob");
                 CreateAndLoadRewardedAd();
                 if (PlayerPrefs.GetInt("removeads") != 1)
                 {
@@ -124,6 +204,8 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
             #endregion
         }
     }
+
+
     #endregion
     public static bool IsBannerEnabled()
     {
@@ -179,7 +261,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     #region --------------Admob Functionality------------------
     private void RequestInterstitial()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsAdsCapable || !PluginPreReqs.IsInternetAvailable || this._interstitialStatus == AdStatus.Request_Given)
         {
             return;
         }
@@ -199,13 +281,15 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
 
+        this._interstitialStatus = AdStatus.Request_Given;
+
         this.interstitial.OnAdFailedToLoad += HandleOnAdFailedToLoad;
         this.interstitial.OnAdClosed += HandleOnAdClosed;
 
     }
     public void CreateAndLoadRewardedAd()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsInternetAvailable || !PluginPreReqs.IsAdsCapable || this._rewardedStatus == AdStatus.Request_Given)
         {
             return;
         }
@@ -227,12 +311,13 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
         AdRequest request = new AdRequest.Builder().Build();
         // Load the rewarded ad with the request.
         this.rewardedAd.LoadAd(request);
+        this._rewardedStatus = AdStatus.Request_Given;
 
     }
 
     private void RequestBanner1()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsValidSDK() || !PluginPreReqs.IsInternetAvailable)
         {
             return;
         }
@@ -254,7 +339,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     }
     private void RequestBanner2()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsValidSDK() || !PluginPreReqs.IsInternetAvailable)
         {
             return;
         }
@@ -278,24 +363,39 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
 
     public void HandleUserEarnedReward(object sender, Reward args)
     {
-        RewardUser();
+        MobileAdsEventExecutor.ExecuteInUpdate(() => 
+        {
+            this.RewardUser();
+        });
     }
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
-        this.CreateAndLoadRewardedAd();
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        {
+            this.CreateAndLoadRewardedAd();
+        });
     }
     public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args)
     {
-        //  this.CreateAndLoadRewardedAd();
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        {
+            this.CreateAndLoadRewardedAd();
+        });
     }
     public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        //  RequestInterstitial();
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        {
+            RequestInterstitial();
+        });
     }
 
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
-        RequestInterstitial();
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        {
+            RequestInterstitial();
+        });
     }
     #endregion
 
@@ -327,65 +427,20 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     }
     public void OnUnityAdsDidError(string message)
     {
-        throw new NotImplementedException();
+
     }
 
     public void OnUnityAdsDidStart(string placementId)
     {
-        throw new NotImplementedException();
-    }
-
-    public static bool IsValidDevice()
-    {
-#if UNITY_ANDROID
-        if (SystemInfo.systemMemorySize < 1024)
-        {
-            if (AppMetrica.Instance != null)
-                AppMetrica.Instance.ReportEvent("InValidDevice");
-            return false;
-        }
-        else
-        {
-            if (AppMetrica.Instance != null)
-                AppMetrica.Instance.ReportEvent("ValidDevice");
-            return true;
-        }
-#elif UNITY_IPHONE
-            return true;
-#endif
-    }
-
-
-    public static bool IsValidSDK()
-    {
-        return true;
-#if UNITY_ANDROID
-        string info = SystemInfo.operatingSystem;
-
-        string sdkversion = info.Substring(0, 16);
-        if (sdkversion.Equals("Android OS 8.1.0") && SystemInfo.systemMemorySize < 2048)
-        {
-            if (AppMetrica.Instance != null)
-                AppMetrica.Instance.ReportEvent("InValidSDK");
-            return false;
-        }
-        else
-        {
-            if (AppMetrica.Instance != null)
-                AppMetrica.Instance.ReportEvent("ValidSDK");
-            return true;
-        }
-#elif UNITY_IPHONE
-            return true;
-#endif
 
     }
+
     #endregion
 
     #region ------------------- Ad Calling Functions--------------------
     public void RemoveBanner()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsValidSDK() || !PluginPreReqs.IsInternetAvailable)
         {
             return;
         }
@@ -408,7 +463,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
 
     public void CallAdmob()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsAdsCapable || !PluginPreReqs.IsInternetAvailable)
         {
 
             return;
@@ -441,7 +496,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     }
     public void Admob_Unity()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsValidSDK())
         {
             return;
         }
@@ -452,7 +507,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
             {
                 if (IsAdEnabled())
                 {
-                    if (IsValidDevice())
+                    if (PluginPreReqs.IsValidDevice())
                     {
                         if (this.interstitial.IsLoaded())
                         {
@@ -491,7 +546,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     }
     public void Unity_Admob()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsValidSDK() || !PluginPreReqs.IsInternetAvailable)
         {
             return;
         }
@@ -501,7 +556,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
             {
                 if (IsAdEnabled())
                 {
-                    if (IsValidDevice())
+                    if (PluginPreReqs.IsValidDevice())
                     {
                         if (Advertisement.IsReady())
                         {
@@ -545,7 +600,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     }
     public void RewardVideo(Action _reward)
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsValidSDK())
         {
             RewardUser();
             return;
@@ -558,7 +613,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
             RewardUser();
 #endif
 
-            if (IsValidDevice())
+            if (PluginPreReqs.IsValidDevice())
             {
                 if (this.rewardedAd.IsLoaded())
                 {
@@ -598,7 +653,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     }
     public void UnityInterstitial()
     {
-        if (!IsValidSDK())
+        if (!PluginPreReqs.IsValidSDK())
         {
             return;
         }
@@ -607,7 +662,7 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
         {
             try
             {
-                if (IsValidDevice())
+                if (PluginPreReqs.IsValidDevice())
                 {
                     if (Advertisement.IsReady())
                     {
@@ -639,7 +694,14 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
     #endregion
     void RewardUser()
     {
-        if (this.rewardedDelegate != null)
-            this.rewardedDelegate();
+        try
+        {
+            if (this.rewardedDelegate != null)
+                this.rewardedDelegate();
+        }
+        catch(System.Exception e)
+        {
+            Debug.LogError($"Exception : {e.ToString()}");
+        }
     }
 }
