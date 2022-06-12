@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class InGameRewardPanel : InGamePanel
 {
-    protected AdsManager _adsManager;
+    protected AdCalls _adsManager;
 
     [SerializeField]
     protected bool closeOnReward = true;
 
     void Awake()
     {
-        this._adsManager = AdsManager.Instance;
+        this._adsManager = AdCalls.instance;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        this._adsManager.CreateAndLoadRewardedAd();
     }
 
     public virtual void OnShowRewardedVideo()
@@ -25,9 +31,10 @@ public class InGameRewardPanel : InGamePanel
 
     }
 
+
     public void WatchAdForReward(string placement)
     {
-        this._adsManager.ShowRewardedVideo(OnReward, this.OnShowRewardedVideo, this.OnRewardedVideoNotShown, placement);
+        this._adsManager.RewardVideo(OnReward);
     }
 
     public virtual void OnReward()

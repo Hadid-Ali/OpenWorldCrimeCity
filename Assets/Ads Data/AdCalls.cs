@@ -258,10 +258,13 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
         }
     }
 
-    #region --------------Admob Functionality------------------
+    #region --------------Admob Functionality------------------\
+
+    public bool IsInterstitialLoaded => this.interstitial != null && this.interstitial.IsLoaded();
+
     private void RequestInterstitial()
     {
-        if (!PluginPreReqs.IsAdsCapable || !PluginPreReqs.IsInternetAvailable || this._interstitialStatus == AdStatus.Request_Given)
+        if (this.IsInterstitialLoaded || !PluginPreReqs.IsAdsCapable || !PluginPreReqs.IsInternetAvailable || this._interstitialStatus == AdStatus.Request_Given)
         {
             return;
         }
@@ -287,9 +290,12 @@ public class AdCalls : MonoBehaviour, IUnityAdsListener
         this.interstitial.OnAdClosed += HandleOnAdClosed;
 
     }
+
+    public bool IsRewardedAdLoaded => this.rewardedAd != null && this.rewardedAd.IsLoaded();
+
     public void CreateAndLoadRewardedAd()
     {
-        if (!PluginPreReqs.IsInternetAvailable || !PluginPreReqs.IsAdsCapable || this._rewardedStatus == AdStatus.Request_Given)
+        if (this.IsRewardedAdLoaded || !PluginPreReqs.IsInternetAvailable || !PluginPreReqs.IsAdsCapable || this._rewardedStatus == AdStatus.Request_Given)
         {
             return;
         }
