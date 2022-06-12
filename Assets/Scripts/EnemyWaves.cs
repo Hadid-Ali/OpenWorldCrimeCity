@@ -43,8 +43,15 @@ public class EnemyWaves : MonoBehaviour
 
     public void EnemiesCompleted()
     {
-        if (this.unityEventToCallOnWaveCompleted != null)
-            this.unityEventToCallOnWaveCompleted.Invoke();
+        try
+        {
+            if (this.unityEventToCallOnWaveCompleted != null)
+                this.unityEventToCallOnWaveCompleted.Invoke();
+        }
+        catch(System.Exception e)
+        {
+
+        }
     }
 
     public void WaveEnemyKilled()

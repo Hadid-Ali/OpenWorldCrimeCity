@@ -124,7 +124,7 @@ public class Constant : MonoBehaviour
     public static class GameplayData
     {
         public static int currentLevel = 1;
-        public static int totalLevels = 6;
+        public static int totalLevels = 10;
 
         public static bool allLevelsUnlocked = false;
 
