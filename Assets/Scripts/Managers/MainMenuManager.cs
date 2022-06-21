@@ -27,6 +27,12 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
+        Debug.LogWarning("herer:" + PreferenceManager.IsFirstTimePlayed);
+        if (!PreferenceManager.IsFirstTimePlayed)
+        {
+            loadingScreen.SetActive(true);
+        }
+
         UpdateUI();
     }
 

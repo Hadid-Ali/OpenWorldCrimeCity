@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class InGamePanel : MonoBehaviour
 {
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         Time.timeScale = 0f;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         Time.timeScale = 1f;
     }

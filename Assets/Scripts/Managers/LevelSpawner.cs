@@ -6,9 +6,23 @@ public class LevelSpawner : MonoBehaviour
 {
     private LevelData _currentLevel;
 
+    private GameObject introVideo;
+
     void Start()
     {
-        this.SpawnLevel();
+        if (!PreferenceManager.IsFirstTimePlayed)
+        {
+            Invoke("SpawnIntro", 2);
+        }
+        else
+            this.SpawnLevel();
+    }
+
+    private void SpawnIntro()
+    {
+        GameManager.instance.gameplayHUD.hudCanvasGroup.alpha = 0;
+        GameManager.instance.gameplayHUD.hudCanvasGroup.interactable = false;
+        introVideo = Instantiate(Resources.Load("CutScenes/IntroCutScene")) as GameObject;
     }
 
     public LevelData CurrentLevel
@@ -40,4 +54,16 @@ public class LevelSpawner : MonoBehaviour
             this._currentLevel.ActivateLevel();
     }
 
+
+    public void IntroVideoCompleted()
+    {
+        this.SpawnLevel();
+
+        GameManager.instance.gameplayHUD.hudCanvasGroup.alpha = 1;
+        GameManager.instance.gameplayHUD.hudCanvasGroup.interactable = true;
+
+        Destroy(introVideo);
+
+        PreferenceManager.IsFirstTimePlayed = true;
+    }
 }

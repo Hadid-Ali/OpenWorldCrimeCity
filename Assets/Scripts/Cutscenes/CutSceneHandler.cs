@@ -14,7 +14,9 @@ public class CutSceneHandler : MonoBehaviour
     public delegate void OnCutSceneEnd();
     public static event OnCutSceneEnd OnCutSceneEnd_Event;
 
-    public GameObject enableObjectAfterCutsceneEnd;
+    public GameObject enableObjectAfterCutsceneEnd,fadingCanvas;
+
+    public bool isIntroVideo;
 
     private void Start()
     {
@@ -71,10 +73,16 @@ public class CutSceneHandler : MonoBehaviour
                 }
                 else
                 {
+                    yield return new WaitForSeconds(targetData.delayForNext);
                     index++;
                     dialogueIndex = 0;
                     GameplayHUD.Instance.dialoguesPanel.SetActive(false);
                     yield return new WaitForSeconds(2);
+                    if (targetData.showFadingAfter)
+                    {
+                        fadingCanvas.SetActive(true);
+                        yield return new WaitForSeconds(0.5f);
+                    }
                 }
             }
         }
@@ -87,6 +95,11 @@ public class CutSceneHandler : MonoBehaviour
         cameraTransform.gameObject.SetActive(false);
         if(enableObjectAfterCutsceneEnd)
             enableObjectAfterCutsceneEnd.SetActive(true);
+
+        if (isIntroVideo)
+        {
+            GameManager.instance.levelSpawner.IntroVideoCompleted();
+        }
     }
 
     private bool IsShowingSecondCamera()
@@ -131,9 +144,10 @@ public class CutSceneHandler : MonoBehaviour
 public class CutSceneData
 {
     public Transform targetPos;
-    public bool moveCameraInstantly = false, showSecondCamera = false, hideSecondCamera = false;
+    public bool moveCameraInstantly = false, showSecondCamera = false, hideSecondCamera = false, showFadingAfter = false;
     public float waitForDialogue, cameraMoveSpeed = 1;
     public DialogueData[] dialoguesData;
+    public float delayForNext = 0;
 }
 
 [System.Serializable]

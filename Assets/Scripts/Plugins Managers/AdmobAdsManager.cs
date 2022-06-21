@@ -19,13 +19,7 @@ using GoogleMobileAds.Api.Mediation;
 //using GoogleMobileAds.Common.Mediation.AppLovin;
 //using GoogleMobileAds.Api.Mediation.AppLovin;
 
-public enum AdStatus
-{
-    NotLoading,
-    Loading,
-    Loaded,
-    Shown
-}
+
 
 [System.Serializable]
 public class AdIDsTemplate
