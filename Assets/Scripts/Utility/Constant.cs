@@ -81,7 +81,7 @@ public class Constant : MonoBehaviour
 
     public class Levels
     {
-        public const int totalLevels = 9;
+        public const int totalLevels = 10;
     }
 
     public class Scenes
