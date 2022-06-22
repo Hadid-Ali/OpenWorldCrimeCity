@@ -118,6 +118,12 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
     [SerializeField]
     private GameObject watchAdButton;
 
+    [SerializeField]
+    private Sprite AutoShootOn, AutoShootOff;
+
+    
+    public Image AutoshootButtonImage;
+
     void GameplayInstructionBarManager.OnMainInstructionBarShow()
     {
         this.shortInstructionBar.ToggleInstructionBar(false);
@@ -231,8 +237,28 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
                 this.LoadScene(Constant.Scenes.gameplayScene);
             });
         }
+
+        if (shootingButton.activeSelf)
+        {
+
+        }
+
+
     }
 
+
+    void ButtonsSetAnimations() 
+    {
+        iTween.MoveTo(reloadButton.gameObject,reloadButton.GetComponent<ChangePositionTween>().EndPos,1);
+        iTween.MoveTo(weaponChangeButton.gameObject, weaponChangeButton.GetComponent<ChangePositionTween>().EndPos,1);    
+        iTween.MoveTo(closeAimingButton.gameObject, closeAimingButton.GetComponent<ChangePositionTween>().EndPos,1);    
+    }
+    void ButtonsUpSetAnimations()
+    {
+        iTween.MoveTo(reloadButton.gameObject, reloadButton.GetComponent<ChangePositionTween>().StartPos, 1);
+        iTween.MoveTo(weaponChangeButton.gameObject, weaponChangeButton.GetComponent<ChangePositionTween>().StartPos, 1);
+        iTween.MoveTo(closeAimingButton.gameObject, closeAimingButton.GetComponent<ChangePositionTween>().StartPos, 1);
+    }
     public void PauseButtonInput()
     {
         GameManager.instance.PauseGame();
@@ -492,24 +518,51 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
         }
     }
+
+    bool AutoShootCheckBool=true;
+    public void AutoShootCheck ()
+    {
+        AutoShootCheckBool = !AutoShootCheckBool;
+
+        if (AutoShootCheckBool)
+        {
+            AutoshootButtonImage.sprite = AutoShootOn;
+            ButtonsSetAnimations();
+            shootingButton.SetActive(false);
+        }
+        else
+        {
+            AutoshootButtonImage.sprite = AutoShootOff;
+            ButtonsUpSetAnimations();
+            shootingButton.SetActive(true);
+
+        }
+
+    }
     public void ChangeCrosshair(GameObject obj)
     {
         if (!obj)
         {
             this.crosshairFocus.SetActive(false);
+            //if (AutoShootCheckBool==false)
+                ToggleIsShooting(false);
             return;
         }
 
-        switch(obj.tag)
+        switch (obj.tag)
         {
             case Constant.TAGS.PEDESTRIAN:
             case Constant.TAGS.MISSION_OBJECTS:
             case Constant.TAGS.ENEMY:
                 this.crosshairFocus.SetActive(true);
+                if (AutoShootCheckBool)
+                    ToggleIsShooting(true);
                 break;
 
             default:
                 this.crosshairFocus.SetActive(false);
+                //if (AutoShootCheckBool==false)
+                    ToggleIsShooting(false);
                 break;
         }
     }
@@ -533,7 +586,7 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
 
     public void ActionJoystick(bool b)
     {
-        this.shootingJoyStick.SetActive(b);
+        //this.shootingJoyStick.SetActive(b);
     }
 
     public void ToggleCrosshair(bool b)
@@ -760,7 +813,7 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         this.movementJoystick.gameObject.SetActive(hasAllControls || uiElements.Contains(ControlsToShow.Joystick));
         this.mainTouchPad.gameObject.SetActive(hasAllControls || uiElements.Contains(ControlsToShow.TouchPanel));
 
-        this.shootingJoyStick.gameObject.SetActive(hasAllControls);
+        this.AutoshootButtonImage.gameObject.SetActive(hasAllControls);
         this.healthBarParent.SetActive(hasAllControls);
 
         this.closeAimingButton.SetActive(hasAllControls);
@@ -777,6 +830,7 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         this.mainTouchPad.gameObject.SetActive(false);
 
         this.shootingJoyStick.gameObject.SetActive(false);
+        this.AutoshootButtonImage.gameObject.SetActive(false);
         this.playerHealthBar.gameObject.SetActive(false);
     }
 
