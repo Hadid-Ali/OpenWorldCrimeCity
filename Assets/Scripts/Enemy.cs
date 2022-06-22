@@ -28,6 +28,8 @@ public class Enemy : WeaponAttackingAgent
 
     public override void OnAttacked(float damage,GameObject attacker)
     {
+        Debug.LogWarning("OnAttacked: " + damage);
+
         if (this.wave)
         {
             this.wave.AlertWave();
