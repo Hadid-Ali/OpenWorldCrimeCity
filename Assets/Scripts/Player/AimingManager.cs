@@ -68,6 +68,7 @@ public class AimingManager : MonoBehaviour,PlayerAiming
     public void AimRaycast()
     {
         this.aimedObject = null;
+        /*
         Ray R = this.mainCam.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
         RaycastHit hit;
         if(Physics.Raycast(R,out hit,40f,this.aimMask))
@@ -76,11 +77,45 @@ public class AimingManager : MonoBehaviour,PlayerAiming
             this.aimingAtPoint = hit.point;
             GameManager.instance.gameplayHUD.ChangeCrosshair(this.aimedObject);
         }
+        */
+
+        Vector3 R = this.mainCam.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f,0));
+        RaycastHit[] hit = Physics.RaycastAll(R,mainCam.transform.forward, 40f, this.aimMask);
+        if (hit.Length>0)
+        {
+            bool isHeadhot = false;
+            RaycastHit hitObj=new RaycastHit();
+            foreach (var item in hit)
+            {
+                if (item.transform.CompareTag(Constant.TAGS.HEAD))
+                {
+                    hitObj = item;
+                    isHeadhot = true;
+                    Debug.LogWarning("Headshot");
+                    break;
+                }
+            }
+            if (!isHeadhot)
+            {
+                foreach (var item in hit)
+                {
+                    if (item.transform.CompareTag(Constant.TAGS.ENEMY))
+                    {
+                        hitObj = item;
+                        break;
+                    }
+                }
+            }
+            this.aimedObject = hitObj.transform.gameObject;
+            this.aimingAtPoint = hitObj.point;
+            GameManager.instance.gameplayHUD.ChangeCrosshair(this.aimedObject);
+        }
 
         else
         {
             this.aimingAtPoint = Vector3.zero;
             GameManager.instance.gameplayHUD.ChangeCrosshair(null);
+            GameplayHUD.Instance.IsHeadShot = false;
         }
     }
 

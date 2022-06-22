@@ -72,6 +72,7 @@ public class Constant : MonoBehaviour
         public const string PEDESTRIAN_REMOVER = "PedestrianRemover";
         public const string SEA_TRIGGER = "SeaTrigger";
         public const string ENEMY = "Enemy";
+        public const string HEAD = "Head";
         public const string MISSION_OBJECTS = "MissionObjects";
     }
 

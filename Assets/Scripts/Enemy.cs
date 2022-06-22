@@ -28,12 +28,18 @@ public class Enemy : WeaponAttackingAgent
 
     public override void OnAttacked(float damage,GameObject attacker)
     {
-        Debug.LogWarning("OnAttacked: " + damage);
 
         if (this.wave)
         {
             this.wave.AlertWave();
         }
+
+        if (GameplayHUD.Instance.IsHeadShot)
+        {
+            GameplayHUD.Instance.IsHeadShot = false;
+            damage = totalhealth;
+        }
+
         base.OnAttacked(damage, attacker);
 
         if(this.healthBarParent)

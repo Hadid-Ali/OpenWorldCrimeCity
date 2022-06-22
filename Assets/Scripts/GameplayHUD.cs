@@ -539,6 +539,9 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
         }
 
     }
+
+    public bool IsHeadShot = false;
+
     public void ChangeCrosshair(GameObject obj)
     {
         if (!obj)
@@ -558,7 +561,12 @@ public class GameplayHUD : MonoBehaviour, GameplayInstructionBarManager
                 if (AutoShootCheckBool)
                     ToggleIsShooting(true);
                 break;
-
+            case Constant.TAGS.HEAD:
+                this.crosshairFocus.SetActive(true);
+                if (AutoShootCheckBool)
+                    ToggleIsShooting(true);
+                IsHeadShot = true;
+                break;
             default:
                 this.crosshairFocus.SetActive(false);
                 //if (AutoShootCheckBool==false)
