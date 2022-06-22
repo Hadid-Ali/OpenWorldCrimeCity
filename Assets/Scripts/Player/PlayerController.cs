@@ -263,7 +263,7 @@ public class PlayerController : CharacterController, DistanceCalculator, PlayerC
 
         //GameManager.instance.gameplayHUD.ToggleCrosshair(weapon != null);
         GameManager.instance.gameplayHUD.SetWeaponIcon((int)weapon.weaponName);
-        GameManager.instance.gameplayHUD.AutoshootButtonImage.gameObject.SetActive(isWeapon);
+        //GameManager.instance.gameplayHUD.shootingJoyStick.gameObject.SetActive(isWeapon);
         this.meleeFightHandler.canMeleeFight = !isWeapon;
         GameManager.instance.gameplayHUD.ToggleMeleeFightControls(!isWeapon);
         GameManager.instance.gameplayHUD.ToggleCloseAimingButton(isWeapon);
